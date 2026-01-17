@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUNES ONA | Multimedia Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>LUNES OÑA</h1>
+        <div class="subtitle">Multimedia Editor & Designer based in Miami. Specialized in post-production and visual storytelling.</div>
+        <div class="contact-links">
+            <a href="mailto:lunes@alwayslunes.com">Email Me</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Download Resume</a>
+        </div>
+    </header>
+
+    <main class="grid">
+        {% for project in projects %}
+        <article class="card">
+            <a href="{{ project.link }}" style="text-decoration:none;">
+                <div class="image-container">
+                    <img src="{{ project.image }}" alt="{{ project.title }}">
+                </div>
+                <div class="category">{{ project.category }}</div>
+                <div class="project-title">{{ project.title }}</div>
+                <div class="project-desc">{{ project.description }}</div>
+            </a>
+        </article>
+        {% endfor %}
+    </main>
+
+    <footer>
+        &copy; 2026 Lunes Oña.
+    </footer>
+
+</body>
+</html>
