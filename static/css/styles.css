@@ -2,7 +2,7 @@
 :root { 
     --bg-color: #000000; 
     --text-color: #ffffff; 
-    --accent: #FF9900; /* Lunes Orange/Gold */
+    --accent: #FF9900; 
     --header-height: 60px;
 }
 
@@ -12,7 +12,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden;
 }
 
 /* --- HEADER --- */
@@ -26,24 +26,22 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 2000; /* Highest priority */
     border-bottom: 1px solid #222;
 }
 
-/* NAME LINK STYLING */
+/* NAME LINK */
 .header-left {
     color: var(--accent);
     font-weight: 800;
     font-size: 1.5rem;
     text-transform: uppercase;
     letter-spacing: -1px;
-    text-decoration: none; /* Removes underline */
+    text-decoration: none;
     cursor: pointer;
-    transition: color 0.2s;
+    z-index: 2001; /* Stays on top of menu */
 }
-.header-left:hover {
-    color: #fff;
-}
+.header-left:hover { color: #fff; }
 
 .header-center {
     color: var(--accent);
@@ -53,9 +51,10 @@ header {
     letter-spacing: 1px;
 }
 
+/* DESKTOP NAV */
 .header-right {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     align-items: center;
 }
 
@@ -66,101 +65,102 @@ header {
     fill: var(--accent);
     transition: transform 0.2s, fill 0.2s;
 }
-.icon-link:hover svg {
-    transform: scale(1.1);
-    fill: #fff;
-}
+.icon-link:hover svg { transform: scale(1.1); fill: #fff; }
 
-.cv-text {
+/* TEXT LINKS (CV & ABOUT) */
+.nav-text {
     color: var(--accent);
     font-weight: 800;
     font-size: 1.2rem;
     text-decoration: none;
     text-transform: uppercase;
+    cursor: pointer;
 }
-.cv-text:hover { color: #fff; }
+.nav-text:hover { color: #fff; }
 
-/* --- FULL SCREEN 2x2 GRID --- */
+/* --- MOBILE MENU TOGGLE --- */
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 2001;
+}
+
+/* --- MOBILE OVERLAY --- */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1500;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mobile-link {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.mobile-link:hover { color: var(--accent); }
+
+.mobile-icons {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.mobile-icons svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--accent);
+}
+
+/* --- GRID LAYOUT --- */
 .grid {
     display: grid;
-    /* 2 columns */
     grid-template-columns: 1fr 1fr;
-    /* 2 rows that fill exactly the remaining screen space */
     grid-template-rows: repeat(2, calc((100vh - var(--header-height)) / 2));
     margin-top: var(--header-height);
     width: 100vw;
 }
-
-.card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #111;
-}
-
-.card a {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-.card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-    filter: brightness(0.9);
-}
-
-/* --- HOVER EFFECTS --- */
-.card:hover img {
-    transform: scale(1.05);
-    filter: brightness(0.4); /* Darkens image to reveal text */
-}
+.card { position: relative; width: 100%; height: 100%; background: #111; overflow: hidden; }
+.card a { display: block; width: 100%; height: 100%; }
+.card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: brightness(0.9); }
+.card:hover img { transform: scale(1.05); filter: brightness(0.4); }
 
 .overlay {
-    position: absolute;
-    top: 0; 
-    left: 0;
-    width: 100%; 
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0; /* Hidden by default */
-    transition: opacity 0.3s ease;
-    padding: 20px;
-    text-align: center;
-    pointer-events: none; /* Let clicks pass through to the link */
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    opacity: 0; transition: 0.3s; padding: 20px; text-align: center; pointer-events: none;
 }
+.card:hover .overlay { opacity: 1; }
+.project-title { color: #fff; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; }
+.project-cat { color: var(--accent); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; }
 
-.card:hover .overlay {
-    opacity: 1;
-}
-
-.project-title {
-    color: #fff;
-    font-size: 2.5rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.project-cat {
-    color: var(--accent);
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* --- MOBILE RESPONSIVENESS --- */
+/* --- RESPONSIVE BREAKPOINTS --- */
 @media (max-width: 768px) {
-    .header-center { display: none; } /* Hide center title on phones */
-    .grid {
-        grid-template-columns: 1fr; /* 1 column */
-        /* On mobile, let rows be 50% of screen height each, creating a scroll */
-        grid-template-rows: repeat(4, 50vh); 
-    }
+    .header-center { display: none; }
+    .header-right { display: none; } /* Hide normal nav */
+    .menu-toggle { display: block; } /* Show MENU button */
+    
+    .grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 50vh); }
 }

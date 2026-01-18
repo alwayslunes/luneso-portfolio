@@ -46,6 +46,10 @@ def get_project(project_id):
 def home():
     return render_template('index.html', projects=projects)
 
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+
 @app.route('/project/<int:project_id>/')
 def project_detail(project_id):
     project = get_project(project_id)
