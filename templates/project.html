@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.title }} | Lunes Oña</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <nav style="margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 20px;">
+        <a href="{{ url_for('home') }}" style="font-size: 1.2rem; font-weight: bold; color: #fff; text-decoration: none;">&larr; Back to Home</a>
+    </nav>
+
+    <main class="project-detail">
+        <div class="category">{{ project.category }}</div>
+        <h1 style="margin-top:0;">{{ project.title }}</h1>
+        
+        <div class="image-container" style="max-height: 600px; margin: 30px 0;">
+            <img src="{{ url_for('static', filename='images/' + project.image) }}" alt="{{ project.title }}" style="object-fit:contain;">
+        </div>
+
+        <div class="project-body" style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: #ccc;">
+            <p>{{ project.description | safe }}</p>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Lunes Oña.
+    </footer>
+
+</body>
+</html>
