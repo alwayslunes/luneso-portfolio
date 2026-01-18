@@ -3,31 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print &amp; Digital Design | Lunes Oña</title>
+    <title>Design | Lunes Oña</title>
     <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        /* BASIC PROJECT LAYOUT */
+        body { padding-top: 60px; /* Make room for the fixed header */ }
+        
+        .project-container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+            color: #fff;
+        }
+        
+        /* Large Hero Image at the top */
+        .project-hero {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain; /* Ensures the whole image is visible */
+            background: #111;
+            border-radius: 4px;
+            margin-bottom: 40px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #666;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid transparent;
+        }
+        .back-link:hover { color: #fff; border-bottom: 1px solid #FF9900; }
+
+        .detail-cat { 
+            color: #FF9900; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .detail-title { 
+            font-size: 3rem; 
+            font-weight: 800; 
+            margin-bottom: 20px; 
+            text-transform: uppercase; 
+            line-height: 1;
+        }
+        
+        .detail-desc { 
+            font-size: 1.2rem; 
+            line-height: 1.6; 
+            color: #ccc; 
+            max-width: 700px;
+        }
+    </style>
 </head>
 <body>
 
-    <nav style="margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 20px;">
-        <a href="/" style="font-size: 1.2rem; font-weight: bold; color: #fff; text-decoration: none;">&larr; Back to Home</a>
-    </nav>
+    <header>
+        <a href="/" class="header-left">LUNES OÑA</a>
+        <div class="header-center">MULTIMEDIA EDITOR</div>
+        <div class="header-right">
+            <a href="mailto:lunes@alwayslunes.com" class="icon-link" title="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+            <a href="https://linkedin.com" target="_blank" class="icon-link" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            <a href="/static/Lunes-Ona-Video-Editor-CV.pdf" target="_blank" class="cv-text">CV</a>
+        </div>
+    </header>
 
-    <main class="project-detail">
-        <div class="category">Graphic Design &amp; Layout</div>
-        <h1 style="margin-top:0;">Print &amp; Digital Design</h1>
+    <div class="project-container">
+        <a href="/" class="back-link">&larr; Back to Projects</a>
         
-        <div class="image-container" style="max-height: 600px; margin: 30px 0;">
-            <img src="/static/images/design.jpg" alt="Print &amp; Digital Design" style="object-fit:contain;">
+        <div class="detail-cat">Print, Digital &amp; UI Layout</div>
+        <h1 class="detail-title">Design</h1>
+        
+        <img src="/static/images/design.jpg" class="project-hero" alt="Design">
+        
+        <div class="detail-desc">
+            Creation of marketing collateral including event flyers, poster signage, and responsive website layouts. Demonstrates expert proficiency in Photoshop and Illustrator.
         </div>
-
-        <div class="project-body" style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: #ccc;">
-            <p>Creation of high-volume marketing collateral including event flyers, poster signage, and digital banners. Expert proficiency in Photoshop and Illustrator with a focus on typography and print-ready file preparation.</p>
-        </div>
-    </main>
-
-    <footer>
-        &copy; 2026 Lunes Oña.
-    </footer>
+    </div>
 
 </body>
 </html>
