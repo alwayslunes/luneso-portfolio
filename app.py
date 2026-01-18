@@ -4,12 +4,11 @@ from flask_frozen import Freezer
 app = Flask(__name__)
 freezer = Freezer(app)
 
-# CORE PROJECT DATA
 projects = [
     {
         "id": 1,
         "title": "Always Lunes",
-        "category": "Creative Direction & Brand Development",
+        "category": "Creative Direction",
         "image": "lunes.jpg", 
         "description": "Established the complete visual identity for Miami's leading underground culture platform. Executed weekly motion graphics and static social assets. Awarded <a href='https://www.miaminewtimes.com/best-of-miami/2023/arts-and-entertainment/best-instagram-17198798/' target='_blank' style='color:#d4af37;'>'Best Instagram' of 2023</a>."
     },
