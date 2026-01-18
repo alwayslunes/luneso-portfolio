@@ -1,124 +1,150 @@
 /* RESET & VARIABLES */
 :root {
-    --bg-color: #0a0a0a;
-    --card-bg: #141414;
-    --text-main: #f0f0f0;
-    --text-muted: #888888;
-    --accent: #d4af37; /* Muted Gold */
-    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent: #FF9900; /* The Lunes Orange */
+    --header-height: 60px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: var(--bg-color);
-    color: var(--text-main);
-    font-family: var(--font-main);
-    line-height: 1.5;
-    padding: 5% 10%;
-    -webkit-font-smoothing: antialiased;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-/* HEADER */
+/* --- HEADER --- */
 header {
-    margin-bottom: 80px;
+    height: var(--header-height);
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     border-bottom: 1px solid #222;
-    padding-bottom: 40px;
 }
 
-h1 {
-    font-size: 3rem;
+.header-left {
+    color: var(--accent);
     font-weight: 800;
+    font-size: 1.5rem;
+    text-transform: uppercase;
     letter-spacing: -1px;
-    margin-bottom: 10px;
 }
 
-.subtitle {
-    color: var(--text-muted);
-    font-size: 1.2rem;
+.header-center {
+    color: var(--accent);
     font-weight: 400;
-    max-width: 600px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.contact-links {
-    margin-top: 20px;
+.header-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
-.contact-links a {
-    color: var(--text-main);
+
+.icon-link svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--accent);
+    transition: transform 0.2s, fill 0.2s;
+}
+
+.icon-link:hover svg {
+    transform: scale(1.1);
+    fill: #fff;
+}
+
+.cv-text {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 1.2rem;
     text-decoration: none;
-    margin-right: 20px;
-    font-size: 0.9rem;
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 2px;
-    transition: opacity 0.2s;
+    text-transform: uppercase;
 }
-.contact-links a:hover { opacity: 0.7; }
+.cv-text:hover { color: #fff; }
 
-/* GRID LAYOUT */
+/* --- FULL SCREEN GRID --- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    /* 2 columns, 50% width each */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows, taking up exactly half the remaining screen height each */
+    grid-template-rows: repeat(2, calc((100vh - var(--header-height)) / 2));
+    margin-top: var(--header-height);
+    width: 100vw;
 }
 
-/* CARD DESIGN */
 .card {
-    background: transparent;
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.image-container {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background-color: #222;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-.image-container img {
+    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0.9;
-    transition: opacity 0.3s, transform 0.3s;
+    overflow: hidden;
+    background: #111;
 }
 
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the box perfectly */
+    transition: transform 0.5s ease;
+    filter: brightness(0.9);
+}
+
+/* --- HOVER EFFECTS --- */
 .card:hover img {
-    opacity: 1;
-    transform: scale(1.03);
+    transform: scale(1.05); /* Subtle zoom */
+    filter: brightness(0.4); /* Darken image to read text */
 }
 
-.category {
-    color: var(--accent);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 700;
-    margin-bottom: 8px;
+.overlay {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+    padding: 20px;
+    text-align: center;
+}
+
+.card:hover .overlay {
+    opacity: 1; /* Show on hover */
 }
 
 .project-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 8px;
     color: #fff;
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
-.project-desc {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
+.project-cat {
+    color: var(--accent);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-/* FOOTER */
-footer {
-    margin-top: 100px;
-    text-align: center;
-    color: #333;
-    font-size: 0.8rem;
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .header-center { display: none; } /* Hide title on small phones */
+    .grid {
+        grid-template-columns: 1fr; /* 1 column */
+        grid-template-rows: repeat(4, 50vh); /* 4 rows */
+    }
 }
