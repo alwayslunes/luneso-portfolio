@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editing &amp; Post-Production | Lunes Oña</title>
+    <title>Post Production | Lunes Oña</title>
     <link rel="stylesheet" href="/static/css/styles.css">
     <style>
         body { padding-top: 60px; }
@@ -17,21 +17,17 @@
     </style>
 </head>
 <body>
-
     <header>
         <a href="/" class="header-left">LUNES OÑA</a>
         <div class="header-center">MULTIMEDIA EDITOR</div>
-        
         <div class="header-right">
             <a href="/about/" class="nav-text">ABOUT</a>
             <a href="mailto:lunes@alwayslunes.com" class="icon-link"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
             <a href="https://www.linkedin.com/in/lunesona/" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-            <a href="/static/Lunes-Ona-Video-Editor-CV.pdf" target="_blank" class="cv-text">CV</a>
+            <a href="/static/Lunes-Ona-Video-Editor-CV.pdf" target="_blank" class="nav-text">CV</a>
         </div>
-
         <div class="menu-toggle" onclick="toggleMenu()">MENU</div>
     </header>
-
     <div class="mobile-overlay" id="mobileMenu">
         <a href="/static/Lunes-Ona-Video-Editor-CV.pdf" target="_blank" class="mobile-link">CV</a>
         <a href="/about/" class="mobile-link">ABOUT</a>
@@ -40,32 +36,20 @@
             <a href="https://www.linkedin.com/in/lunesona/" target="_blank"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         </div>
     </div>
-
     <div class="project-container">
         <a href="/" class="back-link">&larr; Back to Projects</a>
-        
         <div class="detail-cat">Commercial, Narrative &amp; Social</div>
-        <h1 class="detail-title">Editing &amp; Post-Production</h1>
-        
-        <img src="/static/images/editing.jpg" class="project-hero" alt="Editing &amp; Post-Production">
-        
-        <div class="detail-desc">
-            A comprehensive showcase of editorial work ranging from fast-paced social recaps to multi-camera narrative thesis projects. Features proficiency in offline/online workflows, DIT data management, and color grading.
-        </div>
+        <h1 class="detail-title">Post Production</h1>
+        <img src="/static/images/editing.jpg" class="project-hero" alt="Post Production">
+        <div class="detail-desc">A comprehensive showcase of editorial work ranging from fast-paced social recaps to multi-camera narrative thesis projects. Features proficiency in offline/online workflows, DIT data management, and color grading.</div>
     </div>
-
     <script>
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");
             menu.classList.toggle("active");
-            if (menu.classList.contains("active")) {
-                btn.innerText = "CLOSE";
-                btn.style.color = "#fff";
-            } else {
-                btn.innerText = "MENU";
-                btn.style.color = "#FF9900";
-            }
+            if (menu.classList.contains("active")) { btn.innerText = "CLOSE"; btn.style.color = "#fff"; } 
+            else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; }
         }
     </script>
 </body>

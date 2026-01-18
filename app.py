@@ -9,7 +9,7 @@ projects = [
     {
         "id": 1,
         "title": "Always Lunes",
-        "category": "Brand Development & Design",
+        "category": "Creative Direction & Brand Development",
         "image": "lunes.jpg", 
         "description": "Established the complete visual identity for Miami's leading underground culture platform. Executed weekly motion graphics and static social assets. Awarded <a href='https://www.miaminewtimes.com/best-of-miami/2023/arts-and-entertainment/best-instagram-17198798/' target='_blank' style='color:#d4af37;'>'Best Instagram' of 2023</a>."
     },
@@ -22,14 +22,14 @@ projects = [
     },
     {
         "id": 3,
-        "title": "Editing & Post-Production",
+        "title": "Post Production",
         "category": "Commercial, Narrative & Social",
         "image": "editing.jpg", 
         "description": "A comprehensive showcase of editorial work ranging from fast-paced social recaps to multi-camera narrative thesis projects. Features proficiency in offline/online workflows, DIT data management, and color grading."
     },
     {
         "id": 4,
-        "title": "Visual Design & Web",
+        "title": "Design",
         "category": "Print, Digital & Web",
         "image": "design.jpg",
         "description": "High-volume creation of marketing collateral including event flyers, poster signage, and responsive website layouts. Demonstrates expert proficiency in Photoshop, Illustrator, and web design principles."
