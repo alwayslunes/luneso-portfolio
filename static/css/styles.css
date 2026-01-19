@@ -1,6 +1,6 @@
 /* VARIABLES & RESET */
 :root { 
-    --bg-color: #050505; /* Slightly softer black for depth */
+    --bg-color: #050505; 
     --text-color: #ffffff; 
     --accent: #FF9900; 
     --header-height: 60px;
@@ -13,34 +13,29 @@ body {
     color: var(--text-color);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     overflow-x: hidden;
-    /* PRO TIP: Fade in the whole page */
     animation: fadeIn 1s ease-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* LOCK SCROLL WHEN MENU IS OPEN */
+body.menu-open {
+    overflow: hidden;
+    height: 100dvh;
 }
 
-/* --- FILM GRAIN OVERLAY (THE PRO TOUCH) --- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* FILM GRAIN */
 body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
+    pointer-events: none; z-index: 9999; opacity: 0.4;
 }
 
 /* --- HEADER --- */
 header {
     height: var(--header-height);
-    background-color: rgba(0, 0, 0, 0.9); /* Slight transparency */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
+    background-color: rgba(0, 0, 0, 0.95); /* More opaque for mobile clarity */
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,77 +45,57 @@ header {
     width: 100%;
     z-index: 2000;
     border-bottom: 1px solid #222;
+    /* SMOOTH SCROLL TRANSITION */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Class to hide header on scroll */
+header.hide-header {
+    transform: translateY(-100%);
 }
 
 .header-left {
-    color: var(--accent);
-    font-weight: 800;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: -1px; /* Tighter tracking = Editorial Look */
-    text-decoration: none;
-    cursor: pointer;
-    z-index: 2001;
-    transition: color 0.3s;
+    color: var(--accent); font-weight: 800; font-size: 1.5rem; text-transform: uppercase;
+    letter-spacing: -1px; text-decoration: none; cursor: pointer; transition: color 0.3s;
 }
 .header-left:hover { color: #fff; }
 
 .header-center {
-    color: var(--accent);
-    font-weight: 400;
-    font-size: 0.9rem; /* Smaller but wider spacing looks cleaner */
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    color: var(--accent); font-weight: 400; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px;
 }
 
 .header-right { display: flex; gap: 25px; align-items: center; }
 
-.icon-link svg {
-    width: 24px; height: 24px; fill: var(--accent); transition: transform 0.2s, fill 0.2s;
-}
+.icon-link svg { width: 24px; height: 24px; fill: var(--accent); transition: transform 0.2s, fill 0.2s; }
 .icon-link:hover svg { transform: scale(1.1); fill: #fff; }
 
 .nav-text {
-    color: var(--accent);
-    font-weight: 800;
-    font-size: 1.1rem; /* Slightly smaller */
-    letter-spacing: 1px;
-    text-decoration: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: color 0.3s;
+    color: var(--accent); font-weight: 800; font-size: 1.1rem; letter-spacing: 1px;
+    text-decoration: none; text-transform: uppercase; cursor: pointer; transition: color 0.3s;
 }
 .nav-text:hover { color: #fff; }
 
 /* --- MOBILE MENU --- */
 .menu-toggle {
-    display: none;
-    color: var(--accent);
-    font-weight: 800;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    cursor: pointer;
-    z-index: 2001;
+    display: none; color: var(--accent); font-weight: 800; font-size: 1.2rem;
+    text-transform: uppercase; cursor: pointer; z-index: 2001;
 }
 
 .mobile-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    position: fixed; top: 0; left: 0; 
+    width: 100%; 
+    height: 100dvh; /* FIXES THE IPHONE BOTTOM GAP */
     background-color: #000;
     display: flex; flex-direction: column; justify-content: center; padding-left: 40px;
     opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1500;
 }
 .mobile-overlay.active { opacity: 1; pointer-events: auto; }
 
-/* UPDATED MOBILE LINK COLORS */
 .mobile-link {
-    font-size: 3rem;
-    font-weight: 800;
+    font-size: 3rem; font-weight: 800; 
     color: var(--accent); /* ORANGE DEFAULT */
-    text-decoration: none;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    transition: color 0.3s;
+    text-decoration: none; margin-bottom: 20px; text-transform: uppercase; 
+    letter-spacing: -1px; transition: color 0.3s;
 }
 .mobile-link:hover { color: #fff; /* WHITE HOVER */ }
 
@@ -137,26 +112,35 @@ header {
 }
 .card { position: relative; width: 100%; height: 100%; background: #111; overflow: hidden; }
 .card a { display: block; width: 100%; height: 100%; }
-.card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); filter: brightness(0.8); }
+.card img { 
+    width: 100%; height: 100%; object-fit: cover; 
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    filter: brightness(0.8); 
+}
 
-/* PRO HOVER: Zoom harder and stay sharp */
-.card:hover img { transform: scale(1.1); filter: brightness(0.3); }
+/* DESKTOP HOVER */
+@media (hover: hover) {
+    .card:hover img { transform: scale(1.1); filter: brightness(0.3); }
+    .card:hover .overlay { opacity: 1; }
+    .card:hover .project-title { transform: translateY(0); }
+}
+
+/* MOBILE TOUCH ACTIVE STATE (JS TRIGGERED) */
+.card.mobile-active img { transform: scale(1.1); filter: brightness(0.3); }
+.card.mobile-active .overlay { opacity: 1; }
+.card.mobile-active .project-title { transform: translateY(0); }
 
 .overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     opacity: 0; transition: opacity 0.4s ease; padding: 20px; text-align: center; pointer-events: none;
 }
-.card:hover .overlay { opacity: 1; }
 
 .project-title {
     color: #fff; font-size: 3rem; font-weight: 800; text-transform: uppercase;
     letter-spacing: -1px; margin-bottom: 10px;
-    /* Slide up animation on hover */
     transform: translateY(20px); transition: transform 0.4s ease;
 }
-.card:hover .project-title { transform: translateY(0); }
-
 .project-cat { color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; }
 
 @media (max-width: 768px) {

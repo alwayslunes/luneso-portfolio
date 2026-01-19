@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{{ project.title }} | Lunes Oña</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <style>
@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="mainHeader">
         <a href="{{ url_for('home') }}" class="header-left">LUNES OÑA</a>
         <div class="header-center">MULTIMEDIA EDITOR</div>
         <div class="header-right">
@@ -47,10 +47,19 @@
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");
+            var body = document.body;
             menu.classList.toggle("active");
-            if (menu.classList.contains("active")) { btn.innerText = "CLOSE"; btn.style.color = "#fff"; } 
-            else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; }
+            if (menu.classList.contains("active")) { btn.innerText = "CLOSE"; btn.style.color = "#fff"; body.classList.add("menu-open"); } 
+            else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
+        let lastScrollY = window.scrollY;
+        const header = document.getElementById("mainHeader");
+        window.addEventListener("scroll", () => {
+            if (document.body.classList.contains("menu-open")) return;
+            if (window.scrollY > lastScrollY && window.scrollY > 50) { header.classList.add("hide-header"); } 
+            else { header.classList.remove("hide-header"); }
+            lastScrollY = window.scrollY;
+        });
     </script>
 </body>
 </html>

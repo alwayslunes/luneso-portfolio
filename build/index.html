@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LUNES OÑA | Multimedia Editor & Designer</title>
     <meta name="description" content="Portfolio of Lunes Oña, a Miami-based Adobe Certified Video Editor.">
     <meta property="og:title" content="LUNES OÑA | Multimedia Editor">
@@ -12,17 +12,14 @@
 </head>
 <body>
 
-    <header>
+    <header id="mainHeader">
         <a href="/" class="header-left">LUNES OÑA</a>
         <div class="header-center">MULTIMEDIA EDITOR</div>
         
         <div class="header-right">
             <a href="/about/" class="nav-text">ABOUT</a>
-            
             <a href="mailto:lunes@alwayslunes.com" class="icon-link"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
-            
             <a href="https://www.linkedin.com/in/lunesona/" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-            
             <a href="/static/Lunes-Ona-Video-Editor-CV.pdf" target="_blank" class="nav-text">CV</a>
         </div>
 
@@ -41,7 +38,7 @@
     <main class="grid">
         
         <article class="card">
-            <a href="/project/1/">
+            <a href="/project/1/" class="project-link">
                 <img src="/static/images/lunes.jpg" alt="Always Lunes">
                 <div class="overlay">
                     <div class="project-title">Always Lunes</div>
@@ -51,7 +48,7 @@
         </article>
         
         <article class="card">
-            <a href="/project/2/">
+            <a href="/project/2/" class="project-link">
                 <img src="/static/images/hijos.jpg" alt="Hijos de la Diáspora">
                 <div class="overlay">
                     <div class="project-title">Hijos de la Diáspora</div>
@@ -61,7 +58,7 @@
         </article>
         
         <article class="card">
-            <a href="/project/3/">
+            <a href="/project/3/" class="project-link">
                 <img src="/static/images/editing.jpg" alt="Post Production">
                 <div class="overlay">
                     <div class="project-title">Post Production</div>
@@ -71,7 +68,7 @@
         </article>
         
         <article class="card">
-            <a href="/project/4/">
+            <a href="/project/4/" class="project-link">
                 <img src="/static/images/design.jpg" alt="Design">
                 <div class="overlay">
                     <div class="project-title">Design</div>
@@ -83,18 +80,65 @@
     </main>
 
     <script>
+        // --- 1. MOBILE MENU TOGGLE ---
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");
+            var body = document.body;
+            
             menu.classList.toggle("active");
+            
             if (menu.classList.contains("active")) {
                 btn.innerText = "CLOSE";
                 btn.style.color = "#fff";
+                body.classList.add("menu-open"); // Lock scroll
             } else {
                 btn.innerText = "MENU";
                 btn.style.color = "#FF9900";
+                body.classList.remove("menu-open"); // Unlock scroll
             }
         }
+
+        // --- 2. HEADER SCROLL LOGIC ---
+        let lastScrollY = window.scrollY;
+        const header = document.getElementById("mainHeader");
+
+        window.addEventListener("scroll", () => {
+            // If menu is open, do not hide header
+            if (document.body.classList.contains("menu-open")) return;
+
+            if (window.scrollY > lastScrollY && window.scrollY > 50) {
+                // Scrolling DOWN -> Hide
+                header.classList.add("hide-header");
+            } else {
+                // Scrolling UP -> Show
+                header.classList.remove("hide-header");
+            }
+            lastScrollY = window.scrollY;
+        });
+
+        // --- 3. DOUBLE TAP LOGIC (MOBILE) ---
+        // Prevents first click, shows overlay, allows second click
+        document.querySelectorAll('.project-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Only run this logic on small screens
+                if (window.innerWidth <= 768) {
+                    const card = this.parentElement;
+                    
+                    // If card is NOT active yet
+                    if (!card.classList.contains('mobile-active')) {
+                        e.preventDefault(); // Stop link
+                        
+                        // Reset all other cards
+                        document.querySelectorAll('.card').forEach(c => c.classList.remove('mobile-active'));
+                        
+                        // Activate this card
+                        card.classList.add('mobile-active');
+                    }
+                    // If card IS active, let the link happen normally
+                }
+            });
+        });
     </script>
 </body>
 </html>
