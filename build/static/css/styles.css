@@ -10,7 +10,8 @@
 
 @keyframes fadeInBlur {
     0% { opacity: 0; filter: blur(20px); }
-    100% { opacity: 1; filter: blur(0); }
+    90% { opacity: 1; filter: blur(0px); }
+    100% { opacity: 1; filter: none; } /* FILTER MUST BE NONE TO FIX FIXED POSITIONING */
 }
 
 body {
@@ -187,19 +188,15 @@ header::before {
 }
 .swiper-slide:hover .reel-overlay { opacity: 1; }
 
-/* --- GLASS MODAL (FIXED) --- */
+/* --- FIXED GLASS MODAL --- */
 .modal {
-    display: none; /* JS toggles this */
+    display: none;
+    position: fixed !important; /* Must be fixed */
+    inset: 0 !important; /* Shorthand for top:0, left:0, right:0, bottom:0 */
+    width: 100vw !important;
+    height: 100dvh !important; /* Dynamic viewport height for mobile */
     
-    /* NUCLEAR POSITIONING */
-    position: fixed !important; 
-    top: 0 !important; 
-    left: 0 !important; 
-    width: 100vw !important; 
-    height: 100vh !important;
-    
-    /* MAX Z-INDEX to cover everything */
-    z-index: 2147483647 !important; 
+    z-index: 2147483647 !important;
     
     background-color: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(20px);
@@ -208,18 +205,22 @@ header::before {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .modal-content {
     position: relative;
-    width: auto;
-    height: 80vh; 
+    height: 80dvh !important; /* Use dynamic height */
+    width: auto !important;
     aspect-ratio: 9/16;
-    max-width: 90vw; 
+    max-width: 90vw;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: transparent;
 }
 
 #popupVideo {
