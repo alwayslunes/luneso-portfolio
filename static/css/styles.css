@@ -32,7 +32,7 @@ html, body, a, button, input, textarea, .card, .menu-toggle {
 
 .custom-cursor {
     position: fixed;
-    top: -100px; /* Start off screen */
+    top: -100px;
     left: -100px;
     width: 30px; 
     height: 30px; 
@@ -46,12 +46,10 @@ html, body, a, button, input, textarea, .card, .menu-toggle {
     will-change: top, left, transform;
 }
 
-/* MOBILE CURSOR OVERRIDE (50px) */
+/* MOBILE CURSOR OVERRIDE: HIDE IT */
 @media (max-width: 768px) {
     .custom-cursor {
-        width: 50px !important;
-        height: 50px !important;
-        transition: none; /* Instant movement for touch */
+        display: none !important; /* Removes laggy cursor on mobile */
     }
 }
 
@@ -63,14 +61,10 @@ a:hover ~ .custom-cursor,
 /* --- HEADER (FROSTED GLASS) --- */
 header {
     height: var(--header-height);
-    
-    /* GLASS EFFECT */
     background: rgba(0, 0, 0, 0.6); 
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -129,12 +123,7 @@ header {
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* REMOVED MARGIN-TOP to fix the "Black Bar" issue. 
-       Now content flows UNDER the header. */
     margin-top: 0;
-    
-    /* Adjusted row height to fill screen minus header visually, 
-       but starting from top */
     grid-template-rows: repeat(2, 50vh); 
     width: 100vw;
 }
@@ -182,7 +171,5 @@ header {
     .header-center, .header-right { display: none; }
     .menu-toggle { display: block; }
     .grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 50vh); }
-    
-    /* Ensure header isn't lost on mobile */
     header { background: rgba(0, 0, 0, 0.75); } 
 }
