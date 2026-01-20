@@ -15,7 +15,6 @@
             overflow: hidden; background: #000;
             cursor: none; 
             font-family: 'Trivane', sans-serif;
-            /* TRANSITION FOR THE EXIT ANIMATION */
             transition: opacity 0.8s ease, filter 0.8s ease;
         }
 
@@ -27,7 +26,7 @@
         video {
             position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
             transform: translate(-50%, -50%); object-fit: cover;
-            filter: saturate(1.5); /* 150% Saturation */
+            filter: saturate(1.5);
         }
 
         h1 {
@@ -51,7 +50,13 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 26vw; display: flex; flex-direction: column; }
+            h1 { 
+                font-size: 26vw; 
+                display: flex; 
+                flex-direction: column; 
+                /* ADDED GAP FOR MOBILE */
+                row-gap: 40px;
+            }
             .word-break { display: block; }
         }
     </style>
@@ -81,31 +86,26 @@
     </div>
 
     <script>
-        // 1. MOUSE REVEAL LOGIC
         const maskLayer = document.getElementById('layer-mask');
         
+        function moveReveal(x, y) {
+             maskLayer.style.clipPath = `circle(150px at ${x}px ${y}px)`;
+        }
+
         document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            maskLayer.style.clipPath = `circle(150px at ${x}px ${y}px)`;
+            moveReveal(e.clientX, e.clientY);
         });
 
         document.addEventListener('touchmove', (e) => {
-            const x = e.touches[0].clientX;
-            const y = e.touches[0].clientY;
-            maskLayer.style.clipPath = `circle(150px at ${x}px ${y}px)`;
+            // Mobile: Move reveal with finger
+            moveReveal(e.touches[0].clientX, e.touches[0].clientY);
         });
 
-        // 2. FADE TO BLACK + BLUR TRANSITION
         document.getElementById('click-trigger').addEventListener('click', function(e) {
-            e.preventDefault(); // Stop immediate jump
+            e.preventDefault();
             const targetUrl = this.href;
-
-            // Trigger CSS transition on Body
             document.body.style.opacity = '0';
             document.body.style.filter = 'blur(20px)';
-
-            // Wait 800ms, then go
             setTimeout(() => {
                 window.location.href = targetUrl;
             }, 800);

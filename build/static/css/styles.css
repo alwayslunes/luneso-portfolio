@@ -25,15 +25,17 @@ body {
 /* LOCK SCROLL WHEN MENU IS OPEN */
 body.menu-open { overflow: hidden; height: 100dvh; }
 
-/* --- 2. FIXED CUSTOM CURSOR (30PX) --- */
+/* --- 2. FIXED CUSTOM CURSOR --- */
 html, body, a, button, input, textarea, .card, .menu-toggle {
     cursor: none !important;
 }
 
 .custom-cursor {
     position: fixed;
-    top: 0; left: 0;
-    width: 30px; height: 30px;
+    top: -100px; /* Start off screen */
+    left: -100px;
+    width: 30px; 
+    height: 30px; 
     background-color: white;
     border-radius: 50%;
     pointer-events: none;
@@ -42,6 +44,15 @@ html, body, a, button, input, textarea, .card, .menu-toggle {
     transform: translate(-50%, -50%);
     transition: width 0.2s, height 0.2s, transform 0.1s;
     will-change: top, left, transform;
+}
+
+/* MOBILE CURSOR OVERRIDE (50px) */
+@media (max-width: 768px) {
+    .custom-cursor {
+        width: 50px !important;
+        height: 50px !important;
+        transition: none; /* Instant movement for touch */
+    }
 }
 
 a:hover ~ .custom-cursor, 
@@ -53,12 +64,12 @@ a:hover ~ .custom-cursor,
 header {
     height: var(--header-height);
     
-    /* THE BLURRY TRANSLUCENT EFFECT */
+    /* GLASS EFFECT */
     background: rgba(0, 0, 0, 0.6); 
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Subtle edge */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
     display: flex;
     justify-content: space-between;
@@ -118,10 +129,16 @@ header {
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(2, calc((100vh - var(--header-height)) / 2));
-    margin-top: var(--header-height);
+    /* REMOVED MARGIN-TOP to fix the "Black Bar" issue. 
+       Now content flows UNDER the header. */
+    margin-top: 0;
+    
+    /* Adjusted row height to fill screen minus header visually, 
+       but starting from top */
+    grid-template-rows: repeat(2, 50vh); 
     width: 100vw;
 }
+
 .card { position: relative; width: 100%; height: 100%; background: #111; overflow: hidden; }
 .card a { display: block; width: 100%; height: 100%; }
 .card img { 
@@ -165,4 +182,7 @@ header {
     .header-center, .header-right { display: none; }
     .menu-toggle { display: block; }
     .grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 50vh); }
+    
+    /* Ensure header isn't lost on mobile */
+    header { background: rgba(0, 0, 0, 0.75); } 
 }

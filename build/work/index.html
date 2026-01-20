@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Work | LUNES OÑA</title>
-    <meta name="description" content="Portfolio of Lunes Oña.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23FF9900'><path d='M20 10 H 40 V 70 H 80 V 90 H 20 Z'/></svg>">
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
@@ -86,9 +85,19 @@
 
     <script>
         const cursor = document.querySelector('.custom-cursor');
+        
+        function moveCursor(x, y) {
+            cursor.style.left = x + 'px';
+            cursor.style.top = y + 'px';
+        }
+
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            moveCursor(e.clientX, e.clientY);
+        });
+
+        // ENABLE MOBILE CURSOR FOLLOW
+        document.addEventListener('touchmove', (e) => {
+            moveCursor(e.touches[0].clientX, e.touches[0].clientY);
         });
 
         function toggleMenu() {
@@ -100,8 +109,6 @@
             else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
 
-        // REMOVED SCROLL LISTENER HERE
-        
         document.querySelectorAll('.project-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
