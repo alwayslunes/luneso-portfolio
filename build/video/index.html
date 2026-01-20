@@ -15,6 +15,13 @@
         .back-link:hover { color: #fff; border-bottom: 1px solid #FF9900; }
         .detail-cat { color: #FF9900; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px; }
         .detail-title { font-size: 3rem; font-weight: 800; margin-bottom: 40px; text-transform: uppercase; line-height: 1; }
+        
+        /* THUMBNAIL STYLING */
+        .swiper-slide img {
+            width: 100%; height: 100%; object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -60,9 +67,13 @@
                         <div class="swiper-wrapper">
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="">
                                     <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/PERREOTON%20V2.mp4" type="video/mp4">
                                 </video>
+
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -99,9 +110,13 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="">
                                     <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/CTA%20v7.mp4" type="video/mp4">
                                 </video>
+
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -138,9 +153,13 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="">
                                     <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/CTA%20DEC%20RECAP_6.mp4" type="video/mp4">
                                 </video>
+
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -189,9 +208,13 @@
                         <div class="swiper-wrapper">
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="">
                                     <source src="https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_1.mp4" type="video/mp4">
                                 </video>
+
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -228,9 +251,13 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="">
                                     <source src="https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_2.mp4" type="video/mp4">
                                 </video>
+
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -267,9 +294,13 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="">
                                     <source src="https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_3.mp4" type="video/mp4">
                                 </video>
+
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -318,9 +349,15 @@
                         <div class="swiper-wrapper">
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
-                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_1_Dizzy.mp4" type="video/mp4">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="display:none;">
+                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWDizzy.mp4" type="video/mp4">
                                 </video>
+
+                                
+                                <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_1_Dizzy.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -357,9 +394,15 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
-                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_2_Blood.mp4" type="video/mp4">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="display:none;">
+                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWBlood.mp4" type="video/mp4">
                                 </video>
+
+                                
+                                <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_2_Blood.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -396,9 +439,15 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
-                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_3_BadRomance.mp4" type="video/mp4">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="display:none;">
+                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWBadRomance.mp4" type="video/mp4">
                                 </video>
+
+                                
+                                <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_3_BadRomance.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -435,9 +484,15 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
-                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_4_TwelfthHour.mp4" type="video/mp4">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="display:none;">
+                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWTwelfthHour.mp4" type="video/mp4">
                                 </video>
+
+                                
+                                <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_4_TwelfthHour.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -474,9 +529,15 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
-                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_5_Viceversa.mp4" type="video/mp4">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="display:none;">
+                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWViceversa.mp4" type="video/mp4">
                                 </video>
+
+                                
+                                <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_5_Viceversa.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -513,9 +574,15 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
-                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_6_WannaGoOutside.mp4" type="video/mp4">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="display:none;">
+                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWWannaGoOutside.mp4" type="video/mp4">
                                 </video>
+
+                                
+                                <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_6_WannaGoOutside.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -552,9 +619,15 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
-                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_7_Daydreams.mp4" type="video/mp4">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="display:none;">
+                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWDaydreams.mp4" type="video/mp4">
                                 </video>
+
+                                
+                                <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_7_Daydreams.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -591,9 +664,15 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
-                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_8_RealHigh.mp4" type="video/mp4">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="display:none;">
+                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWRealHigh.mp4" type="video/mp4">
                                 </video>
+
+                                
+                                <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_8_RealHigh.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -630,9 +709,15 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
-                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_9_5IVEQUID.mp4" type="video/mp4">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="display:none;">
+                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW5IVEQUID.mp4" type="video/mp4">
                                 </video>
+
+                                
+                                <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_9_5IVEQUID.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -669,9 +754,13 @@
                             </div>
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
-                                <video muted loop playsinline preload="none">
-                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_10_FLESH.mp4" type="video/mp4">
+                                
+                                <video muted loop playsinline preload="none" 
+                                       style="">
+                                    <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWFLESH.mp4" type="video/mp4">
                                 </video>
+
+                                
                                 
                                 <div class="reel-overlay">PLAY</div>
 
@@ -729,7 +818,6 @@
             else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
 
-        // --- SOCIAL TOGGLE ---
         function toggleSocial() {
             const content = document.getElementById('social-content');
             const arrow = document.getElementById('social-arrow');
@@ -741,15 +829,17 @@
             } else {
                 content.classList.add('active');
                 arrow.innerText = "-";
-                document.querySelectorAll('.mySwiper').forEach(s => s.swiper.update());
+                setTimeout(() => {
+                    document.querySelectorAll('.mySwiper').forEach(s => s.swiper.update());
+                }, 50);
                 startObserver();
             }
         }
 
-        // --- SWIPER INIT (NO AUTOPLAY, WITH ARROWS) ---
         document.querySelectorAll('.mySwiper').forEach(container => {
             const slideCount = parseInt(container.getAttribute('data-slide-count'));
             const isCentered = slideCount < 4; 
+            
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
@@ -757,10 +847,9 @@
                 centerInsufficientSlides: true,
                 freeMode: true,
                 grabCursor: true,
-                autoplay: false, // DISABLED AUTOMATIC MOVEMENT
+                autoplay: false, 
                 speed: 600,
-                loop: !isCentered,
-                // NAVIGATION ARROWS
+                loop: !isCentered, 
                 navigation: {
                     nextEl: container.querySelector('.swiper-button-next'),
                     prevEl: container.querySelector('.swiper-button-prev'),
@@ -768,23 +857,21 @@
             });
         });
 
-        // --- EXPANSION LOGIC ---
         function activateSlide(slide) {
             if (slide.classList.contains('expanded')) return;
 
-            // Collapse others
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
-                s.classList.remove('expanded');
-                // Hide volume popups
-                s.querySelectorAll('.volume-wrapper').forEach(vw => vw.classList.remove('active'));
-                const v = s.querySelector('video');
-                v.muted = true;
-                v.currentTime = 0;
+                collapseSlide(null, s.querySelector('.slide-close'));
             });
 
-            // Expand
             slide.classList.add('expanded');
+            
+            const img = slide.querySelector('.slide-thumb');
             const video = slide.querySelector('video');
+            
+            if (img) img.style.display = 'none';
+            video.style.display = 'block';
+
             video.currentTime = 0;
             video.muted = false;
             video.play();
@@ -793,15 +880,22 @@
         }
 
         function collapseSlide(event, btn) {
-            event.stopPropagation();
+            if (event) event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
             slide.classList.remove('expanded');
             slide.querySelectorAll('.volume-wrapper').forEach(vw => vw.classList.remove('active'));
+            
             const video = slide.querySelector('video');
+            const img = slide.querySelector('.slide-thumb');
+            
             video.muted = true;
+            if (img) {
+                video.pause();
+                video.style.display = 'none';
+                img.style.display = 'block';
+            }
         }
 
-        // --- CONTROLS ---
         function handlePlayClick(event, btn) {
             event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
@@ -818,11 +912,9 @@
         function toggleVolumePopup(event, btn) {
             event.stopPropagation();
             const wrapper = btn.closest('.volume-wrapper');
-            // Toggle active class to show/hide popup
             if (wrapper.classList.contains('active')) {
                 wrapper.classList.remove('active');
             } else {
-                // Close others first
                 document.querySelectorAll('.volume-wrapper.active').forEach(w => w.classList.remove('active'));
                 wrapper.classList.add('active');
             }
@@ -837,7 +929,6 @@
             updateIcons(slide, !video.paused, !video.muted);
         }
 
-        // --- PROGRESS BAR ---
         function startProgressLoop(slide) {
             const video = slide.querySelector('video');
             const bar = slide.querySelector('.progress-filled');
@@ -907,14 +998,14 @@
             }
         }
 
-        // --- OBSERVER ---
         function startObserver() {
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
+                    if (video.style.display === 'none') return;
+                    
                     if (entry.isIntersecting) {
                         if (!video.closest('.swiper-slide').classList.contains('expanded')) {
-                            // 3-SECOND PREVIEW LOOP
                             video.muted = true;
                             video.play().catch(()=>{});
                         }
@@ -928,12 +1019,9 @@
                 observer.observe(video);
             });
             
-            // 3-SECOND LOOP LOGIC
             setInterval(() => {
                 document.querySelectorAll('.swiper-slide video').forEach(vid => {
-                    // Only loop if it's playing, visible, and NOT EXPANDED
-                    const slide = vid.closest('.swiper-slide');
-                    if (!vid.paused && !slide.classList.contains('expanded') && vid.currentTime > 3) {
+                    if (vid.style.display !== 'none' && !vid.paused && !vid.closest('.swiper-slide').classList.contains('expanded') && vid.currentTime > 3) {
                         vid.currentTime = 0;
                         vid.play();
                     }
