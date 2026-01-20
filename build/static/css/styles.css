@@ -179,3 +179,36 @@ a:hover ~ .custom-cursor,
 .menu-toggle:hover ~ .custom-cursor {
     transform: translate(-50%, -50%) scale(1.5);
 }
+
+/* --- FIXED CUSTOM CURSOR SETTINGS --- */
+
+/* 1. HIDE SYSTEM CURSOR GLOBALLY */
+html, body, a, button, input, textarea, .card, .menu-toggle {
+    cursor: none !important;
+}
+
+/* 2. THE 20PX CIRCLE */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;  /* UPDATED SIZE */
+    height: 20px; /* UPDATED SIZE */
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 9999;
+    mix-blend-mode: difference; /* Inverts colors */
+    
+    /* THIS CENTERS THE CIRCLE ON THE MOUSE COORDINATES */
+    transform: translate(-50%, -50%); 
+    
+    transition: width 0.2s, height 0.2s, transform 0.1s;
+    will-change: top, left, transform;
+}
+
+/* 3. HOVER EFFECT (Grow slightly when over links) */
+a:hover ~ .custom-cursor, 
+.menu-toggle:hover ~ .custom-cursor {
+    transform: translate(-50%, -50%) scale(1.5);
+}

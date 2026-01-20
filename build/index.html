@@ -17,39 +17,53 @@
             font-family: 'Trivane', sans-serif;
         }
 
+        /* --- GRAIN / NOISE EFFECT --- */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; /* Let clicks pass through */
+            z-index: 50; /* Above video, below cursor */
+            opacity: 0.15; /* Strength of the grain */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* CONTAINER FOR LAYERS */
         .layer {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center; overflow: hidden;
         }
 
+        /* SHARED CONTENT STYLES */
         video {
             position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
             transform: translate(-50%, -50%); object-fit: cover;
+            
+            /* SATURATION BOOST (150%) */
+            filter: saturate(1.5);
         }
 
         h1 {
             position: relative; z-index: 10;
             font-size: 13vw; text-transform: uppercase; margin: 0; line-height: 0.85;
             white-space: nowrap; pointer-events: none; text-align: center;
+            color: #FF9900; /* BASE COLOR: ORANGE */
         }
 
-        /* --- LAYER 1: BOTTOM (Normal) --- */
-        #layer-normal video { opacity: 1; }
-        #layer-normal h1 {
-            color: #ffffff; /* SOLID WHITE FILL */
-            -webkit-text-stroke: 0; /* NO OUTLINE */
+        /* --- LAYER 1: BOTTOM (Normal World) --- */
+        #layer-normal {
+            z-index: 1;
         }
 
-        /* --- LAYER 2: TOP (The 300px Reveal) --- */
+        /* --- LAYER 2: TOP (The Negative World) --- */
         #layer-mask {
+            z-index: 2;
+            /* Start clip-path off-screen */
             clip-path: circle(150px at -500px -500px);
             pointer-events: none;
-        }
-
-        #layer-mask video { filter: invert(1); } /* Negative Video */
-        #layer-mask h1 { 
-            color: #000000; /* SOLID BLACK FILL */
-            -webkit-text-stroke: 0;
+            
+            /* INVERTS EVERYTHING (Video + Text) inside the circle */
+            filter: invert(1); 
         }
 
         /* CLICK TRIGGER */
@@ -67,6 +81,8 @@
 <body>
 
     <a href="/work/" id="click-trigger"></a>
+
+    <div class="noise-overlay"></div>
 
     <div class="layer" id="layer-normal">
         <video autoplay muted loop playsinline>
@@ -95,9 +111,11 @@
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
+            // Updates the visible "hole" of the negative layer
             maskLayer.style.clipPath = `circle(150px at ${x}px ${y}px)`;
         });
 
+        // Touch support
         document.addEventListener('touchmove', (e) => {
             const x = e.touches[0].clientX;
             const y = e.touches[0].clientY;
