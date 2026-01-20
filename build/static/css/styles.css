@@ -17,10 +17,7 @@ body {
 }
 
 /* LOCK SCROLL WHEN MENU IS OPEN */
-body.menu-open {
-    overflow: hidden;
-    height: 100dvh;
-}
+body.menu-open { overflow: hidden; height: 100dvh; }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -34,8 +31,8 @@ body::after {
 /* --- HEADER --- */
 header {
     height: var(--header-height);
-    background-color: rgba(0, 0, 0, 0.95); /* More opaque for mobile clarity */
-    backdrop-filter: blur(10px);
+    background-color: #000000; /* SOLID BLACK - No transparency */
+    /* backdrop-filter: blur(10px); REMOVED */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -45,14 +42,10 @@ header {
     width: 100%;
     z-index: 2000;
     border-bottom: 1px solid #222;
-    /* SMOOTH SCROLL TRANSITION */
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Class to hide header on scroll */
-header.hide-header {
-    transform: translateY(-100%);
-}
+header.hide-header { transform: translateY(-100%); }
 
 .header-left {
     color: var(--accent); font-weight: 800; font-size: 1.5rem; text-transform: uppercase;
@@ -82,9 +75,7 @@ header.hide-header {
 }
 
 .mobile-overlay {
-    position: fixed; top: 0; left: 0; 
-    width: 100%; 
-    height: 100dvh; /* FIXES THE IPHONE BOTTOM GAP */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100dvh;
     background-color: #000;
     display: flex; flex-direction: column; justify-content: center; padding-left: 40px;
     opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1500;
@@ -92,12 +83,10 @@ header.hide-header {
 .mobile-overlay.active { opacity: 1; pointer-events: auto; }
 
 .mobile-link {
-    font-size: 3rem; font-weight: 800; 
-    color: var(--accent); /* ORANGE DEFAULT */
-    text-decoration: none; margin-bottom: 20px; text-transform: uppercase; 
-    letter-spacing: -1px; transition: color 0.3s;
+    font-size: 3rem; font-weight: 800; color: var(--accent); text-decoration: none;
+    margin-bottom: 20px; text-transform: uppercase; letter-spacing: -1px; transition: color 0.3s;
 }
-.mobile-link:hover { color: #fff; /* WHITE HOVER */ }
+.mobile-link:hover { color: #fff; }
 
 .mobile-icons { display: flex; gap: 30px; margin-top: 40px; }
 .mobile-icons svg { width: 40px; height: 40px; fill: var(--accent); }
@@ -118,14 +107,12 @@ header.hide-header {
     filter: brightness(0.8); 
 }
 
-/* DESKTOP HOVER */
 @media (hover: hover) {
     .card:hover img { transform: scale(1.1); filter: brightness(0.3); }
     .card:hover .overlay { opacity: 1; }
     .card:hover .project-title { transform: translateY(0); }
 }
 
-/* MOBILE TOUCH ACTIVE STATE (JS TRIGGERED) */
 .card.mobile-active img { transform: scale(1.1); filter: brightness(0.3); }
 .card.mobile-active .overlay { opacity: 1; }
 .card.mobile-active .project-title { transform: translateY(0); }
@@ -139,6 +126,7 @@ header.hide-header {
 .project-title {
     color: #fff; font-size: 3rem; font-weight: 800; text-transform: uppercase;
     letter-spacing: -1px; margin-bottom: 10px;
+    line-height: 1; /* TIGHTER LINE SPACING */
     transform: translateY(20px); transition: transform 0.4s ease;
 }
 .project-cat { color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; }

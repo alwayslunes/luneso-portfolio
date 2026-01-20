@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LUNES OÑA | Multimedia Editor & Designer</title>
+    <title>LUNES OÑA | Multimedia Editor</title>
     <meta name="description" content="Portfolio of Lunes Oña, a Miami-based Adobe Certified Video Editor.">
     <meta property="og:title" content="LUNES OÑA | Multimedia Editor">
     <meta property="og:image" content="/static/images/lunes.jpg">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23FF9900'><path d='M20 10 H 40 V 70 H 80 V 90 H 20 Z'/></svg>">
     
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
@@ -39,26 +41,6 @@
         
         <article class="card">
             <a href="/project/1/" class="project-link">
-                <img src="/static/images/lunes.jpg" alt="Always Lunes">
-                <div class="overlay">
-                    <div class="project-title">Always Lunes</div>
-                    <div class="project-cat">Creative Direction</div>
-                </div>
-            </a>
-        </article>
-        
-        <article class="card">
-            <a href="/project/2/" class="project-link">
-                <img src="/static/images/hijos.jpg" alt="Hijos de la Diáspora">
-                <div class="overlay">
-                    <div class="project-title">Hijos de la Diáspora</div>
-                    <div class="project-cat">Feature Documentary</div>
-                </div>
-            </a>
-        </article>
-        
-        <article class="card">
-            <a href="/project/3/" class="project-link">
                 <img src="/static/images/editing.jpg" alt="Post Production">
                 <div class="overlay">
                     <div class="project-title">Post Production</div>
@@ -68,7 +50,7 @@
         </article>
         
         <article class="card">
-            <a href="/project/4/" class="project-link">
+            <a href="/project/2/" class="project-link">
                 <img src="/static/images/design.jpg" alt="Design">
                 <div class="overlay">
                     <div class="project-title">Design</div>
@@ -77,10 +59,29 @@
             </a>
         </article>
         
+        <article class="card">
+            <a href="/project/3/" class="project-link">
+                <img src="/static/images/lunes.jpg" alt="Always Lunes">
+                <div class="overlay">
+                    <div class="project-title">Always Lunes</div>
+                    <div class="project-cat">Creative Direction</div>
+                </div>
+            </a>
+        </article>
+        
+        <article class="card">
+            <a href="/project/4/" class="project-link">
+                <img src="/static/images/hijos.jpg" alt="Hijos de la Diáspora">
+                <div class="overlay">
+                    <div class="project-title">Hijos de la Diáspora</div>
+                    <div class="project-cat">Feature Documentary</div>
+                </div>
+            </a>
+        </article>
+        
     </main>
 
     <script>
-        // --- 1. MOBILE MENU TOGGLE ---
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");
@@ -91,51 +92,37 @@
             if (menu.classList.contains("active")) {
                 btn.innerText = "CLOSE";
                 btn.style.color = "#fff";
-                body.classList.add("menu-open"); // Lock scroll
+                body.classList.add("menu-open");
             } else {
                 btn.innerText = "MENU";
                 btn.style.color = "#FF9900";
-                body.classList.remove("menu-open"); // Unlock scroll
+                body.classList.remove("menu-open");
             }
         }
 
-        // --- 2. HEADER SCROLL LOGIC ---
         let lastScrollY = window.scrollY;
         const header = document.getElementById("mainHeader");
 
         window.addEventListener("scroll", () => {
-            // If menu is open, do not hide header
             if (document.body.classList.contains("menu-open")) return;
 
             if (window.scrollY > lastScrollY && window.scrollY > 50) {
-                // Scrolling DOWN -> Hide
                 header.classList.add("hide-header");
             } else {
-                // Scrolling UP -> Show
                 header.classList.remove("hide-header");
             }
             lastScrollY = window.scrollY;
         });
 
-        // --- 3. DOUBLE TAP LOGIC (MOBILE) ---
-        // Prevents first click, shows overlay, allows second click
         document.querySelectorAll('.project-link').forEach(link => {
             link.addEventListener('click', function(e) {
-                // Only run this logic on small screens
                 if (window.innerWidth <= 768) {
                     const card = this.parentElement;
-                    
-                    // If card is NOT active yet
                     if (!card.classList.contains('mobile-active')) {
-                        e.preventDefault(); // Stop link
-                        
-                        // Reset all other cards
+                        e.preventDefault();
                         document.querySelectorAll('.card').forEach(c => c.classList.remove('mobile-active'));
-                        
-                        // Activate this card
                         card.classList.add('mobile-active');
                     }
-                    // If card IS active, let the link happen normally
                 }
             });
         });
