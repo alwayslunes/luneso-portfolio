@@ -18,7 +18,7 @@
 </head>
 <body>
     <header id="mainHeader">
-        <a href="{{ url_for('home') }}" class="header-left">LUNES OÑA</a>
+        <a href="{{ url_for('intro') }}" class="header-left">LUNES OÑA</a>
         <div class="header-center">MULTIMEDIA EDITOR</div>
         <div class="header-right">
             <a href="{{ url_for('about') }}" class="nav-text">ABOUT</a>
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="project-container">
-        <a href="{{ url_for('home') }}" class="back-link">&larr; Back to Projects</a>
+        <a href="{{ url_for('work') }}" class="back-link">&larr; Back to Projects</a>
         <div class="detail-cat">{{ project.category }}</div>
         <h1 class="detail-title">{{ project.title }}</h1>
         <img src="{{ url_for('static', filename='images/' + project.image) }}" class="project-hero" alt="{{ project.title }}">
