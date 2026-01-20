@@ -7,12 +7,41 @@ freezer = Freezer(app)
 projects = [
     {
         "id": 1,
-        "slug": "video",  # UPDATED LINK
-        "title": "Video", # UPDATED TITLE
+        "slug": "video",
+        "title": "Video",
         "category": "Commercial, Narrative & Social",
-        "video_loop": "post_loop.mp4", # Keeping same file name to avoid errors
-        "image": "editing.jpg", 
-        "description": "A comprehensive showcase of editorial work ranging from fast-paced social recaps to multi-camera narrative thesis projects. Features proficiency in offline/online workflows, DIT data management, and color grading."
+        "video_loop": "post_loop.mp4",
+        "image": "editing.jpg",
+        "description": "A comprehensive showcase of editorial work ranging from fast-paced social recaps to multi-camera narrative thesis projects. Features proficiency in offline/online workflows, DIT data management, and color grading.",
+        
+        # NEW STRUCTURE: Multiple Sections
+        "reel_sections": [
+            {
+                "title": "New Music Wednesdays",
+                "videos": [
+                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/nmw_1.mp4",
+                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/nmw_2.mp4",
+                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/nmw_3.mp4",
+                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/nmw_4.mp4"
+                ]
+            },
+            {
+                "title": "Beyond the Club",
+                "videos": [
+                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_1.mp4",
+                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_2.mp4",
+                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_3.mp4"
+                ]
+            },
+            {
+                "title": "Event Recaps",
+                "videos": [
+                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/recap_1.mp4",
+                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/recap_2.mp4",
+                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/recap_3.mp4"
+                ]
+            }
+        ]
     },
     {
         "id": 2,
@@ -30,7 +59,7 @@ projects = [
         "category": "Creative Direction",
         "video_loop": "lunes_loop.mp4",
         "image": "lunes.jpg", 
-        "description": "Established the complete visual identity for Miami's leading underground culture platform. Executed weekly motion graphics and static social assets. Awarded <a href='https://www.miaminewtimes.com/best-of-miami/2023/arts-and-entertainment/best-instagram-17198798/' target='_blank' style='color:#d4af37;'>'Best Instagram' of 2023</a>."
+        "description": "Established the complete visual identity for Miami's leading underground culture platform. Awarded <a href='https://www.miaminewtimes.com/best-of-miami/2023/arts-and-entertainment/best-instagram-17198798/' target='_blank' style='color:#d4af37;'>'Best Instagram' of 2023</a>. This page showcases the brand strategy, event photography, and community impact."
     },
     {
         "id": 4,
