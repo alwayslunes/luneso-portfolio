@@ -231,3 +231,39 @@ header::before {
     .menu-toggle { display: block; }
     .grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 50vh); }
 }
+
+/* --- UPDATED CLOSE BUTTON --- */
+.close-btn {
+    position: absolute;
+    top: -50px; /* Moves it above the video */
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    pointer-events: auto; /* Ensures it is clickable */
+    z-index: 6000;
+}
+
+.close-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+    transition: fill 0.3s;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.close-btn:hover svg {
+    fill: var(--accent);
+}
+
+/* Ensure Modal is on top of everything */
+.modal { z-index: 99999; }

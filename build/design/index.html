@@ -26,7 +26,6 @@
         .detail-title { font-size: 3rem; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; line-height: 1; }
         .detail-desc { font-size: 1.2rem; line-height: 1.6; color: #ccc; max-width: 700px; margin-bottom: 60px; }
 
-        /* REELS STRIP STYLES */
         .reel-section-title {
             font-size: 1.5rem;
             font-weight: 800;
@@ -34,12 +33,11 @@
             text-transform: uppercase;
             margin-bottom: 15px;
             margin-top: 60px;
-            padding-left: 0; /* Aligned with container */
         }
 
         .reels-container {
             width: 100vw;
-            margin-left: calc(-50vw + 50%); /* Full width breakout */
+            margin-left: calc(-50vw + 50%);
             height: 450px;
             overflow: hidden;
             border-top: 1px solid #222;
@@ -59,7 +57,6 @@
         <div class="header-right">
             <a href="/about/" class="nav-text">ABOUT</a>
             <a href="mailto:lunes@alwayslunes.com" class="icon-link"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
-            <a href="https://www.linkedin.com/in/lunesona/" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
             <a href="/static/Lunes-Ona-Video-Editor-CV.pdf" target="_blank" class="nav-text">CV</a>
         </div>
         <div class="menu-toggle" onclick="toggleMenu()">MENU</div>
@@ -86,7 +83,10 @@
 
     <div id="videoModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">CLOSE</span>
+            <div class="close-btn" onclick="closeModal()">
+                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </div>
+            
             <div class="video-wrapper">
                 <video id="popupVideo" playsinline loop onclick="togglePlay()">
                     <source src="" type="video/mp4">
@@ -113,20 +113,21 @@
             else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
 
-        // SWIPER INIT (Supports Multiple)
+        // --- SWIPER LOGIC ---
         
 
-        // MODAL
+        // --- MODAL LOGIC ---
         const modal = document.getElementById("videoModal");
         const video = document.getElementById("popupVideo");
         const playBtn = document.getElementById("playBtn");
         const muteBtn = document.getElementById("muteBtn");
 
         function openModal(videoSrc) {
+            console.log("Opening modal for:", videoSrc); // Debugging
             modal.style.display = "flex";
             video.src = videoSrc;
             video.load();
-            video.play();
+            video.play().catch(e => console.error("Play failed", e));
             video.muted = false;
             muteBtn.innerText = "MUTE";
             document.body.style.overflow = "hidden";
