@@ -4,15 +4,14 @@ from flask_frozen import Freezer
 app = Flask(__name__)
 freezer = Freezer(app)
 
-# DATA WITH SLUGS & VIDEO LOOPS
 projects = [
     {
         "id": 1,
-        "slug": "post-production",
-        "title": "Post Production",
+        "slug": "video",  # UPDATED LINK
+        "title": "Video", # UPDATED TITLE
         "category": "Commercial, Narrative & Social",
-        "video_loop": "post_loop.mp4",  # You will name your file this
-        "image": "editing.jpg",         # Fallback image
+        "video_loop": "post_loop.mp4", # Keeping same file name to avoid errors
+        "image": "editing.jpg", 
         "description": "A comprehensive showcase of editorial work ranging from fast-paced social recaps to multi-camera narrative thesis projects. Features proficiency in offline/online workflows, DIT data management, and color grading."
     },
     {
@@ -50,22 +49,18 @@ def get_project(slug):
             return project
     return None
 
-# 1. LANDING PAGE (Intro Video)
 @app.route('/')
 def intro():
     return render_template('intro.html')
 
-# 2. WORK GRID (The old home page)
 @app.route('/work/')
 def work():
     return render_template('work.html', projects=projects)
 
-# 3. ABOUT PAGE
 @app.route('/about/')
 def about():
     return render_template('about.html')
 
-# 4. PROJECT DETAIL (Using Slugs)
 @app.route('/<slug>/')
 def project_detail(slug):
     project = get_project(slug)
@@ -73,7 +68,6 @@ def project_detail(slug):
         abort(404)
     return render_template('project.html', project=project)
 
-# FREEZER GENERATOR (Tells system how to build the slug URLs)
 @freezer.register_generator
 def project_detail():
     for project in projects:
