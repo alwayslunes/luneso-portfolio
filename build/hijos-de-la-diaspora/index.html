@@ -22,6 +22,7 @@
     </style>
 </head>
 <body>
+    
     <header id="mainHeader">
         <a href="/work/" class="header-left">LUNES OÑA</a>
         <div class="header-center">MULTIMEDIA EDITOR</div>
@@ -71,7 +72,7 @@
         </div>
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
@@ -94,8 +95,8 @@
         const iconVolOff = document.getElementById("icon-vol-off");
 
         function openModal(videoSrc) {
-            console.log("Opening Modal:", videoSrc);
-            modal.style.display = "flex"; // Force Flex display
+            console.log("OPENING MODAL: " + videoSrc); // Debug Log
+            modal.style.display = "flex";
             video.src = videoSrc;
             
             // Reset Icons
@@ -110,7 +111,7 @@
             var playPromise = video.play();
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
-                    console.log("Autoplay failed, showing play button");
+                    console.log("Autoplay failed:", error);
                     iconPlay.style.display = "block";
                     iconPause.style.display = "none";
                 });
@@ -122,7 +123,7 @@
             modal.style.display = "none";
             video.pause();
             video.src = "";
-            document.body.style.overflow = "auto"; // Unlock scroll
+            document.body.style.overflow = "auto";
         }
 
         function togglePlay() {
