@@ -16,18 +16,11 @@ projects = [
         
         "reel_sections": [
             {
-                "title": "New Music Wednesdays",
+                "title": "Event Recaps",
                 "videos": [
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_05_04_15_57_Dizzy.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_05_10_23_33_Blood.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_05_18_11_38_BadRomance.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_06_22_12_52_TwelfthHour.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_07_13_01_16_Viceversa.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_12_21_1_WannaGoOutside_V3.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_12_21_2_Daydreams_V3.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_12_21_3_RealHigh_V3.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_12_21_4_5IVEQUID_V2.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_12_21_5_FLESH_V1.mp4"
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/PERREOTON%20V2.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/CTA%20v7.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/CTA%20DEC%20RECAP_6.mp4"
                 ]
             },
             {
@@ -39,11 +32,18 @@ projects = [
                 ]
             },
             {
-                "title": "Event Recaps",
+                "title": "New Music Wednesdays",
                 "videos": [
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/PERREOTON%20V2.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/CTA%20v7.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/CTA%20DEC%20RECAP_6.mp4"
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW5IVEQUID.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWBadRomance.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWBlood.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWDaydreams.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWDizzy.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWFLESH.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWRealHigh.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWTwelfthHour.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWViceversa.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWWannaGoOutside.mp4"
                 ]
             }
         ]
