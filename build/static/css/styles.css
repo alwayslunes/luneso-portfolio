@@ -3,7 +3,7 @@
     --bg-color: #050505; 
     --text-color: #ffffff; 
     --accent: #FF9900; 
-    --header-height: 80px; /* Taller to allow gradient fade */
+    --header-height: 120px; /* Taller area to allow for a smooth fade */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,29 +56,46 @@ a:hover ~ .custom-cursor,
     transform: translate(-50%, -50%) scale(1.5);
 }
 
-/* --- NEW HEADER STYLE (GRADIENT FADE) --- */
+/* --- HEADER (GRADIENT BLUR FADE) --- */
 header {
     height: var(--header-height);
-    
-    /* GRADIENT: Darker at top, transparent at bottom */
-    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
-    
-    /* SUBTLE BLUR (Reduced from 15px) */
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    
-    /* NO BORDER LINE */
-    border-bottom: none;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Align items to top */
-    padding: 20px 30px 0 30px; /* Push content down slightly */
-    
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 2000;
+    
+    /* Layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Items stay at top */
+    padding: 25px 30px 0 30px;
+    
+    /* CRITICAL: Allows clicks to pass through the empty/faded parts of the header */
+    pointer-events: none; 
+}
+
+/* THE BACKGROUND LAYER (Handles the Fade and Blur) */
+header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1; /* Sits behind text */
+
+    /* 1. LIGHTER GRADIENT */
+    background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+    
+    /* 2. BLUR */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    /* 3. THE MAGIC MASK: Fades the blur itself to transparent at the bottom */
+    -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+}
+
+/* RE-ENABLE CLICKS FOR HEADER ITEMS (Since parent is pointer-events: none) */
+.header-left, .header-center, .header-right, .menu-toggle {
+    pointer-events: auto;
 }
 
 .header-left {
@@ -89,7 +106,7 @@ header {
 
 .header-center {
     color: var(--accent); font-weight: 400; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px;
-    margin-top: 5px; /* Align visually */
+    margin-top: 5px; 
 }
 
 .header-right { display: flex; gap: 25px; align-items: center; margin-top: 2px; }
@@ -114,6 +131,9 @@ header {
     background-color: #000;
     display: flex; flex-direction: column; justify-content: center; padding-left: 40px;
     opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1500;
+    
+    /* Fix: Ensure overlay captures clicks when open */
+    pointer-events: none; 
 }
 .mobile-overlay.active { opacity: 1; pointer-events: auto; }
 
@@ -178,6 +198,4 @@ header {
     .header-center, .header-right { display: none; }
     .menu-toggle { display: block; }
     .grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 50vh); }
-    /* Mobile Header adjustments */
-    header { background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); } 
 }
