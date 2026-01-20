@@ -21,6 +21,7 @@
             width: 100%; height: 100%; object-fit: cover;
             display: block;
             pointer-events: none;
+            transition: opacity 0.3s;
         }
     </style>
 </head>
@@ -84,29 +85,34 @@
             }
         }
 
+        // --- SWIPER INIT ---
         document.querySelectorAll('.mySwiper').forEach(container => {
             const slideCount = parseInt(container.getAttribute('data-slide-count'));
             const sectionTitle = container.getAttribute('data-section-title');
             
-            const isCentered = slideCount < 4;
+            // LOGIC: "New Music Wednesdays" is the ONLY section that should autoplay and NOT be centered.
+            // Everything else (Recaps, BTC) should be centered and static.
             
-            // Only autoplay New Music Wednesdays
-            const shouldAutoplay = (sectionTitle === "New Music Wednesdays");
+            const isNMW = (sectionTitle === "New Music Wednesdays");
+            
+            // If it's NOT NMW, we force centering.
+            const shouldCenter = !isNMW; 
 
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
-                centeredSlides: isCentered,
+                centeredSlides: shouldCenter, // Center Recaps & BTC
                 centerInsufficientSlides: true,
                 freeMode: true,
                 grabCursor: true,
-                autoplay: shouldAutoplay ? {
+                // Autoplay only if it is NMW
+                autoplay: isNMW ? {
                     delay: 0,
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true
                 } : false,
-                speed: shouldAutoplay ? 4000 : 600,
-                loop: !isCentered, 
+                speed: isNMW ? 4000 : 600,
+                loop: isNMW, // Loop only NMW
                 navigation: {
                     nextEl: container.querySelector('.swiper-button-next'),
                     prevEl: container.querySelector('.swiper-button-prev'),
@@ -116,20 +122,38 @@
 
         function activateSlide(slide) {
             if (slide.classList.contains('expanded')) return;
+
+            // Collapse others
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
+
+            // Expand
             slide.classList.add('expanded');
             
             const img = slide.querySelector('.slide-thumb');
             const video = slide.querySelector('video');
             
+            // 1. Hide Thumbnail
             if (img) img.style.display = 'none';
+            // 2. Show Video
             video.style.display = 'block';
 
+            // 3. FORCE LOAD AND PLAY
+            video.load(); // Critical for fixing the "not playing" issue
             video.currentTime = 0;
             video.muted = false;
-            video.play();
+            
+            var playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Play started
+                })
+                .catch(error => {
+                    console.log("Autoplay prevented:", error);
+                });
+            }
+
             updateIcons(slide, true, true);
             startProgressLoop(slide);
         }
@@ -144,6 +168,7 @@
             const img = slide.querySelector('.slide-thumb');
             
             video.muted = true;
+            // Hide video, show thumb
             if (img) {
                 video.pause();
                 video.style.display = 'none';
@@ -256,6 +281,7 @@
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
+                    // Don't play if it's hidden by a thumbnail
                     if (video.style.display === 'none') return;
                     
                     if (entry.isIntersecting) {
@@ -273,6 +299,7 @@
                 observer.observe(video);
             });
             
+            // 3-SECOND PREVIEW LOOP
             setInterval(() => {
                 document.querySelectorAll('.swiper-slide video').forEach(vid => {
                     if (vid.style.display !== 'none' && !vid.paused && !vid.closest('.swiper-slide').classList.contains('expanded') && vid.currentTime > 3) {
