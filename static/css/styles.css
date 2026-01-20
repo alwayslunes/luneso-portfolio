@@ -23,10 +23,13 @@ body {
 
 body.menu-open { overflow: hidden; height: 100dvh; }
 
-html, body, a, button, input, textarea, .card, .menu-toggle {
-    cursor: none !important;
+/* --- GLOBAL CURSOR HIDING --- */
+html, body, a, button, input, textarea, .card, .menu-toggle, 
+.swiper, .swiper-wrapper, .swiper-slide, .modal, .modal-content, video {
+    cursor: none !important; /* Force hide system cursor everywhere */
 }
 
+/* --- CUSTOM CURSOR --- */
 .custom-cursor {
     position: fixed;
     top: -100px; left: -100px;
@@ -34,7 +37,10 @@ html, body, a, button, input, textarea, .card, .menu-toggle {
     background-color: white;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    
+    /* MAX Z-INDEX to stay above Modal */
+    z-index: 2147483647; 
+    
     mix-blend-mode: difference;
     transform: translate(-50%, -50%);
     transition: width 0.2s, height 0.2s, transform 0.1s;
@@ -46,7 +52,10 @@ html, body, a, button, input, textarea, .card, .menu-toggle {
 }
 
 a:hover ~ .custom-cursor, 
-.menu-toggle:hover ~ .custom-cursor {
+.menu-toggle:hover ~ .custom-cursor,
+.control-btn:hover ~ .custom-cursor,
+.close-btn:hover ~ .custom-cursor,
+.swiper-slide:hover ~ .custom-cursor {
     transform: translate(-50%, -50%) scale(1.5);
 }
 
@@ -155,7 +164,7 @@ header::before {
 }
 .project-cat { color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; }
 
-/* --- REELS STRIP (UPDATED SIZE) --- */
+/* --- REELS STRIP --- */
 .reel-section-title {
     font-size: 1.5rem; font-weight: 800; color: #FF9900;
     text-transform: uppercase; margin-bottom: 15px; margin-top: 60px;
@@ -164,11 +173,9 @@ header::before {
 .reels-container {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    /* INCREASED HEIGHT TO FIT FULL VIDEO */
     height: 60vh; 
     max-height: 600px;
     min-height: 400px;
-    
     overflow: hidden;
     border-top: 1px solid #222;
     border-bottom: 1px solid #222;
@@ -180,18 +187,15 @@ header::before {
 .swiper { width: 100%; height: 100%; }
 
 .swiper-slide {
-    /* AUTO WIDTH: Allows slide to fit aspect ratio based on height */
     width: auto; 
     height: 100%;
-    
-    /* FORCE 9:16 Aspect Ratio to prevent collapse */
     aspect-ratio: 9 / 16;
-    
     background: #111;
     border-radius: 6px;
     overflow: hidden;
     position: relative;
-    cursor: none;
+    /* ENSURE CUSTOM CURSOR IS VISIBLE HERE */
+    cursor: none !important; 
     transition: transform 0.3s;
 }
 
@@ -199,7 +203,7 @@ header::before {
 
 .swiper-slide video {
     width: 100%; height: 100%; 
-    object-fit: cover; /* Fills the vertical space */
+    object-fit: cover; 
     pointer-events: none;
 }
 
@@ -211,74 +215,21 @@ header::before {
 }
 .swiper-slide:hover .reel-overlay { opacity: 1; }
 
-/* --- MODAL --- */
-.modal {
-    display: none; position: fixed; z-index: 5000; left: 0; top: 0;
-    width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
-    justify-content: center; align-items: center; backdrop-filter: blur(10px);
-}
-.modal-content { position: relative; width: 90%; max-width: 500px; height: 80%; }
-.video-wrapper { width: 100%; height: 100%; position: relative; }
-#popupVideo { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 0 50px rgba(255, 153, 0, 0.2); }
-.close-btn { position: absolute; top: -40px; right: 0; color: #fff; font-weight: 800; cursor: pointer; font-size: 1.2rem; }
-.close-btn:hover { color: var(--accent); }
-.controls { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
-.controls button { background: rgba(0,0,0,0.6); color: #fff; border: 1px solid #fff; padding: 10px 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: all 0.3s; }
-.controls button:hover { background: #fff; color: #000; }
-
-@media (max-width: 768px) {
-    .header-center, .header-right { display: none; }
-    .menu-toggle { display: block; }
-    .grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 50vh); }
-}
-
-/* --- UPDATED CLOSE BUTTON --- */
-.close-btn {
-    position: absolute;
-    top: -50px; /* Moves it above the video */
-    right: 0;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    pointer-events: auto; /* Ensures it is clickable */
-    z-index: 6000;
-}
-
-.close-btn svg {
-    width: 24px;
-    height: 24px;
-    fill: #fff;
-    transition: fill 0.3s;
-}
-
-.close-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.close-btn:hover svg {
-    fill: var(--accent);
-}
-
-/* Ensure Modal is on top of everything */
-.modal { z-index: 99999; }
-
-/* --- NEW GLASS MODAL DESIGN --- */
+/* --- GLASS MODAL (CENTERED & BLURRED) --- */
 .modal {
     display: none;
-    position: fixed;
-    z-index: 99999;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
     
-    /* THE GLASS EFFECT */
-    background-color: rgba(0, 0, 0, 0.6); /* Darkened overlay */
-    backdrop-filter: blur(20px); /* Heavy blur */
+    /* FIXED to viewport */
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100vw; height: 100vh;
+    
+    /* High Z-Index to cover Header */
+    z-index: 20000; 
+    
+    /* Full blur */
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     
     justify-content: center;
@@ -289,8 +240,8 @@ header::before {
 .modal-content {
     position: relative;
     width: auto;
-    height: 80vh; /* Takes up 80% of screen height */
-    aspect-ratio: 9/16; /* Enforce vertical shape */
+    height: 80vh; 
+    aspect-ratio: 9/16; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -300,22 +251,21 @@ header::before {
 #popupVideo {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Fill the vertical container */
+    object-fit: cover; 
     border-radius: 12px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* CLOSE BUTTON (Top Right) */
 .close-btn {
     position: absolute;
-    top: -50px; /* Floating above right */
-    right: -20px; /* Pushed slightly out */
+    top: -50px; 
+    right: -20px; 
     width: 40px; height: 40px;
     background: transparent;
     border: none;
-    cursor: pointer;
-    transition: transform 0.2s;
+    cursor: none !important; /* Custom cursor */
     display: flex; justify-content: center; align-items: center;
+    transition: transform 0.2s;
 }
 
 .close-btn svg {
@@ -326,11 +276,10 @@ header::before {
 
 .close-btn:hover { transform: scale(1.1); }
 
-/* CONTROLS (Bottom Center) */
 .controls-row {
     margin-top: 20px;
     display: flex;
-    gap: 40px; /* Space between Play and Sound */
+    gap: 40px; 
     justify-content: center;
     align-items: center;
 }
@@ -338,7 +287,7 @@ header::before {
 .control-btn {
     background: none;
     border: none;
-    cursor: pointer;
+    cursor: none !important; /* Custom cursor */
     padding: 10px;
     display: flex; justify-content: center; align-items: center;
     transition: transform 0.2s;
@@ -352,8 +301,10 @@ header::before {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
-/* Responsive adjustments for mobile */
 @media (max-width: 768px) {
+    .header-center, .header-right { display: none; }
+    .menu-toggle { display: block; }
+    .grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 50vh); }
     .modal-content { width: 90%; height: auto; aspect-ratio: 9/16; }
-    .close-btn { top: 10px; right: 10px; z-index: 100; } /* Inside video on mobile */
+    .close-btn { top: 10px; right: 10px; z-index: 100; } 
 }

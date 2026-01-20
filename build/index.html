@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LUNES OÑA</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23FF9900'><path d='M20 10 H 40 V 70 H 80 V 90 H 20 Z'/></svg>">
+    
     <style>
         @font-face {
             font-family: 'Trivane';
@@ -54,7 +57,6 @@
                 font-size: 26vw; 
                 display: flex; 
                 flex-direction: column; 
-                /* UPDATED GAP TO 20px */
                 row-gap: 20px;
             }
             .word-break { display: block; }
@@ -97,7 +99,6 @@
         });
 
         document.addEventListener('touchmove', (e) => {
-            // Mobile: Move reveal with finger
             moveReveal(e.touches[0].clientX, e.touches[0].clientY);
         });
 
