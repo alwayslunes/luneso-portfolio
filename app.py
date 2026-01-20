@@ -5,51 +5,51 @@ import random
 app = Flask(__name__)
 freezer = Freezer(app)
 
-# Define NMW videos separately so we can shuffle them
+# Define NMW videos with the NEW CORRECT LINKS
 nmw_videos = [
     { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWDizzy.mp4", 
+        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_1_Dizzy.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_1_Dizzy.jpg" 
     },
     { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWBlood.mp4", 
+        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_2_Blood.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_2_Blood.jpg" 
     },
     { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWBadRomance.mp4", 
+        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_3_BadRomance.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_3_BadRomance.jpg" 
     },
     { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWTwelfthHour.mp4", 
+        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_4_TwelfthHour.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_4_TwelfthHour.jpg" 
     },
     { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWViceversa.mp4", 
+        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_5_Viceversa.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_5_Viceversa.jpg" 
     },
     { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWWannaGoOutside.mp4", 
+        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_6_WannaGoOutside.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_6_WannaGoOutside.jpg" 
     },
     { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWDaydreams.mp4", 
+        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_7_Daydreams.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_7_Daydreams.jpg" 
     },
     { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWRealHigh.mp4", 
+        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_8_RealHigh.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_8_RealHigh.jpg" 
     },
     { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW5IVEQUID.mp4", 
+        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_9_5IVEQUID.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_9_5IVEQUID.jpg" 
     },
     { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWFLESH.mp4",
+        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_10_FLESH.mp4",
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_10_FLESH.jpg"
     }
 ]
 
-# Randomize order
+# Randomize order on build
 random.shuffle(nmw_videos)
 
 projects = [
@@ -89,7 +89,7 @@ projects = [
 ]
 
 def get_project(slug):
-    # Re-shuffle if it's the video page so refreshes feel dynamic (optional)
+    # Re-shuffle if it's the video page so refreshes feel dynamic
     if slug == "video":
         random.shuffle(nmw_videos)
         # Update the project object reference
