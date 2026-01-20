@@ -50,7 +50,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // MENU TOGGLE
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");
@@ -60,86 +59,79 @@
             else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
 
-        // --- SOCIAL ACCORDION LOGIC ---
+        // --- SOCIAL TOGGLE ---
         function toggleSocial() {
             const content = document.getElementById('social-content');
             const arrow = document.getElementById('social-arrow');
             
             if (content.classList.contains('active')) {
-                // CLOSING
                 content.classList.remove('active');
                 arrow.innerText = "+";
                 document.querySelectorAll('video').forEach(v => v.pause());
             } else {
-                // OPENING
                 content.classList.add('active');
                 arrow.innerText = "-";
-                // Trigger Swiper updates to fix layout bugs when unhiding
                 document.querySelectorAll('.mySwiper').forEach(s => s.swiper.update());
                 startObserver();
             }
         }
 
-        // --- SWIPER INIT WITH AUTOPLAY & CENTER LOGIC ---
+        // --- SWIPER INIT (NO AUTOPLAY, WITH ARROWS) ---
         document.querySelectorAll('.mySwiper').forEach(container => {
             const slideCount = parseInt(container.getAttribute('data-slide-count'));
-            
-            // If less than 4 slides, center them. If more, align left for scrolling.
             const isCentered = slideCount < 4; 
-            
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
-                centeredSlides: isCentered, // DYNAMIC CENTERING
-                centerInsufficientSlides: true, // Helper for small counts
+                centeredSlides: isCentered,
+                centerInsufficientSlides: true,
                 freeMode: true,
                 grabCursor: true,
-                // RESTORED AUTOPLAY
-                autoplay: {
-                    delay: 0,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true
+                autoplay: false, // DISABLED AUTOMATIC MOVEMENT
+                speed: 600,
+                loop: !isCentered,
+                // NAVIGATION ARROWS
+                navigation: {
+                    nextEl: container.querySelector('.swiper-button-next'),
+                    prevEl: container.querySelector('.swiper-button-prev'),
                 },
-                speed: 4000, // Smooth scroll speed
-                loop: !isCentered // Only loop if we have many slides
             });
         });
 
-        // --- IN-PLACE EXPANSION LOGIC ---
+        // --- EXPANSION LOGIC ---
         function activateSlide(slide) {
             if (slide.classList.contains('expanded')) return;
 
             // Collapse others
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
                 s.classList.remove('expanded');
+                // Hide volume popups
+                s.querySelectorAll('.volume-wrapper').forEach(vw => vw.classList.remove('active'));
                 const v = s.querySelector('video');
                 v.muted = true;
-                v.currentTime = 0; // Reset closed videos
+                v.currentTime = 0;
             });
 
-            // Expand this one
+            // Expand
             slide.classList.add('expanded');
             const video = slide.querySelector('video');
-            
-            // RESET TO BEGINNING
             video.currentTime = 0;
             video.muted = false;
             video.play();
-            
             updateIcons(slide, true, true);
-            startProgressLoop(slide); // Start updating progress bar
+            startProgressLoop(slide);
         }
 
         function collapseSlide(event, btn) {
             event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
             slide.classList.remove('expanded');
+            slide.querySelectorAll('.volume-wrapper').forEach(vw => vw.classList.remove('active'));
             const video = slide.querySelector('video');
             video.muted = true;
-            // video.pause(); // Optional: pause on close?
         }
 
-        // --- PLAY/PAUSE ---
+        // --- CONTROLS ---
         function handlePlayClick(event, btn) {
             event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
@@ -153,13 +145,17 @@
             }
         }
 
-        // --- SOUND/VOLUME ---
-        function handleSoundClick(event, btn) {
+        function toggleVolumePopup(event, btn) {
             event.stopPropagation();
-            const slide = btn.closest('.swiper-slide');
-            const video = slide.querySelector('video');
-            video.muted = !video.muted;
-            updateIcons(slide, !video.paused, !video.muted);
+            const wrapper = btn.closest('.volume-wrapper');
+            // Toggle active class to show/hide popup
+            if (wrapper.classList.contains('active')) {
+                wrapper.classList.remove('active');
+            } else {
+                // Close others first
+                document.querySelectorAll('.volume-wrapper.active').forEach(w => w.classList.remove('active'));
+                wrapper.classList.add('active');
+            }
         }
 
         function adjustVolume(event, slider) {
@@ -171,25 +167,15 @@
             updateIcons(slide, !video.paused, !video.muted);
         }
 
-        // --- PROGRESS BAR LOGIC ---
+        // --- PROGRESS BAR ---
         function startProgressLoop(slide) {
             const video = slide.querySelector('video');
             const bar = slide.querySelector('.progress-filled');
-            const handle = slide.querySelector('.progress-handle');
-            const timeDisplay = slide.querySelector('.time-display');
-
+            
             const update = () => {
-                if (!slide.classList.contains('expanded')) return; // Stop if closed
-                
+                if (!slide.classList.contains('expanded')) return;
                 const pct = (video.currentTime / video.duration) * 100;
                 bar.style.width = pct + '%';
-                handle.style.left = pct + '%'; // Move handle
-                
-                // Format Time
-                const mins = Math.floor(video.currentTime / 60);
-                const secs = Math.floor(video.currentTime % 60);
-                timeDisplay.innerText = mins + ':' + (secs < 10 ? '0' : '') + secs;
-
                 requestAnimationFrame(update);
             };
             requestAnimationFrame(update);
@@ -203,12 +189,11 @@
             const pos = (event.clientX - rect.left) / rect.width;
             video.currentTime = pos * video.duration;
         }
-        
-        // Simple Drag Logic
+
         let isDragging = false;
         function startDrag(event, container) {
+            event.stopPropagation();
             isDragging = true;
-            // Add global listeners to handle drag outside the bar
             document.addEventListener('mousemove', onDrag);
             document.addEventListener('mouseup', stopDrag);
             
@@ -218,7 +203,7 @@
                 const video = slide.querySelector('video');
                 const rect = container.getBoundingClientRect();
                 let pos = (e.clientX - rect.left) / rect.width;
-                pos = Math.max(0, Math.min(1, pos)); // Clamp 0-1
+                pos = Math.max(0, Math.min(1, pos));
                 video.currentTime = pos * video.duration;
             }
             
@@ -229,7 +214,6 @@
             }
         }
 
-        // --- UI HELPER ---
         function updateIcons(slide, isPlaying, hasSound) {
             const playIcon = slide.querySelector('.icon-play');
             const pauseIcon = slide.querySelector('.icon-pause');
@@ -253,13 +237,14 @@
             }
         }
 
-        // --- PERFORMANCE OBSERVER ---
+        // --- OBSERVER ---
         function startObserver() {
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
                     if (entry.isIntersecting) {
                         if (!video.closest('.swiper-slide').classList.contains('expanded')) {
+                            // 3-SECOND PREVIEW LOOP
                             video.muted = true;
                             video.play().catch(()=>{});
                         }
@@ -272,6 +257,18 @@
             document.querySelectorAll('video').forEach(video => {
                 observer.observe(video);
             });
+            
+            // 3-SECOND LOOP LOGIC
+            setInterval(() => {
+                document.querySelectorAll('.swiper-slide video').forEach(vid => {
+                    // Only loop if it's playing, visible, and NOT EXPANDED
+                    const slide = vid.closest('.swiper-slide');
+                    if (!vid.paused && !slide.classList.contains('expanded') && vid.currentTime > 3) {
+                        vid.currentTime = 0;
+                        vid.play();
+                    }
+                });
+            }, 250);
         }
     </script>
 </body>

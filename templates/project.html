@@ -70,35 +70,38 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="slide-controls">
-                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                        <div class="progress-filled"></div>
-                                        <div class="progress-handle"></div>
-                                    </div>
+                                <div class="slide-controls" onclick="event.stopPropagation()">
+                                    
+                                    <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                    </button>
 
-                                    <div class="control-buttons-row">
-                                        <div class="left-controls">
-                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                            </button>
-                                            <span class="time-display">0:00</span>
-                                        </div>
-
-                                        <div class="right-controls">
-                                            <div class="volume-container">
-                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                    <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-track">
+                                            <div class="progress-filled">
+                                                <div class="progress-thumb"></div>
                                             </div>
-                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
                                         </div>
                                     </div>
+
+                                    <div class="volume-wrapper">
+                                        <div class="volume-popup" onclick="event.stopPropagation()">
+                                            <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)">
+                                        </div>
+                                        <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                            <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                            <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                        </button>
+                                    </div>
+
                                 </div>
                             </div>
                             {% endfor %}
                         </div>
+                        
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
                     </div>
                 </div>
             {% endfor %}
@@ -108,7 +111,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // MENU TOGGLE
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");
@@ -118,86 +120,79 @@
             else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
 
-        // --- SOCIAL ACCORDION LOGIC ---
+        // --- SOCIAL TOGGLE ---
         function toggleSocial() {
             const content = document.getElementById('social-content');
             const arrow = document.getElementById('social-arrow');
             
             if (content.classList.contains('active')) {
-                // CLOSING
                 content.classList.remove('active');
                 arrow.innerText = "+";
                 document.querySelectorAll('video').forEach(v => v.pause());
             } else {
-                // OPENING
                 content.classList.add('active');
                 arrow.innerText = "-";
-                // Trigger Swiper updates to fix layout bugs when unhiding
                 document.querySelectorAll('.mySwiper').forEach(s => s.swiper.update());
                 startObserver();
             }
         }
 
-        // --- SWIPER INIT WITH AUTOPLAY & CENTER LOGIC ---
+        // --- SWIPER INIT (NO AUTOPLAY, WITH ARROWS) ---
         document.querySelectorAll('.mySwiper').forEach(container => {
             const slideCount = parseInt(container.getAttribute('data-slide-count'));
-            
-            // If less than 4 slides, center them. If more, align left for scrolling.
             const isCentered = slideCount < 4; 
-            
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
-                centeredSlides: isCentered, // DYNAMIC CENTERING
-                centerInsufficientSlides: true, // Helper for small counts
+                centeredSlides: isCentered,
+                centerInsufficientSlides: true,
                 freeMode: true,
                 grabCursor: true,
-                // RESTORED AUTOPLAY
-                autoplay: {
-                    delay: 0,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true
+                autoplay: false, // DISABLED AUTOMATIC MOVEMENT
+                speed: 600,
+                loop: !isCentered,
+                // NAVIGATION ARROWS
+                navigation: {
+                    nextEl: container.querySelector('.swiper-button-next'),
+                    prevEl: container.querySelector('.swiper-button-prev'),
                 },
-                speed: 4000, // Smooth scroll speed
-                loop: !isCentered // Only loop if we have many slides
             });
         });
 
-        // --- IN-PLACE EXPANSION LOGIC ---
+        // --- EXPANSION LOGIC ---
         function activateSlide(slide) {
             if (slide.classList.contains('expanded')) return;
 
             // Collapse others
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
                 s.classList.remove('expanded');
+                // Hide volume popups
+                s.querySelectorAll('.volume-wrapper').forEach(vw => vw.classList.remove('active'));
                 const v = s.querySelector('video');
                 v.muted = true;
-                v.currentTime = 0; // Reset closed videos
+                v.currentTime = 0;
             });
 
-            // Expand this one
+            // Expand
             slide.classList.add('expanded');
             const video = slide.querySelector('video');
-            
-            // RESET TO BEGINNING
             video.currentTime = 0;
             video.muted = false;
             video.play();
-            
             updateIcons(slide, true, true);
-            startProgressLoop(slide); // Start updating progress bar
+            startProgressLoop(slide);
         }
 
         function collapseSlide(event, btn) {
             event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
             slide.classList.remove('expanded');
+            slide.querySelectorAll('.volume-wrapper').forEach(vw => vw.classList.remove('active'));
             const video = slide.querySelector('video');
             video.muted = true;
-            // video.pause(); // Optional: pause on close?
         }
 
-        // --- PLAY/PAUSE ---
+        // --- CONTROLS ---
         function handlePlayClick(event, btn) {
             event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
@@ -211,13 +206,17 @@
             }
         }
 
-        // --- SOUND/VOLUME ---
-        function handleSoundClick(event, btn) {
+        function toggleVolumePopup(event, btn) {
             event.stopPropagation();
-            const slide = btn.closest('.swiper-slide');
-            const video = slide.querySelector('video');
-            video.muted = !video.muted;
-            updateIcons(slide, !video.paused, !video.muted);
+            const wrapper = btn.closest('.volume-wrapper');
+            // Toggle active class to show/hide popup
+            if (wrapper.classList.contains('active')) {
+                wrapper.classList.remove('active');
+            } else {
+                // Close others first
+                document.querySelectorAll('.volume-wrapper.active').forEach(w => w.classList.remove('active'));
+                wrapper.classList.add('active');
+            }
         }
 
         function adjustVolume(event, slider) {
@@ -229,25 +228,15 @@
             updateIcons(slide, !video.paused, !video.muted);
         }
 
-        // --- PROGRESS BAR LOGIC ---
+        // --- PROGRESS BAR ---
         function startProgressLoop(slide) {
             const video = slide.querySelector('video');
             const bar = slide.querySelector('.progress-filled');
-            const handle = slide.querySelector('.progress-handle');
-            const timeDisplay = slide.querySelector('.time-display');
-
+            
             const update = () => {
-                if (!slide.classList.contains('expanded')) return; // Stop if closed
-                
+                if (!slide.classList.contains('expanded')) return;
                 const pct = (video.currentTime / video.duration) * 100;
                 bar.style.width = pct + '%';
-                handle.style.left = pct + '%'; // Move handle
-                
-                // Format Time
-                const mins = Math.floor(video.currentTime / 60);
-                const secs = Math.floor(video.currentTime % 60);
-                timeDisplay.innerText = mins + ':' + (secs < 10 ? '0' : '') + secs;
-
                 requestAnimationFrame(update);
             };
             requestAnimationFrame(update);
@@ -261,12 +250,11 @@
             const pos = (event.clientX - rect.left) / rect.width;
             video.currentTime = pos * video.duration;
         }
-        
-        // Simple Drag Logic
+
         let isDragging = false;
         function startDrag(event, container) {
+            event.stopPropagation();
             isDragging = true;
-            // Add global listeners to handle drag outside the bar
             document.addEventListener('mousemove', onDrag);
             document.addEventListener('mouseup', stopDrag);
             
@@ -276,7 +264,7 @@
                 const video = slide.querySelector('video');
                 const rect = container.getBoundingClientRect();
                 let pos = (e.clientX - rect.left) / rect.width;
-                pos = Math.max(0, Math.min(1, pos)); // Clamp 0-1
+                pos = Math.max(0, Math.min(1, pos));
                 video.currentTime = pos * video.duration;
             }
             
@@ -287,7 +275,6 @@
             }
         }
 
-        // --- UI HELPER ---
         function updateIcons(slide, isPlaying, hasSound) {
             const playIcon = slide.querySelector('.icon-play');
             const pauseIcon = slide.querySelector('.icon-pause');
@@ -311,13 +298,14 @@
             }
         }
 
-        // --- PERFORMANCE OBSERVER ---
+        // --- OBSERVER ---
         function startObserver() {
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
                     if (entry.isIntersecting) {
                         if (!video.closest('.swiper-slide').classList.contains('expanded')) {
+                            // 3-SECOND PREVIEW LOOP
                             video.muted = true;
                             video.play().catch(()=>{});
                         }
@@ -330,8 +318,19 @@
             document.querySelectorAll('video').forEach(video => {
                 observer.observe(video);
             });
+            
+            // 3-SECOND LOOP LOGIC
+            setInterval(() => {
+                document.querySelectorAll('.swiper-slide video').forEach(vid => {
+                    // Only loop if it's playing, visible, and NOT EXPANDED
+                    const slide = vid.closest('.swiper-slide');
+                    if (!vid.paused && !slide.classList.contains('expanded') && vid.currentTime > 3) {
+                        vid.currentTime = 0;
+                        vid.play();
+                    }
+                });
+            }, 250);
         }
     </script>
 </body>
 </html>
-

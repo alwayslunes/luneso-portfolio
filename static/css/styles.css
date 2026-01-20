@@ -305,49 +305,82 @@ header::before {
     .swiper-slide.expanded { transform: scale(1.1); }
 }
 
-/* --- ENHANCED VIDEO CONTROLS --- */
+/* --- FINAL VIDEO CONTROLS (FLEX LAYOUT) --- */
 
-/* Expanded Slide Controls Container */
 .slide-controls {
-    /* Adjusted to fit more controls */
-    height: 70px; 
-    background: linear-gradient(to top, rgba(0,0,0,0.95) 20%, transparent);
-    padding: 0 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Tall enough for gradient */
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     display: flex;
-    flex-direction: column; /* Stack progress bar on top of buttons */
-    justify-content: flex-end;
-    gap: 5px;
-    padding-bottom: 15px;
+    align-items: center; /* Vertically center items */
+    justify-content: space-between;
+    padding: 0 20px 20px 20px; /* Padding from bottom */
+    gap: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 200;
 }
 
-/* 1. Progress Bar Container */
-.progress-container {
-    width: 100%;
-    height: 5px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 5px;
+/* Show controls when expanded */
+.swiper-slide.expanded .slide-controls {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* BUTTONS (Play & Volume) */
+.control-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    color: #fff;
+}
+
+.control-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+    transition: transform 0.2s;
+}
+
+.control-btn:hover svg { transform: scale(1.1); fill: var(--accent); }
+
+/* PROGRESS BAR (The line in the middle) */
+.progress-wrapper {
+    flex-grow: 1; /* Takes up all available space */
+    height: 20px; /* Hit area for easier clicking */
+    display: flex;
+    align-items: center;
     cursor: pointer;
     position: relative;
-    margin-bottom: 8px; /* Space between bar and buttons */
-    transition: height 0.2s;
 }
 
-.progress-container:hover {
-    height: 8px; /* Thicker on hover */
+.progress-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    position: relative;
 }
 
-/* The Filled Part of the Bar */
 .progress-filled {
     height: 100%;
-    background: var(--accent);
+    background: #fff;
     width: 0%;
-    border-radius: 5px;
+    border-radius: 3px;
     position: relative;
-    pointer-events: none; /* Let clicks pass to container */
 }
 
-/* The Draggable Handle */
-.progress-handle {
+/* The dot at the end of the line */
+.progress-thumb {
     width: 12px;
     height: 12px;
     background: #fff;
@@ -355,76 +388,90 @@ header::before {
     position: absolute;
     right: -6px;
     top: 50%;
-    transform: translateY(-50%) scale(0);
+    transform: translateY(-50%) scale(0); /* Hidden by default */
     transition: transform 0.2s;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
-.progress-container:hover .progress-handle {
-    transform: translateY(-50%) scale(1);
-}
+.progress-wrapper:hover .progress-thumb { transform: translateY(-50%) scale(1); }
+.progress-wrapper:hover .progress-track { height: 5px; } /* Slightly thicker on hover */
 
-/* 2. Control Buttons Row */
-.control-buttons-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.left-controls {
+/* VOLUME CONTAINER (For the popup) */
+.volume-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 15px;
+    justify-content: center;
 }
 
-.right-controls {
-    display: flex;
+/* VERTICAL SLIDER POPUP */
+.volume-popup {
+    position: absolute;
+    bottom: 40px; /* Sit above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 100px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 15px;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    padding: 10px 0;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Volume Slider Container */
-.volume-container {
+.volume-wrapper.active .volume-popup {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 0; /* Hidden by default */
-    overflow: hidden;
-    transition: width 0.3s ease;
 }
 
-/* Show slider on hover of the volume area */
-.right-controls:hover .volume-container,
-.volume-container:hover {
-    width: 80px;
-}
-
+/* The vertical range input */
 .volume-slider {
     -webkit-appearance: none;
-    width: 100%;
+    width: 80px; /* Width becomes height when rotated */
     height: 4px;
     background: rgba(255,255,255,0.3);
     border-radius: 2px;
     outline: none;
+    transform: rotate(-90deg); /* Rotate to make vertical */
     cursor: pointer;
 }
 
 .volume-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background: #fff;
     border-radius: 50%;
     cursor: pointer;
 }
 
-/* Time Display */
-.time-display {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #ddd;
-    font-variant-numeric: tabular-nums;
-    margin-left: 5px;
-    opacity: 0.8;
+/* --- SWIPER NAVIGATION ARROWS --- */
+.swiper-button-next, .swiper-button-prev {
+    color: #fff !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: rgba(0,0,0,0.5); /* Dark background for visibility */
+    border-radius: 50%;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 18px !important; /* Smaller arrow icon */
+    font-weight: bold;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    color: var(--accent) !important;
+    background: #fff;
+}
+
+/* Hide arrows if they aren't needed (e.g., end of list) */
+.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: auto;
+    pointer-events: none;
 }
