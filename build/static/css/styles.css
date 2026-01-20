@@ -3,12 +3,11 @@
     --bg-color: #050505; 
     --text-color: #ffffff; 
     --accent: #FF9900; 
-    --header-height: 120px; /* Taller area to allow for a smooth fade */
+    --header-height: 120px; 
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* --- 1. GLOBAL FADE-IN BLUR ANIMATION --- */
 @keyframes fadeInBlur {
     0% { opacity: 0; filter: blur(20px); }
     100% { opacity: 1; filter: blur(0); }
@@ -22,20 +21,16 @@ body {
     animation: fadeInBlur 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-/* LOCK SCROLL WHEN MENU IS OPEN */
 body.menu-open { overflow: hidden; height: 100dvh; }
 
-/* --- 2. FIXED CUSTOM CURSOR --- */
 html, body, a, button, input, textarea, .card, .menu-toggle {
     cursor: none !important;
 }
 
 .custom-cursor {
     position: fixed;
-    top: -100px;
-    left: -100px;
-    width: 30px; 
-    height: 30px; 
+    top: -100px; left: -100px;
+    width: 30px; height: 30px; 
     background-color: white;
     border-radius: 50%;
     pointer-events: none;
@@ -46,7 +41,6 @@ html, body, a, button, input, textarea, .card, .menu-toggle {
     will-change: top, left, transform;
 }
 
-/* MOBILE CURSOR OVERRIDE: HIDE IT */
 @media (max-width: 768px) {
     .custom-cursor { display: none !important; }
 }
@@ -56,47 +50,25 @@ a:hover ~ .custom-cursor,
     transform: translate(-50%, -50%) scale(1.5);
 }
 
-/* --- HEADER (GRADIENT BLUR FADE) --- */
+/* --- HEADER --- */
 header {
     height: var(--header-height);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 2000;
-    
-    /* Layout */
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Items stay at top */
+    position: fixed; top: 0; width: 100%; z-index: 2000;
+    display: flex; justify-content: space-between; align-items: flex-start;
     padding: 25px 30px 0 30px;
-    
-    /* CRITICAL: Allows clicks to pass through the empty/faded parts of the header */
     pointer-events: none; 
 }
 
-/* THE BACKGROUND LAYER (Handles the Fade and Blur) */
 header::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1; /* Sits behind text */
-
-    /* 1. LIGHTER GRADIENT */
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
     background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
-    
-    /* 2. BLUR */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
-    /* 3. THE MAGIC MASK: Fades the blur itself to transparent at the bottom */
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
     -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
 }
 
-/* RE-ENABLE CLICKS FOR HEADER ITEMS (Since parent is pointer-events: none) */
-.header-left, .header-center, .header-right, .menu-toggle {
-    pointer-events: auto;
-}
+.header-left, .header-center, .header-right, .menu-toggle { pointer-events: auto; }
 
 .header-left {
     color: var(--accent); font-weight: 800; font-size: 1.5rem; text-transform: uppercase;
@@ -105,8 +77,7 @@ header::before {
 .header-left:hover { color: #fff; }
 
 .header-center {
-    color: var(--accent); font-weight: 400; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px;
-    margin-top: 5px; 
+    color: var(--accent); font-weight: 400; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; margin-top: 5px; 
 }
 
 .header-right { display: flex; gap: 25px; align-items: center; margin-top: 2px; }
@@ -120,7 +91,6 @@ header::before {
 }
 .nav-text:hover { color: #fff; }
 
-/* --- MOBILE MENU --- */
 .menu-toggle {
     display: none; color: var(--accent); font-weight: 800; font-size: 1.2rem;
     text-transform: uppercase; cursor: pointer; z-index: 2001; margin-top: 5px;
@@ -131,8 +101,6 @@ header::before {
     background-color: #000;
     display: flex; flex-direction: column; justify-content: center; padding-left: 40px;
     opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1500;
-    
-    /* Fix: Ensure overlay captures clicks when open */
     pointer-events: none; 
 }
 .mobile-overlay.active { opacity: 1; pointer-events: auto; }
@@ -157,18 +125,11 @@ header::before {
 
 .card { position: relative; width: 100%; height: 100%; background: #111; overflow: hidden; }
 .card a { display: block; width: 100%; height: 100%; }
-.card img { 
+.card img, .grid-video { 
     width: 100%; height: 100%; object-fit: cover; 
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
     filter: brightness(0.8); 
-}
-
-/* VIDEO GRID STYLES */
-.grid-video {
-    width: 100%; height: 100%; object-fit: cover;
-    pointer-events: none; 
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    filter: brightness(0.8);
+    pointer-events: none;
 }
 
 @media (hover: hover) {
@@ -193,6 +154,77 @@ header::before {
     transform: translateY(20px); transition: transform 0.4s ease;
 }
 .project-cat { color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; }
+
+/* --- REELS STRIP (UPDATED SIZE) --- */
+.reel-section-title {
+    font-size: 1.5rem; font-weight: 800; color: #FF9900;
+    text-transform: uppercase; margin-bottom: 15px; margin-top: 60px;
+}
+
+.reels-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    /* INCREASED HEIGHT TO FIT FULL VIDEO */
+    height: 60vh; 
+    max-height: 600px;
+    min-height: 400px;
+    
+    overflow: hidden;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    background: #000;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.swiper { width: 100%; height: 100%; }
+
+.swiper-slide {
+    /* AUTO WIDTH: Allows slide to fit aspect ratio based on height */
+    width: auto; 
+    height: 100%;
+    
+    /* FORCE 9:16 Aspect Ratio to prevent collapse */
+    aspect-ratio: 9 / 16;
+    
+    background: #111;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    cursor: none;
+    transition: transform 0.3s;
+}
+
+.swiper-slide:hover { transform: scale(1.02); z-index: 10; }
+
+.swiper-slide video {
+    width: 100%; height: 100%; 
+    object-fit: cover; /* Fills the vertical space */
+    pointer-events: none;
+}
+
+.reel-overlay {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: #fff; font-weight: 800; font-size: 0.9rem;
+    background: rgba(0,0,0,0.5); padding: 5px 10px; border: 1px solid #fff;
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+}
+.swiper-slide:hover .reel-overlay { opacity: 1; }
+
+/* --- MODAL --- */
+.modal {
+    display: none; position: fixed; z-index: 5000; left: 0; top: 0;
+    width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
+    justify-content: center; align-items: center; backdrop-filter: blur(10px);
+}
+.modal-content { position: relative; width: 90%; max-width: 500px; height: 80%; }
+.video-wrapper { width: 100%; height: 100%; position: relative; }
+#popupVideo { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 0 50px rgba(255, 153, 0, 0.2); }
+.close-btn { position: absolute; top: -40px; right: 0; color: #fff; font-weight: 800; cursor: pointer; font-size: 1.2rem; }
+.close-btn:hover { color: var(--accent); }
+.controls { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+.controls button { background: rgba(0,0,0,0.6); color: #fff; border: 1px solid #fff; padding: 10px 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: all 0.3s; }
+.controls button:hover { background: #fff; color: #000; }
 
 @media (max-width: 768px) {
     .header-center, .header-right { display: none; }

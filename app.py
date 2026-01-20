@@ -18,7 +18,6 @@ projects = [
             {
                 "title": "New Music Wednesdays",
                 "videos": [
-                    # PASTE YOUR DIGITAL OCEAN LINKS HERE (Add commas between them)
                     "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_05_04_15_57_Dizzy.mp4",
                     "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_05_10_23_33_Blood.mp4",
                     "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_05_18_11_38_BadRomance.mp4",
