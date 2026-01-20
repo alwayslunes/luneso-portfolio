@@ -11,14 +11,10 @@
     <style>
         body { padding-top: 140px; }
         .project-container { max-width: 1000px; margin: 0 auto 60px auto; padding: 0 20px; color: #fff; }
-        .project-hero { width: 100%; height: auto; max-height: 600px; object-fit: contain; background: #111; border-radius: 4px; margin-bottom: 40px; }
         .back-link { display: inline-block; margin-bottom: 20px; color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; border-bottom: 1px solid transparent; }
         .back-link:hover { color: #fff; border-bottom: 1px solid #FF9900; }
         .detail-cat { color: #FF9900; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px; }
-        .detail-title { font-size: 3rem; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; line-height: 1; }
-        .detail-desc { font-size: 1.2rem; line-height: 1.6; color: #ccc; max-width: 700px; margin-bottom: 60px; }
-        .reel-section-title { font-size: 1.5rem; font-weight: 800; color: #FF9900; text-transform: uppercase; margin-bottom: 15px; margin-top: 60px; }
-        .reels-container { width: 100vw; margin-left: calc(-50vw + 50%); height: 450px; overflow: hidden; border-top: 1px solid #222; border-bottom: 1px solid #222; background: #000; padding: 20px 0; margin-bottom: 20px; }
+        .detail-title { font-size: 3rem; font-weight: 800; margin-bottom: 40px; text-transform: uppercase; line-height: 1; }
     </style>
 </head>
 <body>
@@ -45,35 +41,16 @@
 
     <div class="project-container">
         <a href="/work/" class="back-link">&larr; Back to Projects</a>
+        
         <div class="detail-cat">Feature Documentary</div>
         <h1 class="detail-title">Hijos de la Diáspora</h1>
-        <img src="/static/images/hijos.jpg" class="project-hero" alt="Hijos de la Diáspora">
-        <div class="detail-desc">Solely executed the entire visual pipeline (directed, shot, edited, and color graded) for my debut 60-minute feature documentary. Managed 4TB+ of 4K footage and delivered the final master for theatrical exhibition.</div>
 
         
     </div>
 
-    <div id="videoModal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()">
-                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-            </button>
-            <video id="popupVideo" playsinline loop onclick="togglePlay()"></video>
-            <div class="controls-row">
-                <button class="control-btn" onclick="togglePlay()" id="playBtn">
-                    <svg id="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                    <svg id="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-                <button class="control-btn" onclick="toggleMute()" id="muteBtn">
-                    <svg id="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                    <svg id="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // MENU TOGGLE
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");
@@ -83,71 +60,132 @@
             else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
 
-        // --- SWIPER LOGIC ---
-        
+        // --- SOCIAL ACCORDION LOGIC ---
+        function toggleSocial() {
+            const content = document.getElementById('social-content');
+            const arrow = document.getElementById('social-arrow');
+            
+            if (content.classList.contains('active')) {
+                // CLOSING: Pause everything
+                content.classList.remove('active');
+                arrow.innerText = "+";
+                document.querySelectorAll('video').forEach(v => v.pause());
+            } else {
+                // OPENING: Start Observer
+                content.classList.add('active');
+                arrow.innerText = "-";
+                startObserver();
+            }
+        }
 
-        // --- MODAL LOGIC ---
-        const modal = document.getElementById("videoModal");
-        const video = document.getElementById("popupVideo");
-        const iconPlay = document.getElementById("icon-play");
-        const iconPause = document.getElementById("icon-pause");
-        const iconVolOn = document.getElementById("icon-vol-on");
-        const iconVolOff = document.getElementById("icon-vol-off");
+        // --- SWIPER INIT ---
+        document.querySelectorAll('.mySwiper').forEach(container => {
+            new Swiper(container, {
+                slidesPerView: "auto",
+                spaceBetween: 15,
+                centeredSlides: false,
+                freeMode: true,
+                grabCursor: true
+            });
+        });
 
-        function openModal(videoSrc) {
-            console.log("OPENING MODAL: " + videoSrc); // Debug Log
-            modal.style.display = "flex";
-            video.src = videoSrc;
-            
-            // Reset Icons
-            iconPlay.style.display = "none";
-            iconPause.style.display = "block";
-            iconVolOn.style.display = "block";
-            iconVolOff.style.display = "none";
-            
-            video.load();
-            video.muted = false; 
-            
-            var playPromise = video.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Autoplay failed:", error);
-                    iconPlay.style.display = "block";
-                    iconPause.style.display = "none";
+        // --- IN-PLACE EXPANSION LOGIC ---
+        function activateSlide(slide) {
+            // If already expanded, do nothing (controls handle interaction)
+            if (slide.classList.contains('expanded')) return;
+
+            // Collapse others
+            document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
+                s.classList.remove('expanded');
+                const v = s.querySelector('video');
+                v.muted = true;
+                // Keep playing muted if on screen, or pause if preferred
+            });
+
+            // Expand this one
+            slide.classList.add('expanded');
+            const video = slide.querySelector('video');
+            video.muted = false;
+            video.play();
+            updateIcons(slide, true, true);
+        }
+
+        function collapseSlide(event, btn) {
+            event.stopPropagation(); // Prevent re-triggering activateSlide
+            const slide = btn.closest('.swiper-slide');
+            slide.classList.remove('expanded');
+            const video = slide.querySelector('video');
+            video.muted = true;
+        }
+
+        function handlePlayClick(event, btn) {
+            event.stopPropagation();
+            const slide = btn.closest('.swiper-slide');
+            const video = slide.querySelector('video');
+            if (video.paused) {
+                video.play();
+                updateIcons(slide, true, !video.muted);
+            } else {
+                video.pause();
+                updateIcons(slide, false, !video.muted);
+            }
+        }
+
+        function handleSoundClick(event, btn) {
+            event.stopPropagation();
+            const slide = btn.closest('.swiper-slide');
+            const video = slide.querySelector('video');
+            video.muted = !video.muted;
+            updateIcons(slide, !video.paused, !video.muted);
+        }
+
+        function updateIcons(slide, isPlaying, hasSound) {
+            const playIcon = slide.querySelector('.icon-play');
+            const pauseIcon = slide.querySelector('.icon-pause');
+            const volOn = slide.querySelector('.icon-vol-on');
+            const volOff = slide.querySelector('.icon-vol-off');
+
+            if (isPlaying) {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            } else {
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+
+            if (hasSound) {
+                volOn.style.display = 'block';
+                volOff.style.display = 'none';
+            } else {
+                volOn.style.display = 'none';
+                volOff.style.display = 'block';
+            }
+        }
+
+        // --- PERFORMANCE: INTERSECTION OBSERVER ---
+        // Automatically plays/pauses videos based on scroll visibility
+        function startObserver() {
+            let observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    let video = entry.target;
+                    // Only play if expanded or if it's supposed to preview
+                    if (entry.isIntersecting) {
+                        // It's on screen. If expanded, don't mess with it.
+                        // If NOT expanded, play muted loop.
+                        if (!video.closest('.swiper-slide').classList.contains('expanded')) {
+                            video.muted = true;
+                            video.play().catch(()=>{});
+                        }
+                    } else {
+                        // Off screen. Pause immediately.
+                        video.pause();
+                    }
                 });
-            }
-            document.body.style.overflow = "hidden"; // Lock scroll
-        }
+            }, { threshold: 0.25 });
 
-        function closeModal() {
-            modal.style.display = "none";
-            video.pause();
-            video.src = "";
-            document.body.style.overflow = "auto";
-        }
-
-        function togglePlay() {
-            if (video.paused) { 
-                video.play(); 
-                iconPlay.style.display = "none";
-                iconPause.style.display = "block";
-            } else { 
-                video.pause(); 
-                iconPlay.style.display = "block";
-                iconPause.style.display = "none";
-            }
-        }
-
-        function toggleMute() {
-            if (video.muted) { 
-                video.muted = false; 
-                iconVolOn.style.display = "block";
-                iconVolOff.style.display = "none";
-            } else { 
-                video.muted = true; 
-                iconVolOn.style.display = "none";
-                iconVolOff.style.display = "block";
-            }
+            document.querySelectorAll('video').forEach(video => {
+                observer.observe(video);
+            });
         }
     </script>
 </body>
