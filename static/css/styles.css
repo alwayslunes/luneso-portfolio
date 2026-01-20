@@ -3,7 +3,7 @@
     --bg-color: #050505; 
     --text-color: #ffffff; 
     --accent: #FF9900; 
-    --header-height: 60px;
+    --header-height: 80px; /* Taller to allow gradient fade */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,9 +48,7 @@ html, body, a, button, input, textarea, .card, .menu-toggle {
 
 /* MOBILE CURSOR OVERRIDE: HIDE IT */
 @media (max-width: 768px) {
-    .custom-cursor {
-        display: none !important; /* Removes laggy cursor on mobile */
-    }
+    .custom-cursor { display: none !important; }
 }
 
 a:hover ~ .custom-cursor, 
@@ -58,17 +56,25 @@ a:hover ~ .custom-cursor,
     transform: translate(-50%, -50%) scale(1.5);
 }
 
-/* --- HEADER (FROSTED GLASS) --- */
+/* --- NEW HEADER STYLE (GRADIENT FADE) --- */
 header {
     height: var(--header-height);
-    background: rgba(0, 0, 0, 0.6); 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* GRADIENT: Darker at top, transparent at bottom */
+    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    
+    /* SUBTLE BLUR (Reduced from 15px) */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    
+    /* NO BORDER LINE */
+    border-bottom: none;
+
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
+    align-items: flex-start; /* Align items to top */
+    padding: 20px 30px 0 30px; /* Push content down slightly */
+    
     position: fixed;
     top: 0;
     width: 100%;
@@ -83,9 +89,10 @@ header {
 
 .header-center {
     color: var(--accent); font-weight: 400; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px;
+    margin-top: 5px; /* Align visually */
 }
 
-.header-right { display: flex; gap: 25px; align-items: center; }
+.header-right { display: flex; gap: 25px; align-items: center; margin-top: 2px; }
 
 .icon-link svg { width: 24px; height: 24px; fill: var(--accent); transition: transform 0.2s, fill 0.2s; }
 .icon-link:hover svg { transform: scale(1.1); fill: #fff; }
@@ -99,7 +106,7 @@ header {
 /* --- MOBILE MENU --- */
 .menu-toggle {
     display: none; color: var(--accent); font-weight: 800; font-size: 1.2rem;
-    text-transform: uppercase; cursor: pointer; z-index: 2001;
+    text-transform: uppercase; cursor: pointer; z-index: 2001; margin-top: 5px;
 }
 
 .mobile-overlay {
@@ -171,5 +178,6 @@ header {
     .header-center, .header-right { display: none; }
     .menu-toggle { display: block; }
     .grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 50vh); }
-    header { background: rgba(0, 0, 0, 0.75); } 
+    /* Mobile Header adjustments */
+    header { background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); } 
 }

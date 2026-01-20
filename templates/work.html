@@ -11,7 +11,7 @@
     <div class="custom-cursor"></div>
 
     <header id="mainHeader">
-        <a href="{{ url_for('intro') }}" class="header-left">LUNES OÑA</a>
+        <a href="{{ url_for('work') }}" class="header-left">LUNES OÑA</a>
         <div class="header-center">MULTIMEDIA EDITOR</div>
         <div class="header-right">
             <a href="{{ url_for('about') }}" class="nav-text">ABOUT</a>
@@ -59,7 +59,7 @@
             moveCursor(e.clientX, e.clientY);
         });
 
-        // ENABLE MOBILE CURSOR FOLLOW
+        // ENABLE MOBILE CURSOR FOLLOW (Hidden by CSS, but logic remains if needed)
         document.addEventListener('touchmove', (e) => {
             moveCursor(e.touches[0].clientX, e.touches[0].clientY);
         });
