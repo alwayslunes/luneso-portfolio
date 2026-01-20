@@ -215,20 +215,19 @@ header::before {
 }
 .swiper-slide:hover .reel-overlay { opacity: 1; }
 
-/* --- GLASS MODAL (CENTERED & BLURRED) --- */
+/* --- FIXED GLASS MODAL --- */
 .modal {
-    display: none;
+    display: none; /* JS toggles this */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
     
-    /* FIXED to viewport */
-    position: fixed; 
-    top: 0; left: 0; 
-    width: 100vw; height: 100vh;
+    /* NUCLEAR Z-INDEX: Higher than everything else */
+    z-index: 2147483647 !important; 
     
-    /* High Z-Index to cover Header */
-    z-index: 20000; 
-    
-    /* Full blur */
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.85) !important;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     
@@ -239,13 +238,36 @@ header::before {
 
 .modal-content {
     position: relative;
-    width: auto;
-    height: 80vh; 
-    aspect-ratio: 9/16; 
+    /* Explicit dimensions to prevent 0x0 size */
+    height: 80vh !important;
+    width: auto !important;
+    aspect-ratio: 9/16;
+    max-width: 90vw;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: transparent;
+}
+
+#popupVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    background: #000; /* Fallback if video fails to load */
+}
+
+/* Ensure Close Button is visible */
+.close-btn {
+    position: absolute;
+    top: -50px;
+    right: -20px;
+    width: 40px; height: 40px;
+    cursor: pointer !important;
+    z-index: 2147483648 !important; /* Above the modal */
 }
 
 #popupVideo {
