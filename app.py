@@ -14,15 +14,21 @@ projects = [
         "image": "editing.jpg",
         "description": "A comprehensive showcase of editorial work ranging from fast-paced social recaps to multi-camera narrative thesis projects. Features proficiency in offline/online workflows, DIT data management, and color grading.",
         
-        # NEW STRUCTURE: Multiple Sections
         "reel_sections": [
             {
                 "title": "New Music Wednesdays",
                 "videos": [
-                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/nmw_1.mp4",
-                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/nmw_2.mp4",
-                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/nmw_3.mp4",
-                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/nmw_4.mp4"
+                    # PASTE YOUR DIGITAL OCEAN LINKS HERE (Add commas between them)
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_05_04_15_57_Dizzy.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_05_10_23_33_Blood.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_05_18_11_38_BadRomance.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_06_22_12_52_TwelfthHour.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_07_13_01_16_Viceversa.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_12_21_1_WannaGoOutside_V3.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_12_21_2_Daydreams_V3.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_12_21_3_RealHigh_V3.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_12_21_4_5IVEQUID_V2.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/2022_12_21_5_FLESH_V1.mp4"
                 ]
             },
             {
@@ -36,9 +42,9 @@ projects = [
             {
                 "title": "Event Recaps",
                 "videos": [
-                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/recap_1.mp4",
-                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/recap_2.mp4",
-                    "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/recap_3.mp4"
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/PERREOTON%20V2.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/CTA%20v7.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/CTA%20DEC%20RECAP_6.mp4"
                 ]
             }
         ]
