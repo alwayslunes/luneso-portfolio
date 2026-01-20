@@ -26,7 +26,7 @@ body.menu-open { overflow: hidden; height: 100dvh; }
 /* --- GLOBAL CURSOR HIDING --- */
 html, body, a, button, input, textarea, .card, .menu-toggle, 
 .swiper, .swiper-wrapper, .swiper-slide, .modal, .modal-content, video {
-    cursor: none !important; /* Force hide system cursor everywhere */
+    cursor: none !important; 
 }
 
 /* --- CUSTOM CURSOR --- */

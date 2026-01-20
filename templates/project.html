@@ -22,8 +22,6 @@
     </style>
 </head>
 <body>
-    <div class="custom-cursor"></div>
-    
     <header id="mainHeader">
         <a href="{{ url_for('work') }}" class="header-left">LUNES OÑA</a>
         <div class="header-center">MULTIMEDIA EDITOR</div>
@@ -91,15 +89,8 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const cursor = document.querySelector('.custom-cursor');
-        // Ensure cursor tracks everywhere including modal
-        document.addEventListener('mousemove', (e) => { 
-            cursor.style.left = e.clientX + 'px'; 
-            cursor.style.top = e.clientY + 'px'; 
-        });
-
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");
@@ -117,41 +108,49 @@
                 spaceBetween: 20,
                 centeredSlides: true,
                 loop: true,
-                grabCursor: true,
+                grabCursor: true, // This enables the 'hand' cursor on hover
                 autoplay: { delay: 0, disableOnInteraction: false },
                 speed: 5000,
                 freeMode: true,
                 freeModeMomentum: false,
+                // These settings ensure clicks register on cloned slides
                 preventClicks: false,
-                preventClicksPropagation: false
+                preventClicksPropagation: false,
+                touchStartPreventDefault: false
             });
+            
+            // Hover Pause
             container.addEventListener('mouseenter', function() { this.swiper.autoplay.stop(); });
             container.addEventListener('mouseleave', function() { this.swiper.autoplay.start(); });
             
-            // POPUP TRIGGER
-            container.querySelector('.swiper-wrapper').addEventListener('click', function(e) {
+            // CLICK LISTENER (Event Delegation)
+            container.addEventListener('click', function(e) {
+                // Look for the closest slide parent of the clicked element
                 const slide = e.target.closest('.swiper-slide');
-                if (!slide) return;
-                const src = slide.getAttribute('data-video-src');
-                if (src) { openModal(src); }
+                if (slide) {
+                    const src = slide.getAttribute('data-video-src');
+                    if (src) {
+                        e.preventDefault(); // Stop any other actions
+                        openModal(src);
+                    }
+                }
             });
         });
 
         // --- 5-SECOND LOOP LOGIC ---
-        // We use a single interval to check all visible videos to be efficient
         setInterval(() => {
             document.querySelectorAll('.swiper-slide video').forEach(vid => {
-                // Only loop if playing
+                // Loop preview if playing and over 5s
                 if (!vid.paused && vid.currentTime > 5) {
                     vid.currentTime = 0;
                     vid.play();
                 }
-                // Ensure preview videos are always playing (some browsers pause background vids)
+                // Force play if paused (fixes some browser idle behavior)
                 if (vid.paused && vid.readyState >= 2) {
                      vid.play().catch(e => {}); 
                 }
             });
-        }, 100); // Check every 100ms
+        }, 500);
         {% endif %}
 
         // --- MODAL LOGIC ---
@@ -163,9 +162,11 @@
         const iconVolOff = document.getElementById("icon-vol-off");
 
         function openModal(videoSrc) {
-            modal.style.display = "flex";
+            console.log("Opening Modal:", videoSrc);
+            modal.style.display = "flex"; // Force Flex display
             video.src = videoSrc;
             
+            // Reset Icons
             iconPlay.style.display = "none";
             iconPause.style.display = "block";
             iconVolOn.style.display = "block";
@@ -177,18 +178,19 @@
             var playPromise = video.play();
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
+                    console.log("Autoplay failed, showing play button");
                     iconPlay.style.display = "block";
                     iconPause.style.display = "none";
                 });
             }
-            document.body.style.overflow = "hidden";
+            document.body.style.overflow = "hidden"; // Lock scroll
         }
 
         function closeModal() {
             modal.style.display = "none";
             video.pause();
             video.src = "";
-            document.body.style.overflow = "auto";
+            document.body.style.overflow = "auto"; // Unlock scroll
         }
 
         function togglePlay() {

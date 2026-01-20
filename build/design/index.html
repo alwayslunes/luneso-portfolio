@@ -22,8 +22,6 @@
     </style>
 </head>
 <body>
-    <div class="custom-cursor"></div>
-    
     <header id="mainHeader">
         <a href="/work/" class="header-left">LUNES OÑA</a>
         <div class="header-center">MULTIMEDIA EDITOR</div>
@@ -73,15 +71,8 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const cursor = document.querySelector('.custom-cursor');
-        // Ensure cursor tracks everywhere including modal
-        document.addEventListener('mousemove', (e) => { 
-            cursor.style.left = e.clientX + 'px'; 
-            cursor.style.top = e.clientY + 'px'; 
-        });
-
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");
@@ -103,9 +94,11 @@
         const iconVolOff = document.getElementById("icon-vol-off");
 
         function openModal(videoSrc) {
-            modal.style.display = "flex";
+            console.log("Opening Modal:", videoSrc);
+            modal.style.display = "flex"; // Force Flex display
             video.src = videoSrc;
             
+            // Reset Icons
             iconPlay.style.display = "none";
             iconPause.style.display = "block";
             iconVolOn.style.display = "block";
@@ -117,18 +110,19 @@
             var playPromise = video.play();
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
+                    console.log("Autoplay failed, showing play button");
                     iconPlay.style.display = "block";
                     iconPause.style.display = "none";
                 });
             }
-            document.body.style.overflow = "hidden";
+            document.body.style.overflow = "hidden"; // Lock scroll
         }
 
         function closeModal() {
             modal.style.display = "none";
             video.pause();
             video.src = "";
-            document.body.style.overflow = "auto";
+            document.body.style.overflow = "auto"; // Unlock scroll
         }
 
         function togglePlay() {
