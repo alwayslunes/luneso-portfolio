@@ -34,16 +34,16 @@ projects = [
             {
                 "title": "New Music Wednesdays",
                 "videos": [
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW5IVEQUID.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWBadRomance.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWBlood.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWDaydreams.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWDizzy.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWFLESH.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWRealHigh.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWTwelfthHour.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWViceversa.mp4",
-                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMWWannaGoOutside.mp4"
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_1_Dizzy.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_2_Blood.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_3_BadRomance.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_4_TwelfthHour.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_5_Viceversa.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_6_WannaGoOutside.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_7_Daydreams.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_8_RealHigh.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_9_5IVEQUID.mp4",
+                    "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_10_FLESH.mp4"
                 ]
             }
         ]
