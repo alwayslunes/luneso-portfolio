@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LUNES OÑA | Multimedia Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* INTRO SPECIFIC STYLES */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+        
+        #intro-video {
+            position: absolute; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.6; /* Dim video slightly so text pops */
+        }
+
+        .intro-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            cursor: pointer; /* Tells user it's clickable */
+            text-align: center;
+        }
+
+        .intro-name {
+            font-size: 5rem; font-weight: 800; color: #fff; text-transform: uppercase;
+            letter-spacing: -2px; line-height: 1; margin-bottom: 10px;
+            mix-blend-mode: overlay; /* Cool effect blending text with video */
+        }
+        
+        .intro-sub {
+            font-size: 1.2rem; color: #FF9900; text-transform: uppercase; letter-spacing: 4px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .intro-name { font-size: 3rem; }
+            .intro-sub { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop playsinline id="intro-video">
+        <source src="{{ url_for('static', filename='videos/intro_loop.mp4') }}" type="video/mp4">
+    </video>
+
+    <a href="{{ url_for('work') }}" class="intro-overlay">
+        <div class="intro-name">Lunes Oña</div>
+        <div class="intro-sub">Multimedia Editor</div>
+    </a>
+
+</body>
+</html>

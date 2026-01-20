@@ -4,63 +4,80 @@ from flask_frozen import Freezer
 app = Flask(__name__)
 freezer = Freezer(app)
 
-# PROJECTS REORDERED
+# DATA WITH SLUGS & VIDEO LOOPS
 projects = [
     {
         "id": 1,
+        "slug": "post-production",
         "title": "Post Production",
         "category": "Commercial, Narrative & Social",
-        "image": "editing.jpg", 
+        "video_loop": "post_loop.mp4",  # You will name your file this
+        "image": "editing.jpg",         # Fallback image
         "description": "A comprehensive showcase of editorial work ranging from fast-paced social recaps to multi-camera narrative thesis projects. Features proficiency in offline/online workflows, DIT data management, and color grading."
     },
     {
         "id": 2,
+        "slug": "design",
         "title": "Design",
         "category": "Print, Digital & Web",
+        "video_loop": "design_loop.mp4",
         "image": "design.jpg",
         "description": "High-volume creation of marketing collateral including event flyers, poster signage, and responsive website layouts. Demonstrates expert proficiency in Photoshop, Illustrator, and web design principles."
     },
     {
         "id": 3,
+        "slug": "always-lunes",
         "title": "Always Lunes",
         "category": "Creative Direction",
+        "video_loop": "lunes_loop.mp4",
         "image": "lunes.jpg", 
         "description": "Established the complete visual identity for Miami's leading underground culture platform. Executed weekly motion graphics and static social assets. Awarded <a href='https://www.miaminewtimes.com/best-of-miami/2023/arts-and-entertainment/best-instagram-17198798/' target='_blank' style='color:#d4af37;'>'Best Instagram' of 2023</a>."
     },
     {
         "id": 4,
+        "slug": "hijos-de-la-diaspora",
         "title": "Hijos de la Diáspora",
         "category": "Feature Documentary",
+        "video_loop": "hijos_loop.mp4",
         "image": "hijos.jpg",
         "description": "Solely executed the entire visual pipeline (directed, shot, edited, and color graded) for my debut 60-minute feature documentary. Managed 4TB+ of 4K footage and delivered the final master for theatrical exhibition."
     }
 ]
 
-def get_project(project_id):
+def get_project(slug):
     for project in projects:
-        if project['id'] == project_id:
+        if project['slug'] == slug:
             return project
     return None
 
+# 1. LANDING PAGE (Intro Video)
 @app.route('/')
-def home():
-    return render_template('index.html', projects=projects)
+def intro():
+    return render_template('intro.html')
 
+# 2. WORK GRID (The old home page)
+@app.route('/work/')
+def work():
+    return render_template('work.html', projects=projects)
+
+# 3. ABOUT PAGE
 @app.route('/about/')
 def about():
     return render_template('about.html')
 
-@app.route('/project/<int:project_id>/')
-def project_detail(project_id):
-    project = get_project(project_id)
+# 4. PROJECT DETAIL (Using Slugs)
+@app.route('/<slug>/')
+def project_detail(slug):
+    project = get_project(slug)
     if project is None:
         abort(404)
     return render_template('project.html', project=project)
 
+# FREEZER GENERATOR (Tells system how to build the slug URLs)
 @freezer.register_generator
 def project_detail():
     for project in projects:
-        yield {'project_id': project['id']}
+        yield {'slug': project['slug']}
 
 if __name__ == '__main__':
     freezer.freeze()
