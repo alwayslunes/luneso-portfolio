@@ -8,31 +8,61 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* --- 1. GLOBAL FADE-IN BLUR ANIMATION --- */
+@keyframes fadeInBlur {
+    0% {
+        opacity: 0;
+        filter: blur(20px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     overflow-x: hidden;
-    animation: fadeIn 1s ease-out;
+    
+    /* APPLY THE CINEMATIC ENTRANCE TO ALL PAGES */
+    animation: fadeInBlur 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 /* LOCK SCROLL WHEN MENU IS OPEN */
 body.menu-open { overflow: hidden; height: 100dvh; }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+/* --- 2. FIXED CUSTOM CURSOR (30PX) --- */
+html, body, a, button, input, textarea, .card, .menu-toggle {
+    cursor: none !important;
+}
 
-/* FILM GRAIN */
-body::after {
-    content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 9999; opacity: 0.4;
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;  /* UPDATED TO 30PX */
+    height: 30px; /* UPDATED TO 30PX */
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, transform 0.1s;
+    will-change: top, left, transform;
+}
+
+a:hover ~ .custom-cursor, 
+.menu-toggle:hover ~ .custom-cursor {
+    transform: translate(-50%, -50%) scale(1.5);
 }
 
 /* --- HEADER --- */
 header {
     height: var(--header-height);
-    background-color: #000000; /* SOLID BLACK - No transparency */
-    /* backdrop-filter: blur(10px); REMOVED */
+    background-color: #000000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -107,13 +137,21 @@ header.hide-header { transform: translateY(-100%); }
     filter: brightness(0.8); 
 }
 
+/* VIDEO GRID STYLES */
+.grid-video {
+    width: 100%; height: 100%; object-fit: cover;
+    pointer-events: none; 
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: brightness(0.8);
+}
+
 @media (hover: hover) {
-    .card:hover img { transform: scale(1.1); filter: brightness(0.3); }
+    .card:hover img, .card:hover .grid-video { transform: scale(1.1); filter: brightness(0.3); }
     .card:hover .overlay { opacity: 1; }
     .card:hover .project-title { transform: translateY(0); }
 }
 
-.card.mobile-active img { transform: scale(1.1); filter: brightness(0.3); }
+.card.mobile-active img, .card.mobile-active .grid-video { transform: scale(1.1); filter: brightness(0.3); }
 .card.mobile-active .overlay { opacity: 1; }
 .card.mobile-active .project-title { transform: translateY(0); }
 
@@ -125,8 +163,7 @@ header.hide-header { transform: translateY(-100%); }
 
 .project-title {
     color: #fff; font-size: 3rem; font-weight: 800; text-transform: uppercase;
-    letter-spacing: -1px; margin-bottom: 10px;
-    line-height: 1; /* TIGHTER LINE SPACING */
+    letter-spacing: -1px; margin-bottom: 10px; line-height: 1;
     transform: translateY(20px); transition: transform 0.4s ease;
 }
 .project-cat { color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; }
@@ -135,80 +172,4 @@ header.hide-header { transform: translateY(-100%); }
     .header-center, .header-right { display: none; }
     .menu-toggle { display: block; }
     .grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 50vh); }
-}
-
-/* --- VIDEO GRID STYLES --- */
-.grid-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none; /* Allows click to pass through to the link */
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    filter: brightness(0.8);
-}
-
-@media (hover: hover) {
-    .card:hover .grid-video { transform: scale(1.1); filter: brightness(0.3); }
-}
-
-.card.mobile-active .grid-video { transform: scale(1.1); filter: brightness(0.3); }
-
-/* --- GLOBAL CUSTOM CURSOR (10px) --- */
-body {
-    cursor: none; /* Hide default cursor everywhere */
-}
-
-.custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 50%;
-    pointer-events: none; /* Click through it */
-    z-index: 9999;
-    mix-blend-mode: difference; /* INVERTS COLORS UNDERNEATH */
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease; /* Slight lag for organic feel */
-    will-change: top, left;
-}
-
-/* Hover effect on links: Cursor grows slightly */
-a:hover ~ .custom-cursor, 
-.menu-toggle:hover ~ .custom-cursor {
-    transform: translate(-50%, -50%) scale(1.5);
-}
-
-/* --- FIXED CUSTOM CURSOR SETTINGS --- */
-
-/* 1. HIDE SYSTEM CURSOR GLOBALLY */
-html, body, a, button, input, textarea, .card, .menu-toggle {
-    cursor: none !important;
-}
-
-/* 2. THE 20PX CIRCLE */
-.custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 20px;  /* UPDATED SIZE */
-    height: 20px; /* UPDATED SIZE */
-    background-color: white;
-    border-radius: 50%;
-    pointer-events: none; /* Allows clicks to pass through */
-    z-index: 9999;
-    mix-blend-mode: difference; /* Inverts colors */
-    
-    /* THIS CENTERS THE CIRCLE ON THE MOUSE COORDINATES */
-    transform: translate(-50%, -50%); 
-    
-    transition: width 0.2s, height 0.2s, transform 0.1s;
-    will-change: top, left, transform;
-}
-
-/* 3. HOVER EFFECT (Grow slightly when over links) */
-a:hover ~ .custom-cursor, 
-.menu-toggle:hover ~ .custom-cursor {
-    transform: translate(-50%, -50%) scale(1.5);
 }

@@ -13,65 +13,43 @@
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
             overflow: hidden; background: #000;
-            cursor: none; /* Hide System Cursor */
+            cursor: none; 
             font-family: 'Trivane', sans-serif;
+            /* TRANSITION FOR THE EXIT ANIMATION */
+            transition: opacity 0.8s ease, filter 0.8s ease;
         }
 
-        /* --- GRAIN / NOISE EFFECT --- */
-        .noise-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none; /* Let clicks pass through */
-            z-index: 50; /* Above video, below cursor */
-            opacity: 0.15; /* Strength of the grain */
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* CONTAINER FOR LAYERS */
         .layer {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center; overflow: hidden;
         }
 
-        /* SHARED CONTENT STYLES */
         video {
             position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
             transform: translate(-50%, -50%); object-fit: cover;
-            
-            /* SATURATION BOOST (150%) */
-            filter: saturate(1.5);
+            filter: saturate(1.5); /* 150% Saturation */
         }
 
         h1 {
             position: relative; z-index: 10;
             font-size: 13vw; text-transform: uppercase; margin: 0; line-height: 0.85;
             white-space: nowrap; pointer-events: none; text-align: center;
-            color: #FF9900; /* BASE COLOR: ORANGE */
+            color: #FF9900; 
         }
 
-        /* --- LAYER 1: BOTTOM (Normal World) --- */
-        #layer-normal {
-            z-index: 1;
-        }
-
-        /* --- LAYER 2: TOP (The Negative World) --- */
+        #layer-normal { z-index: 1; }
+        
         #layer-mask {
             z-index: 2;
-            /* Start clip-path off-screen */
             clip-path: circle(150px at -500px -500px);
             pointer-events: none;
-            
-            /* INVERTS EVERYTHING (Video + Text) inside the circle */
             filter: invert(1); 
         }
 
-        /* CLICK TRIGGER */
         #click-trigger {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 999; cursor: none;
         }
 
-        /* MOBILE STACK */
         @media (max-width: 768px) {
             h1 { font-size: 26vw; display: flex; flex-direction: column; }
             .word-break { display: block; }
@@ -81,8 +59,6 @@
 <body>
 
     <a href="{{ url_for('work') }}" id="click-trigger"></a>
-
-    <div class="noise-overlay"></div>
 
     <div class="layer" id="layer-normal">
         <video autoplay muted loop playsinline>
@@ -105,21 +81,34 @@
     </div>
 
     <script>
+        // 1. MOUSE REVEAL LOGIC
         const maskLayer = document.getElementById('layer-mask');
         
-        // 300px Reveal Logic
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
-            // Updates the visible "hole" of the negative layer
             maskLayer.style.clipPath = `circle(150px at ${x}px ${y}px)`;
         });
 
-        // Touch support
         document.addEventListener('touchmove', (e) => {
             const x = e.touches[0].clientX;
             const y = e.touches[0].clientY;
             maskLayer.style.clipPath = `circle(150px at ${x}px ${y}px)`;
+        });
+
+        // 2. FADE TO BLACK + BLUR TRANSITION
+        document.getElementById('click-trigger').addEventListener('click', function(e) {
+            e.preventDefault(); // Stop immediate jump
+            const targetUrl = this.href;
+
+            // Trigger CSS transition on Body
+            document.body.style.opacity = '0';
+            document.body.style.filter = 'blur(20px)';
+
+            // Wait 800ms, then go
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 800);
         });
     </script>
 </body>
