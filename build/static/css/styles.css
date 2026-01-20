@@ -10,14 +10,8 @@
 
 /* --- 1. GLOBAL FADE-IN BLUR ANIMATION --- */
 @keyframes fadeInBlur {
-    0% {
-        opacity: 0;
-        filter: blur(20px);
-    }
-    100% {
-        opacity: 1;
-        filter: blur(0);
-    }
+    0% { opacity: 0; filter: blur(20px); }
+    100% { opacity: 1; filter: blur(0); }
 }
 
 body {
@@ -25,8 +19,6 @@ body {
     color: var(--text-color);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     overflow-x: hidden;
-    
-    /* APPLY THE CINEMATIC ENTRANCE TO ALL PAGES */
     animation: fadeInBlur 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
@@ -40,10 +32,8 @@ html, body, a, button, input, textarea, .card, .menu-toggle {
 
 .custom-cursor {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 30px;  /* UPDATED TO 30PX */
-    height: 30px; /* UPDATED TO 30PX */
+    top: 0; left: 0;
+    width: 30px; height: 30px;
     background-color: white;
     border-radius: 50%;
     pointer-events: none;
@@ -59,10 +49,17 @@ a:hover ~ .custom-cursor,
     transform: translate(-50%, -50%) scale(1.5);
 }
 
-/* --- HEADER --- */
+/* --- HEADER (FROSTED GLASS) --- */
 header {
     height: var(--header-height);
-    background-color: #000000;
+    
+    /* THE BLURRY TRANSLUCENT EFFECT */
+    background: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Subtle edge */
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,11 +68,7 @@ header {
     top: 0;
     width: 100%;
     z-index: 2000;
-    border-bottom: 1px solid #222;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
-header.hide-header { transform: translateY(-100%); }
 
 .header-left {
     color: var(--accent); font-weight: 800; font-size: 1.5rem; text-transform: uppercase;

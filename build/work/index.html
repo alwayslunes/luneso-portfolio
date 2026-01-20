@@ -85,14 +85,12 @@
     </main>
 
     <script>
-        // CURSOR LOGIC
         const cursor = document.querySelector('.custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // MENU & SCROLL LOGIC
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");
@@ -101,14 +99,9 @@
             if (menu.classList.contains("active")) { btn.innerText = "CLOSE"; btn.style.color = "#fff"; body.classList.add("menu-open"); } 
             else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
-        let lastScrollY = window.scrollY;
-        const header = document.getElementById("mainHeader");
-        window.addEventListener("scroll", () => {
-            if (document.body.classList.contains("menu-open")) return;
-            if (window.scrollY > lastScrollY && window.scrollY > 50) { header.classList.add("hide-header"); } 
-            else { header.classList.remove("hide-header"); }
-            lastScrollY = window.scrollY;
-        });
+
+        // REMOVED SCROLL LISTENER HERE
+        
         document.querySelectorAll('.project-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
