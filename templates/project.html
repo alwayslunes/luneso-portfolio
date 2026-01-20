@@ -153,25 +153,21 @@
 
         // --- SWIPER INIT ---
         document.querySelectorAll('.mySwiper').forEach(container => {
-            const slideCount = parseInt(container.getAttribute('data-slide-count'));
             const sectionTitle = container.getAttribute('data-section-title');
             
-            // LOGIC: "New Music Wednesdays" is the ONLY section that should autoplay and NOT be centered.
-            // Everything else (Recaps, BTC) should be centered and static.
-            
+            // Logic: NMW autoplays, others do not.
             const isNMW = (sectionTitle === "New Music Wednesdays");
             
-            // If it's NOT NMW, we force centering.
-            const shouldCenter = !isNMW; 
+            // Logic: Everything flush left (no centering)
+            const shouldCenter = false; 
 
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
-                centeredSlides: shouldCenter, // Center Recaps & BTC
-                centerInsufficientSlides: true,
+                centeredSlides: false, // FLUSH LEFT
+                centerInsufficientSlides: false, // FLUSH LEFT
                 freeMode: true,
                 grabCursor: true,
-                // Autoplay only if it is NMW
                 autoplay: isNMW ? {
                     delay: 0,
                     disableOnInteraction: false,
@@ -206,7 +202,7 @@
             video.style.display = 'block';
 
             // 3. FORCE LOAD AND PLAY
-            video.load(); // Critical for fixing the "not playing" issue
+            video.load(); // Forces browser to acknowledge the source
             video.currentTime = 0;
             video.muted = false;
             
