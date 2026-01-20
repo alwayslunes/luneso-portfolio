@@ -66,32 +66,47 @@
             const arrow = document.getElementById('social-arrow');
             
             if (content.classList.contains('active')) {
-                // CLOSING: Pause everything
+                // CLOSING
                 content.classList.remove('active');
                 arrow.innerText = "+";
                 document.querySelectorAll('video').forEach(v => v.pause());
             } else {
-                // OPENING: Start Observer
+                // OPENING
                 content.classList.add('active');
                 arrow.innerText = "-";
+                // Trigger Swiper updates to fix layout bugs when unhiding
+                document.querySelectorAll('.mySwiper').forEach(s => s.swiper.update());
                 startObserver();
             }
         }
 
-        // --- SWIPER INIT ---
+        // --- SWIPER INIT WITH AUTOPLAY & CENTER LOGIC ---
         document.querySelectorAll('.mySwiper').forEach(container => {
+            const slideCount = parseInt(container.getAttribute('data-slide-count'));
+            
+            // If less than 4 slides, center them. If more, align left for scrolling.
+            const isCentered = slideCount < 4; 
+            
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
-                centeredSlides: false,
+                centeredSlides: isCentered, // DYNAMIC CENTERING
+                centerInsufficientSlides: true, // Helper for small counts
                 freeMode: true,
-                grabCursor: true
+                grabCursor: true,
+                // RESTORED AUTOPLAY
+                autoplay: {
+                    delay: 0,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+                speed: 4000, // Smooth scroll speed
+                loop: !isCentered // Only loop if we have many slides
             });
         });
 
         // --- IN-PLACE EXPANSION LOGIC ---
         function activateSlide(slide) {
-            // If already expanded, do nothing (controls handle interaction)
             if (slide.classList.contains('expanded')) return;
 
             // Collapse others
@@ -99,25 +114,32 @@
                 s.classList.remove('expanded');
                 const v = s.querySelector('video');
                 v.muted = true;
-                // Keep playing muted if on screen, or pause if preferred
+                v.currentTime = 0; // Reset closed videos
             });
 
             // Expand this one
             slide.classList.add('expanded');
             const video = slide.querySelector('video');
+            
+            // RESET TO BEGINNING
+            video.currentTime = 0;
             video.muted = false;
             video.play();
+            
             updateIcons(slide, true, true);
+            startProgressLoop(slide); // Start updating progress bar
         }
 
         function collapseSlide(event, btn) {
-            event.stopPropagation(); // Prevent re-triggering activateSlide
+            event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
             slide.classList.remove('expanded');
             const video = slide.querySelector('video');
             video.muted = true;
+            // video.pause(); // Optional: pause on close?
         }
 
+        // --- PLAY/PAUSE ---
         function handlePlayClick(event, btn) {
             event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
@@ -131,6 +153,7 @@
             }
         }
 
+        // --- SOUND/VOLUME ---
         function handleSoundClick(event, btn) {
             event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
@@ -139,6 +162,74 @@
             updateIcons(slide, !video.paused, !video.muted);
         }
 
+        function adjustVolume(event, slider) {
+            event.stopPropagation();
+            const slide = slider.closest('.swiper-slide');
+            const video = slide.querySelector('video');
+            video.volume = slider.value;
+            video.muted = (slider.value === 0);
+            updateIcons(slide, !video.paused, !video.muted);
+        }
+
+        // --- PROGRESS BAR LOGIC ---
+        function startProgressLoop(slide) {
+            const video = slide.querySelector('video');
+            const bar = slide.querySelector('.progress-filled');
+            const handle = slide.querySelector('.progress-handle');
+            const timeDisplay = slide.querySelector('.time-display');
+
+            const update = () => {
+                if (!slide.classList.contains('expanded')) return; // Stop if closed
+                
+                const pct = (video.currentTime / video.duration) * 100;
+                bar.style.width = pct + '%';
+                handle.style.left = pct + '%'; // Move handle
+                
+                // Format Time
+                const mins = Math.floor(video.currentTime / 60);
+                const secs = Math.floor(video.currentTime % 60);
+                timeDisplay.innerText = mins + ':' + (secs < 10 ? '0' : '') + secs;
+
+                requestAnimationFrame(update);
+            };
+            requestAnimationFrame(update);
+        }
+
+        function seekVideo(event, container) {
+            event.stopPropagation();
+            const slide = container.closest('.swiper-slide');
+            const video = slide.querySelector('video');
+            const rect = container.getBoundingClientRect();
+            const pos = (event.clientX - rect.left) / rect.width;
+            video.currentTime = pos * video.duration;
+        }
+        
+        // Simple Drag Logic
+        let isDragging = false;
+        function startDrag(event, container) {
+            isDragging = true;
+            // Add global listeners to handle drag outside the bar
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('mouseup', stopDrag);
+            
+            function onDrag(e) {
+                if (!isDragging) return;
+                const slide = container.closest('.swiper-slide');
+                const video = slide.querySelector('video');
+                const rect = container.getBoundingClientRect();
+                let pos = (e.clientX - rect.left) / rect.width;
+                pos = Math.max(0, Math.min(1, pos)); // Clamp 0-1
+                video.currentTime = pos * video.duration;
+            }
+            
+            function stopDrag() {
+                isDragging = false;
+                document.removeEventListener('mousemove', onDrag);
+                document.removeEventListener('mouseup', stopDrag);
+            }
+        }
+
+        // --- UI HELPER ---
         function updateIcons(slide, isPlaying, hasSound) {
             const playIcon = slide.querySelector('.icon-play');
             const pauseIcon = slide.querySelector('.icon-pause');
@@ -162,22 +253,17 @@
             }
         }
 
-        // --- PERFORMANCE: INTERSECTION OBSERVER ---
-        // Automatically plays/pauses videos based on scroll visibility
+        // --- PERFORMANCE OBSERVER ---
         function startObserver() {
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
-                    // Only play if expanded or if it's supposed to preview
                     if (entry.isIntersecting) {
-                        // It's on screen. If expanded, don't mess with it.
-                        // If NOT expanded, play muted loop.
                         if (!video.closest('.swiper-slide').classList.contains('expanded')) {
                             video.muted = true;
                             video.play().catch(()=>{});
                         }
                     } else {
-                        // Off screen. Pause immediately.
                         video.pause();
                     }
                 });

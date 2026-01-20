@@ -304,3 +304,127 @@ header::before {
     /* On mobile, expand slightly less to fit screen */
     .swiper-slide.expanded { transform: scale(1.1); }
 }
+
+/* --- ENHANCED VIDEO CONTROLS --- */
+
+/* Expanded Slide Controls Container */
+.slide-controls {
+    /* Adjusted to fit more controls */
+    height: 70px; 
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 20%, transparent);
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column; /* Stack progress bar on top of buttons */
+    justify-content: flex-end;
+    gap: 5px;
+    padding-bottom: 15px;
+}
+
+/* 1. Progress Bar Container */
+.progress-container {
+    width: 100%;
+    height: 5px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 8px; /* Space between bar and buttons */
+    transition: height 0.2s;
+}
+
+.progress-container:hover {
+    height: 8px; /* Thicker on hover */
+}
+
+/* The Filled Part of the Bar */
+.progress-filled {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    border-radius: 5px;
+    position: relative;
+    pointer-events: none; /* Let clicks pass to container */
+}
+
+/* The Draggable Handle */
+.progress-handle {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    transition: transform 0.2s;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.progress-container:hover .progress-handle {
+    transform: translateY(-50%) scale(1);
+}
+
+/* 2. Control Buttons Row */
+.control-buttons-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.left-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.right-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Volume Slider Container */
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: width 0.3s ease;
+}
+
+/* Show slider on hover of the volume area */
+.right-controls:hover .volume-container,
+.volume-container:hover {
+    width: 80px;
+}
+
+.volume-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Time Display */
+.time-display {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ddd;
+    font-variant-numeric: tabular-nums;
+    margin-left: 5px;
+    opacity: 0.8;
+}

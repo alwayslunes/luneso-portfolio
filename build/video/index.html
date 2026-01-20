@@ -56,7 +56,7 @@
             
                 <h2 class="reel-section-title">Event Recaps</h2>
                 <div class="reels-container">
-                    <div class="swiper mySwiper">
+                    <div class="swiper mySwiper" data-slide-count="3">
                         <div class="swiper-wrapper">
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
@@ -70,15 +70,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -93,15 +109,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -116,15 +148,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -134,7 +182,7 @@
             
                 <h2 class="reel-section-title">Beyond the Club</h2>
                 <div class="reels-container">
-                    <div class="swiper mySwiper">
+                    <div class="swiper mySwiper" data-slide-count="3">
                         <div class="swiper-wrapper">
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
@@ -148,15 +196,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -171,15 +235,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -194,15 +274,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -212,7 +308,7 @@
             
                 <h2 class="reel-section-title">New Music Wednesdays</h2>
                 <div class="reels-container">
-                    <div class="swiper mySwiper">
+                    <div class="swiper mySwiper" data-slide-count="10">
                         <div class="swiper-wrapper">
                             
                             <div class="swiper-slide" onclick="activateSlide(this)">
@@ -226,15 +322,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -249,15 +361,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -272,15 +400,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -295,15 +439,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -318,15 +478,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -341,15 +517,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -364,15 +556,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -387,15 +595,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -410,15 +634,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -433,15 +673,31 @@
                                     <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                                 </button>
 
-                                <div class="inline-controls">
-                                    <button class="slide-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                        <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
-                                    <button class="slide-btn toggle-sound" onclick="handleSoundClick(event, this)">
-                                        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                        <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                    </button>
+                                <div class="slide-controls">
+                                    <div class="progress-container" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                        <div class="progress-filled"></div>
+                                        <div class="progress-handle"></div>
+                                    </div>
+
+                                    <div class="control-buttons-row">
+                                        <div class="left-controls">
+                                            <button class="mini-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                                <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                            </button>
+                                            <span class="time-display">0:00</span>
+                                        </div>
+
+                                        <div class="right-controls">
+                                            <div class="volume-container">
+                                                <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)" onclick="event.stopPropagation()">
+                                            </div>
+                                            <button class="mini-btn toggle-sound" onclick="handleSoundClick(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -471,32 +727,47 @@
             const arrow = document.getElementById('social-arrow');
             
             if (content.classList.contains('active')) {
-                // CLOSING: Pause everything
+                // CLOSING
                 content.classList.remove('active');
                 arrow.innerText = "+";
                 document.querySelectorAll('video').forEach(v => v.pause());
             } else {
-                // OPENING: Start Observer
+                // OPENING
                 content.classList.add('active');
                 arrow.innerText = "-";
+                // Trigger Swiper updates to fix layout bugs when unhiding
+                document.querySelectorAll('.mySwiper').forEach(s => s.swiper.update());
                 startObserver();
             }
         }
 
-        // --- SWIPER INIT ---
+        // --- SWIPER INIT WITH AUTOPLAY & CENTER LOGIC ---
         document.querySelectorAll('.mySwiper').forEach(container => {
+            const slideCount = parseInt(container.getAttribute('data-slide-count'));
+            
+            // If less than 4 slides, center them. If more, align left for scrolling.
+            const isCentered = slideCount < 4; 
+            
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
-                centeredSlides: false,
+                centeredSlides: isCentered, // DYNAMIC CENTERING
+                centerInsufficientSlides: true, // Helper for small counts
                 freeMode: true,
-                grabCursor: true
+                grabCursor: true,
+                // RESTORED AUTOPLAY
+                autoplay: {
+                    delay: 0,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+                speed: 4000, // Smooth scroll speed
+                loop: !isCentered // Only loop if we have many slides
             });
         });
 
         // --- IN-PLACE EXPANSION LOGIC ---
         function activateSlide(slide) {
-            // If already expanded, do nothing (controls handle interaction)
             if (slide.classList.contains('expanded')) return;
 
             // Collapse others
@@ -504,25 +775,32 @@
                 s.classList.remove('expanded');
                 const v = s.querySelector('video');
                 v.muted = true;
-                // Keep playing muted if on screen, or pause if preferred
+                v.currentTime = 0; // Reset closed videos
             });
 
             // Expand this one
             slide.classList.add('expanded');
             const video = slide.querySelector('video');
+            
+            // RESET TO BEGINNING
+            video.currentTime = 0;
             video.muted = false;
             video.play();
+            
             updateIcons(slide, true, true);
+            startProgressLoop(slide); // Start updating progress bar
         }
 
         function collapseSlide(event, btn) {
-            event.stopPropagation(); // Prevent re-triggering activateSlide
+            event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
             slide.classList.remove('expanded');
             const video = slide.querySelector('video');
             video.muted = true;
+            // video.pause(); // Optional: pause on close?
         }
 
+        // --- PLAY/PAUSE ---
         function handlePlayClick(event, btn) {
             event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
@@ -536,6 +814,7 @@
             }
         }
 
+        // --- SOUND/VOLUME ---
         function handleSoundClick(event, btn) {
             event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
@@ -544,6 +823,74 @@
             updateIcons(slide, !video.paused, !video.muted);
         }
 
+        function adjustVolume(event, slider) {
+            event.stopPropagation();
+            const slide = slider.closest('.swiper-slide');
+            const video = slide.querySelector('video');
+            video.volume = slider.value;
+            video.muted = (slider.value === 0);
+            updateIcons(slide, !video.paused, !video.muted);
+        }
+
+        // --- PROGRESS BAR LOGIC ---
+        function startProgressLoop(slide) {
+            const video = slide.querySelector('video');
+            const bar = slide.querySelector('.progress-filled');
+            const handle = slide.querySelector('.progress-handle');
+            const timeDisplay = slide.querySelector('.time-display');
+
+            const update = () => {
+                if (!slide.classList.contains('expanded')) return; // Stop if closed
+                
+                const pct = (video.currentTime / video.duration) * 100;
+                bar.style.width = pct + '%';
+                handle.style.left = pct + '%'; // Move handle
+                
+                // Format Time
+                const mins = Math.floor(video.currentTime / 60);
+                const secs = Math.floor(video.currentTime % 60);
+                timeDisplay.innerText = mins + ':' + (secs < 10 ? '0' : '') + secs;
+
+                requestAnimationFrame(update);
+            };
+            requestAnimationFrame(update);
+        }
+
+        function seekVideo(event, container) {
+            event.stopPropagation();
+            const slide = container.closest('.swiper-slide');
+            const video = slide.querySelector('video');
+            const rect = container.getBoundingClientRect();
+            const pos = (event.clientX - rect.left) / rect.width;
+            video.currentTime = pos * video.duration;
+        }
+        
+        // Simple Drag Logic
+        let isDragging = false;
+        function startDrag(event, container) {
+            isDragging = true;
+            // Add global listeners to handle drag outside the bar
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('mouseup', stopDrag);
+            
+            function onDrag(e) {
+                if (!isDragging) return;
+                const slide = container.closest('.swiper-slide');
+                const video = slide.querySelector('video');
+                const rect = container.getBoundingClientRect();
+                let pos = (e.clientX - rect.left) / rect.width;
+                pos = Math.max(0, Math.min(1, pos)); // Clamp 0-1
+                video.currentTime = pos * video.duration;
+            }
+            
+            function stopDrag() {
+                isDragging = false;
+                document.removeEventListener('mousemove', onDrag);
+                document.removeEventListener('mouseup', stopDrag);
+            }
+        }
+
+        // --- UI HELPER ---
         function updateIcons(slide, isPlaying, hasSound) {
             const playIcon = slide.querySelector('.icon-play');
             const pauseIcon = slide.querySelector('.icon-pause');
@@ -567,22 +914,17 @@
             }
         }
 
-        // --- PERFORMANCE: INTERSECTION OBSERVER ---
-        // Automatically plays/pauses videos based on scroll visibility
+        // --- PERFORMANCE OBSERVER ---
         function startObserver() {
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
-                    // Only play if expanded or if it's supposed to preview
                     if (entry.isIntersecting) {
-                        // It's on screen. If expanded, don't mess with it.
-                        // If NOT expanded, play muted loop.
                         if (!video.closest('.swiper-slide').classList.contains('expanded')) {
                             video.muted = true;
                             video.play().catch(()=>{});
                         }
                     } else {
-                        // Off screen. Pause immediately.
                         video.pause();
                     }
                 });
