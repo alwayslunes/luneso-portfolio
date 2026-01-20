@@ -86,8 +86,13 @@
 
         document.querySelectorAll('.mySwiper').forEach(container => {
             const slideCount = parseInt(container.getAttribute('data-slide-count'));
-            const isCentered = slideCount < 4; 
+            const sectionTitle = container.getAttribute('data-section-title');
             
+            const isCentered = slideCount < 4;
+            
+            // Only autoplay New Music Wednesdays
+            const shouldAutoplay = (sectionTitle === "New Music Wednesdays");
+
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
@@ -95,8 +100,12 @@
                 centerInsufficientSlides: true,
                 freeMode: true,
                 grabCursor: true,
-                autoplay: false, 
-                speed: 600,
+                autoplay: shouldAutoplay ? {
+                    delay: 0,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                } : false,
+                speed: shouldAutoplay ? 4000 : 600,
                 loop: !isCentered, 
                 navigation: {
                     nextEl: container.querySelector('.swiper-button-next'),
@@ -107,11 +116,9 @@
 
         function activateSlide(slide) {
             if (slide.classList.contains('expanded')) return;
-
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
-
             slide.classList.add('expanded');
             
             const img = slide.querySelector('.slide-thumb');
@@ -180,7 +187,6 @@
         function startProgressLoop(slide) {
             const video = slide.querySelector('video');
             const bar = slide.querySelector('.progress-filled');
-            
             const update = () => {
                 if (!slide.classList.contains('expanded')) return;
                 const pct = (video.currentTime / video.duration) * 100;
