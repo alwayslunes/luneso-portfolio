@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
+    <div class="custom-cursor"></div>
 
     <header id="mainHeader">
         <a href="/" class="header-left">LUNES OÑA</a>
@@ -35,11 +36,9 @@
         
         <article class="card">
             <a href="/post-production/" class="project-link">
-                
                 <video autoplay muted loop playsinline class="grid-video">
                     <source src="/static/videos/post_loop.mp4" type="video/mp4">
                 </video>
-
                 <div class="overlay">
                     <div class="project-title">Post Production</div>
                     <div class="project-cat">Commercial, Narrative &amp; Social</div>
@@ -49,11 +48,9 @@
         
         <article class="card">
             <a href="/design/" class="project-link">
-                
                 <video autoplay muted loop playsinline class="grid-video">
                     <source src="/static/videos/design_loop.mp4" type="video/mp4">
                 </video>
-
                 <div class="overlay">
                     <div class="project-title">Design</div>
                     <div class="project-cat">Print, Digital &amp; Web</div>
@@ -63,11 +60,9 @@
         
         <article class="card">
             <a href="/always-lunes/" class="project-link">
-                
                 <video autoplay muted loop playsinline class="grid-video">
                     <source src="/static/videos/lunes_loop.mp4" type="video/mp4">
                 </video>
-
                 <div class="overlay">
                     <div class="project-title">Always Lunes</div>
                     <div class="project-cat">Creative Direction</div>
@@ -77,11 +72,9 @@
         
         <article class="card">
             <a href="/hijos-de-la-diaspora/" class="project-link">
-                
                 <video autoplay muted loop playsinline class="grid-video">
                     <source src="/static/videos/hijos_loop.mp4" type="video/mp4">
                 </video>
-
                 <div class="overlay">
                     <div class="project-title">Hijos de la Diáspora</div>
                     <div class="project-cat">Feature Documentary</div>
@@ -92,7 +85,14 @@
     </main>
 
     <script>
-        // JS Logic (Menu, Header Scroll, Double Tap)
+        // CURSOR LOGIC
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // MENU & SCROLL LOGIC
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+    <div class="custom-cursor"></div>
 
     <header id="mainHeader">
         <a href="{{ url_for('intro') }}" class="header-left">LUNES OÑA</a>
@@ -35,11 +36,9 @@
         {% for project in projects %}
         <article class="card">
             <a href="{{ url_for('project_detail', slug=project.slug) }}" class="project-link">
-                
                 <video autoplay muted loop playsinline class="grid-video">
                     <source src="{{ url_for('static', filename='videos/' + project.video_loop) }}" type="video/mp4">
                 </video>
-
                 <div class="overlay">
                     <div class="project-title">{{ project.title }}</div>
                     <div class="project-cat">{{ project.category }}</div>
@@ -50,7 +49,14 @@
     </main>
 
     <script>
-        // JS Logic (Menu, Header Scroll, Double Tap)
+        // CURSOR LOGIC
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // MENU & SCROLL LOGIC
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");

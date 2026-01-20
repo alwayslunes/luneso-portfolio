@@ -17,6 +17,8 @@
     </style>
 </head>
 <body>
+    <div class="custom-cursor"></div>
+    
     <header id="mainHeader">
         <a href="/" class="header-left">LUNES OÑA</a>
         <div class="header-center">MULTIMEDIA EDITOR</div>
@@ -44,6 +46,9 @@
         <div class="detail-desc">High-volume creation of marketing collateral including event flyers, poster signage, and responsive website layouts. Demonstrates expert proficiency in Photoshop, Illustrator, and web design principles.</div>
     </div>
     <script>
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             var btn = document.querySelector(".menu-toggle");

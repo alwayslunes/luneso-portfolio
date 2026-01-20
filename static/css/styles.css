@@ -152,3 +152,30 @@ header.hide-header { transform: translateY(-100%); }
 }
 
 .card.mobile-active .grid-video { transform: scale(1.1); filter: brightness(0.3); }
+
+/* --- GLOBAL CUSTOM CURSOR (10px) --- */
+body {
+    cursor: none; /* Hide default cursor everywhere */
+}
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none; /* Click through it */
+    z-index: 9999;
+    mix-blend-mode: difference; /* INVERTS COLORS UNDERNEATH */
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease; /* Slight lag for organic feel */
+    will-change: top, left;
+}
+
+/* Hover effect on links: Cursor grows slightly */
+a:hover ~ .custom-cursor, 
+.menu-toggle:hover ~ .custom-cursor {
+    transform: translate(-50%, -50%) scale(1.5);
+}
