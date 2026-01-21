@@ -23,7 +23,6 @@
             transition: opacity 0.3s;
         }
         
-        /* Ensure video catches clicks */
         .swiper-slide video {
             cursor: pointer;
         }
@@ -105,9 +104,9 @@
             });
         });
 
-        // --- CORE EXPANSION LOGIC ---
-        function activateSlide(slide) {
-            // Check if already open, if so, do nothing (click on video handles play/pause)
+        // --- EXPANSION & PLAY LOGIC ---
+        function activateSlide(event, slide) {
+            if (event) event.stopPropagation();
             if (slide.classList.contains('expanded')) return;
 
             // 1. Collapse others
@@ -115,7 +114,7 @@
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
-            // 2. Pause Autoplay specifically for this row
+            // 2. Pause Autoplay specifically for this row (NMW)
             const swiperContainer = slide.closest('.swiper');
             if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay && swiperContainer.swiper.autoplay.running) {
                 swiperContainer.swiper.autoplay.stop();
@@ -127,20 +126,21 @@
             const img = slide.querySelector('.slide-thumb');
             const video = slide.querySelector('video');
             
-            // 4. Swap to Video (CRITICAL: Show BEFORE playing)
+            // 4. Swap to Video
             if (img) img.style.display = 'none';
             video.style.display = 'block';
 
             // 5. Load and Play
-            video.load(); // Forces reset/loading
+            video.load(); 
             video.currentTime = 0;
             video.muted = false;
-            video.volume = 0.1; // Default 10%
+            video.volume = 0.1; // 10% Volume
             
-            var playPromise = video.play();
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {}).catch(error => console.log("Autoplay prevented:", error));
-            }
+            video.play().then(() => {
+                console.log("Video playing");
+            }).catch(error => {
+                console.log("Autoplay error:", error);
+            });
 
             updateIcons(slide, true, true);
             startProgressLoop(slide);
@@ -171,8 +171,9 @@
             }
         }
 
-        // --- CLICK ANYWHERE ON VIDEO TO TOGGLE ---
-        function toggleVideoPlay(video) {
+        // --- CLICK VIDEO TO PAUSE/PLAY ---
+        function toggleVideoPlay(event, video) {
+            event.stopPropagation();
             const slide = video.closest('.swiper-slide');
             if (!slide.classList.contains('expanded')) return;
 
@@ -290,7 +291,7 @@
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
-                    // Don't auto-play hidden or banner videos
+                    // Skip hidden or banner videos
                     if (video.style.display === 'none' || video.id === 'socialBannerVideo') return;
                     
                     if (entry.isIntersecting) {
@@ -308,7 +309,18 @@
                 observer.observe(video);
             });
             
-            // 3-SECOND PREVIEW LOOP
+            // BANNER VIDEO 5-SECOND LOOP
+            const bannerVid = document.getElementById('socialBannerVideo');
+            if (bannerVid) {
+                bannerVid.addEventListener('timeupdate', function() {
+                    if (this.currentTime > 5) {
+                        this.currentTime = 0;
+                        this.play();
+                    }
+                });
+            }
+
+            // CAROUSEL 3-SECOND PREVIEW LOOP
             setInterval(() => {
                 document.querySelectorAll('.swiper-slide video').forEach(vid => {
                     if (vid.style.display !== 'none' && !vid.paused && !vid.closest('.swiper-slide').classList.contains('expanded') && vid.currentTime > 3) {
