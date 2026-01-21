@@ -116,37 +116,32 @@
             });
         });
 
-        // --- CORE EXPANSION LOGIC ---
         function activateSlide(event, slide) {
             if (event) event.stopPropagation();
             if (slide.classList.contains('expanded')) return;
 
-            // 1. Collapse others
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
-            // 2. STOP Autoplay (Permanently for this session)
+            // PAUSE SCROLLING (PERMANENTLY)
             const swiperContainer = slide.closest('.swiper');
             if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay && swiperContainer.swiper.autoplay.running) {
                 swiperContainer.swiper.autoplay.stop();
             }
 
-            // 3. Expand UI
             slide.classList.add('expanded');
             
             const img = slide.querySelector('.slide-thumb');
             const video = slide.querySelector('video');
             
-            // 4. Swap to Video (CRITICAL: Show BEFORE playing)
             if (img) img.style.display = 'none';
             video.style.display = 'block';
 
-            // 5. Load and Play
             video.load(); 
             video.currentTime = 0;
             video.muted = false;
-            video.volume = 0.1; // Default 10%
+            video.volume = 0.05; // UPDATED: 5% Volume
             
             var playPromise = video.play();
             if (playPromise !== undefined) {
@@ -161,7 +156,7 @@
             if (event) event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
             
-            // NOTE: Removed Autoplay restart here so it stays paused
+            // NOTE: Autoplay does NOT restart here (Intentional)
             
             slide.classList.remove('expanded');
             slide.querySelectorAll('.volume-wrapper').forEach(vw => vw.classList.remove('active'));
@@ -177,7 +172,6 @@
             }
         }
 
-        // --- CLICK ANYWHERE ON VIDEO TO TOGGLE ---
         function toggleVideoPlay(event, video) {
             event.stopPropagation();
             const slide = video.closest('.swiper-slide');
@@ -297,7 +291,6 @@
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
-                    // Skip hidden or banner
                     if (video.style.display === 'none' || video.id === 'socialBannerVideo') return;
                     
                     if (entry.isIntersecting) {
@@ -315,7 +308,6 @@
                 observer.observe(video);
             });
             
-            // BANNER VIDEO 5-SECOND LOOP
             const bannerVid = document.getElementById('socialBannerVideo');
             if (bannerVid) {
                 bannerVid.addEventListener('timeupdate', function() {
@@ -326,7 +318,6 @@
                 });
             }
 
-            // CAROUSEL 3-SECOND PREVIEW LOOP
             setInterval(() => {
                 document.querySelectorAll('.swiper-slide video').forEach(vid => {
                     if (vid.style.display !== 'none' && !vid.paused && !vid.closest('.swiper-slide').classList.contains('expanded') && vid.currentTime > 3) {
