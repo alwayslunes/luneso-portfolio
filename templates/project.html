@@ -56,6 +56,13 @@
         {% if project.reel_sections %}
         
         <div class="social-toggle" onclick="toggleSocial()">
+            
+            {% if project.reel_sections[0].videos %}
+            <video id="socialBannerVideo" autoplay muted loop playsinline>
+                <source src="{{ project.reel_sections[0].videos[0].url }}" type="video/mp4">
+            </video>
+            {% endif %}
+
             <span>SOCIAL</span>
             <span id="social-arrow">+</span>
         </div>
@@ -85,7 +92,6 @@
                                 </button>
 
                                 <div class="slide-controls" onclick="event.stopPropagation()">
-                                    
                                     <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
                                         <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
                                         <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
@@ -101,7 +107,7 @@
 
                                     <div class="volume-wrapper">
                                         <div class="volume-popup" onclick="event.stopPropagation()">
-                                            <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            <input type="range" min="0" max="1" step="0.1" value="0.5" class="volume-slider" oninput="adjustVolume(event, this)">
                                         </div>
                                         <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
                                             <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
@@ -140,7 +146,10 @@
             if (content.classList.contains('active')) {
                 content.classList.remove('active');
                 arrow.innerText = "+";
-                document.querySelectorAll('video').forEach(v => v.pause());
+                document.querySelectorAll('video').forEach(v => {
+                    // Do NOT pause the banner video
+                    if (v.id !== 'socialBannerVideo') v.pause();
+                });
             } else {
                 content.classList.add('active');
                 arrow.innerText = "-";
@@ -151,21 +160,18 @@
             }
         }
 
-        // --- SWIPER INIT ---
         document.querySelectorAll('.mySwiper').forEach(container => {
+            const slideCount = parseInt(container.getAttribute('data-slide-count'));
             const sectionTitle = container.getAttribute('data-section-title');
             
-            // Logic: NMW autoplays, others do not.
             const isNMW = (sectionTitle === "New Music Wednesdays");
-            
-            // Logic: Everything flush left (no centering)
             const shouldCenter = false; 
 
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
-                centeredSlides: false, // FLUSH LEFT
-                centerInsufficientSlides: false, // FLUSH LEFT
+                centeredSlides: false, 
+                centerInsufficientSlides: false, 
                 freeMode: true,
                 grabCursor: true,
                 autoplay: isNMW ? {
@@ -174,7 +180,7 @@
                     pauseOnMouseEnter: true
                 } : false,
                 speed: isNMW ? 4000 : 600,
-                loop: isNMW, // Loop only NMW
+                loop: isNMW, 
                 navigation: {
                     nextEl: container.querySelector('.swiper-button-next'),
                     prevEl: container.querySelector('.swiper-button-prev'),
@@ -183,37 +189,38 @@
         });
 
         function activateSlide(slide) {
-            if (slide.classList.contains('expanded')) return;
+            if (slide.classList.contains('expanded')) {
+                const video = slide.querySelector('video');
+                if (video.paused) {
+                    video.play();
+                    updateIcons(slide, true, !video.muted);
+                } else {
+                    video.pause();
+                    updateIcons(slide, false, !video.muted);
+                }
+                return;
+            }
 
-            // Collapse others
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
-            // Expand
             slide.classList.add('expanded');
             
             const img = slide.querySelector('.slide-thumb');
             const video = slide.querySelector('video');
             
-            // 1. Hide Thumbnail
             if (img) img.style.display = 'none';
-            // 2. Show Video
             video.style.display = 'block';
 
-            // 3. FORCE LOAD AND PLAY
-            video.load(); // Forces browser to acknowledge the source
+            video.load(); 
             video.currentTime = 0;
             video.muted = false;
+            video.volume = 0.5;
             
             var playPromise = video.play();
             if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    // Play started
-                })
-                .catch(error => {
-                    console.log("Autoplay prevented:", error);
-                });
+                playPromise.then(_ => {}).catch(error => { console.log("Autoplay prevented:", error); });
             }
 
             updateIcons(slide, true, true);
@@ -230,7 +237,6 @@
             const img = slide.querySelector('.slide-thumb');
             
             video.muted = true;
-            // Hide video, show thumb
             if (img) {
                 video.pause();
                 video.style.display = 'none';
@@ -343,8 +349,8 @@
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
-                    // Don't play if it's hidden by a thumbnail
-                    if (video.style.display === 'none') return;
+                    // Skip hidden or banner video
+                    if (video.style.display === 'none' || video.id === 'socialBannerVideo') return;
                     
                     if (entry.isIntersecting) {
                         if (!video.closest('.swiper-slide').classList.contains('expanded')) {
@@ -361,7 +367,18 @@
                 observer.observe(video);
             });
             
-            // 3-SECOND PREVIEW LOOP
+            // BANNER VIDEO 5-SECOND LOOP
+            const bannerVid = document.getElementById('socialBannerVideo');
+            if (bannerVid) {
+                bannerVid.addEventListener('timeupdate', function() {
+                    if (this.currentTime > 5) {
+                        this.currentTime = 0;
+                        this.play();
+                    }
+                });
+            }
+
+            // CAROUSEL 3-SECOND PREVIEW LOOP
             setInterval(() => {
                 document.querySelectorAll('.swiper-slide video').forEach(vid => {
                     if (vid.style.display !== 'none' && !vid.paused && !vid.closest('.swiper-slide').classList.contains('expanded') && vid.currentTime > 3) {

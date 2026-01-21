@@ -137,26 +137,59 @@ header::before {
 }
 .project-cat { color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; }
 
-/* --- SOCIAL ACCORDION --- */
+/* --- SOCIAL ACCORDION HEADER --- */
 .social-toggle {
+    position: relative;
+    width: 100vw;
+    height: 300px; /* Fixed height as requested */
+    margin-left: calc(-50vw + 50%); /* Force full viewport width */
+    margin-bottom: 30px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px; /* Padding for the text */
+    
     font-size: 4rem;
     font-weight: 800;
     color: #fff;
     text-transform: uppercase;
     cursor: pointer;
+    overflow: hidden;
     border-bottom: 1px solid #333;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-    transition: color 0.3s;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+
+/* The Background Video */
+.social-toggle video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.5; /* Dim it so text is readable */
+    pointer-events: none;
+    filter: grayscale(100%); /* Optional: makes it look classy behind text */
+    transition: opacity 0.3s;
+}
+
+.social-toggle:hover video {
+    opacity: 0.7; /* Brighten on hover */
+}
+
+/* Ensure Text is on top */
+.social-toggle span {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 4px 20px rgba(0,0,0,1); /* Strong shadow for contrast */
 }
 
 .social-toggle:hover { color: var(--accent); }
 
 .social-content {
-    display: none; /* Hidden by default */
+    display: none;
     opacity: 0;
     transition: opacity 0.5s ease;
 }
