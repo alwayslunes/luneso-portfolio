@@ -27,16 +27,16 @@
             cursor: pointer;
         }
 
-        /* UPDATED Subtitle Styling: Thinner and Gray */
+        /* UPDATED Subtitle Styling: Smaller and Distinct */
         .nmw-subtitle {
-            font-size: 1.5rem; /* Larger to match reference width */
-            color: #999;
+            font-size: 1.1rem; /* Smaller than title */
+            color: #999;       /* Gray color */
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             margin-top: -15px;
-            font-weight: 400; /* NOT BOLD */
-            line-height: 1.2;
+            font-weight: 500;
+            line-height: 1.4;
         }
     </style>
 </head>
@@ -297,7 +297,6 @@
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
-                    // Skip hidden or banner
                     if (video.style.display === 'none' || video.id === 'socialBannerVideo') return;
                     
                     if (entry.isIntersecting) {
@@ -315,7 +314,6 @@
                 observer.observe(video);
             });
             
-            // BANNER VIDEO 5-SECOND LOOP
             const bannerVid = document.getElementById('socialBannerVideo');
             if (bannerVid) {
                 bannerVid.addEventListener('timeupdate', function() {
@@ -326,7 +324,6 @@
                 });
             }
 
-            // CAROUSEL 3-SECOND PREVIEW LOOP
             setInterval(() => {
                 document.querySelectorAll('.swiper-slide video').forEach(vid => {
                     if (vid.style.display !== 'none' && !vid.paused && !vid.closest('.swiper-slide').classList.contains('expanded') && vid.currentTime > 3) {
