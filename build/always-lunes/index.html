@@ -27,15 +27,15 @@
             cursor: pointer;
         }
 
-        /* UPDATED Subtitle Styling */
+        /* UPDATED Subtitle Styling: Thinner and Gray */
         .nmw-subtitle {
-            font-size: 1.1rem; /* Bigger */
-            color: #aaa;
+            font-size: 1.5rem; /* Larger to match reference width */
+            color: #999;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 25px; 
-            margin-top: -15px; /* Pulls it up closer to the title */
-            font-weight: 600;
+            margin-bottom: 30px; 
+            margin-top: -15px;
+            font-weight: 400; /* NOT BOLD */
             line-height: 1.2;
         }
     </style>
@@ -126,7 +126,7 @@
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
-            // 2. STOP Autoplay
+            // 2. STOP Autoplay (Permanently for this session)
             const swiperContainer = slide.closest('.swiper');
             if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay && swiperContainer.swiper.autoplay.running) {
                 swiperContainer.swiper.autoplay.stop();
@@ -138,13 +138,15 @@
             const img = slide.querySelector('.slide-thumb');
             const video = slide.querySelector('video');
             
+            // 4. Swap to Video
             if (img) img.style.display = 'none';
             video.style.display = 'block';
 
+            // 5. Load and Play
             video.load(); 
             video.currentTime = 0;
             video.muted = false;
-            video.volume = 0.05; 
+            video.volume = 0.05; // 5% Volume
             
             var playPromise = video.play();
             if (playPromise !== undefined) {
@@ -158,6 +160,8 @@
         function collapseSlide(event, btn) {
             if (event) event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
+            
+            // NOTE: Autoplay does NOT restart here (Intentional)
             
             slide.classList.remove('expanded');
             slide.querySelectorAll('.volume-wrapper').forEach(vw => vw.classList.remove('active'));
@@ -173,6 +177,7 @@
             }
         }
 
+        // --- CLICK ANYWHERE ON VIDEO TO TOGGLE ---
         function toggleVideoPlay(event, video) {
             event.stopPropagation();
             const slide = video.closest('.swiper-slide');
@@ -292,6 +297,7 @@
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
+                    // Skip hidden or banner
                     if (video.style.display === 'none' || video.id === 'socialBannerVideo') return;
                     
                     if (entry.isIntersecting) {
@@ -309,6 +315,7 @@
                 observer.observe(video);
             });
             
+            // BANNER VIDEO 5-SECOND LOOP
             const bannerVid = document.getElementById('socialBannerVideo');
             if (bannerVid) {
                 bannerVid.addEventListener('timeupdate', function() {
@@ -319,6 +326,7 @@
                 });
             }
 
+            // CAROUSEL 3-SECOND PREVIEW LOOP
             setInterval(() => {
                 document.querySelectorAll('.swiper-slide video').forEach(vid => {
                     if (vid.style.display !== 'none' && !vid.paused && !vid.closest('.swiper-slide').classList.contains('expanded') && vid.currentTime > 3) {
