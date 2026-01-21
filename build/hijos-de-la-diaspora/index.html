@@ -23,7 +23,7 @@
             transition: opacity 0.3s;
         }
         
-        /* Ensure video is clickable when expanded */
+        /* Ensure video catches clicks */
         .swiper-slide video {
             cursor: pointer;
         }
@@ -95,7 +95,7 @@
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
-                centeredSlides: false, 
+                centeredSlides: false, // Flush left
                 centerInsufficientSlides: false,
                 freeMode: true,
                 grabCursor: true,
@@ -105,33 +105,37 @@
             });
         });
 
+        // --- CORE EXPANSION LOGIC ---
         function activateSlide(slide) {
-            if (slide.classList.contains('expanded')) return; // Already open
+            // Check if already open, if so, do nothing (click on video handles play/pause)
+            if (slide.classList.contains('expanded')) return;
 
-            // Collapse others
+            // 1. Collapse others
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
-            // PAUSE SCROLLING (Autoplay)
-            const swiperInstance = slide.closest('.swiper').swiper;
-            if (swiperInstance && swiperInstance.autoplay && swiperInstance.autoplay.running) {
-                swiperInstance.autoplay.stop();
+            // 2. Pause Autoplay specifically for this row
+            const swiperContainer = slide.closest('.swiper');
+            if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay && swiperContainer.swiper.autoplay.running) {
+                swiperContainer.swiper.autoplay.stop();
             }
 
-            // Expand
+            // 3. Expand UI
             slide.classList.add('expanded');
             
             const img = slide.querySelector('.slide-thumb');
             const video = slide.querySelector('video');
             
+            // 4. Swap to Video (CRITICAL: Show BEFORE playing)
             if (img) img.style.display = 'none';
             video.style.display = 'block';
 
-            video.load(); 
+            // 5. Load and Play
+            video.load(); // Forces reset/loading
             video.currentTime = 0;
             video.muted = false;
-            video.volume = 0.1; // 10% Volume
+            video.volume = 0.1; // Default 10%
             
             var playPromise = video.play();
             if (playPromise !== undefined) {
@@ -146,7 +150,7 @@
             if (event) event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
             
-            // RESUME SCROLLING (Autoplay) if it's NMW
+            // Resume Autoplay if needed
             const swiperContainer = slide.closest('.swiper');
             const isNMW = swiperContainer.getAttribute('data-section-title') === "New Music Wednesdays";
             if (isNMW && swiperContainer.swiper) {
@@ -167,7 +171,7 @@
             }
         }
 
-        // TOGGLE PLAY WHEN CLICKING VIDEO
+        // --- CLICK ANYWHERE ON VIDEO TO TOGGLE ---
         function toggleVideoPlay(video) {
             const slide = video.closest('.swiper-slide');
             if (!slide.classList.contains('expanded')) return;
@@ -286,7 +290,7 @@
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
-                    // Skip if hidden or banner
+                    // Don't auto-play hidden or banner videos
                     if (video.style.display === 'none' || video.id === 'socialBannerVideo') return;
                     
                     if (entry.isIntersecting) {
