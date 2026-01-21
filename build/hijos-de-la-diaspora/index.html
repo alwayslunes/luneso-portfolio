@@ -26,6 +26,18 @@
         .swiper-slide video {
             cursor: pointer;
         }
+
+        /* Subtitle Styling for NMW */
+        .nmw-subtitle {
+            font-size: 0.85rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            margin-top: -10px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
@@ -94,7 +106,7 @@
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
-                centeredSlides: false, // Flush left
+                centeredSlides: false, 
                 centerInsufficientSlides: false,
                 freeMode: true,
                 grabCursor: true,
@@ -104,7 +116,7 @@
             });
         });
 
-        // --- EXPANSION & PLAY LOGIC ---
+        // --- CORE EXPANSION LOGIC ---
         function activateSlide(event, slide) {
             if (event) event.stopPropagation();
             if (slide.classList.contains('expanded')) return;
@@ -114,7 +126,7 @@
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
-            // 2. Pause Autoplay specifically for this row (NMW)
+            // 2. STOP Autoplay (Permanently for this session)
             const swiperContainer = slide.closest('.swiper');
             if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay && swiperContainer.swiper.autoplay.running) {
                 swiperContainer.swiper.autoplay.stop();
@@ -126,7 +138,7 @@
             const img = slide.querySelector('.slide-thumb');
             const video = slide.querySelector('video');
             
-            // 4. Swap to Video
+            // 4. Swap to Video (CRITICAL: Show BEFORE playing)
             if (img) img.style.display = 'none';
             video.style.display = 'block';
 
@@ -134,13 +146,12 @@
             video.load(); 
             video.currentTime = 0;
             video.muted = false;
-            video.volume = 0.1; // 10% Volume
+            video.volume = 0.1; // Default 10%
             
-            video.play().then(() => {
-                console.log("Video playing");
-            }).catch(error => {
-                console.log("Autoplay error:", error);
-            });
+            var playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {}).catch(error => console.log("Autoplay prevented:", error));
+            }
 
             updateIcons(slide, true, true);
             startProgressLoop(slide);
@@ -150,13 +161,8 @@
             if (event) event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
             
-            // Resume Autoplay if needed
-            const swiperContainer = slide.closest('.swiper');
-            const isNMW = swiperContainer.getAttribute('data-section-title') === "New Music Wednesdays";
-            if (isNMW && swiperContainer.swiper) {
-                swiperContainer.swiper.autoplay.start();
-            }
-
+            // NOTE: Removed Autoplay restart here so it stays paused
+            
             slide.classList.remove('expanded');
             slide.querySelectorAll('.volume-wrapper').forEach(vw => vw.classList.remove('active'));
             
@@ -171,7 +177,7 @@
             }
         }
 
-        // --- CLICK VIDEO TO PAUSE/PLAY ---
+        // --- CLICK ANYWHERE ON VIDEO TO TOGGLE ---
         function toggleVideoPlay(event, video) {
             event.stopPropagation();
             const slide = video.closest('.swiper-slide');
@@ -291,7 +297,7 @@
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
-                    // Skip hidden or banner videos
+                    // Skip hidden or banner
                     if (video.style.display === 'none' || video.id === 'socialBannerVideo') return;
                     
                     if (entry.isIntersecting) {
