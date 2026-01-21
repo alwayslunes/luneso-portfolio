@@ -508,3 +508,33 @@ header::before {
     cursor: auto;
     pointer-events: none;
 }
+
+/* --- ADJUSTMENTS FOR FLUSH LEFT LAYOUT --- */
+.swiper {
+    padding-left: 4vw !important; /* Adds margin on the left side */
+    padding-right: 4vw !important;
+}
+
+/* Ensure overlay is clickable and clearly defined */
+.reel-overlay {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #fff;
+    padding: 8px 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background 0.3s;
+    /* Ensure it sits on top */
+    z-index: 20; 
+}
+
+.reel-overlay:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+}
+
+/* Hide arrows (cleanup) */
+.swiper-button-next, .swiper-button-prev {
+    display: none !important;
+}

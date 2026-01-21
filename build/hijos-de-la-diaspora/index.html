@@ -16,12 +16,16 @@
         .detail-cat { color: #FF9900; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px; }
         .detail-title { font-size: 3rem; font-weight: 800; margin-bottom: 40px; text-transform: uppercase; line-height: 1; }
         
-        /* THUMBNAIL STYLING */
         .swiper-slide img {
             width: 100%; height: 100%; object-fit: cover;
             display: block;
             pointer-events: none;
             transition: opacity 0.3s;
+        }
+        
+        /* Ensure video is clickable when expanded */
+        .swiper-slide video {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -70,14 +74,10 @@
         function toggleSocial() {
             const content = document.getElementById('social-content');
             const arrow = document.getElementById('social-arrow');
-            
             if (content.classList.contains('active')) {
                 content.classList.remove('active');
                 arrow.innerText = "+";
-                document.querySelectorAll('video').forEach(v => {
-                    // Do NOT pause the banner video
-                    if (v.id !== 'socialBannerVideo') v.pause();
-                });
+                document.querySelectorAll('video').forEach(v => { if (v.id !== 'socialBannerVideo') v.pause(); });
             } else {
                 content.classList.add('active');
                 arrow.innerText = "-";
@@ -89,50 +89,37 @@
         }
 
         document.querySelectorAll('.mySwiper').forEach(container => {
-            const slideCount = parseInt(container.getAttribute('data-slide-count'));
             const sectionTitle = container.getAttribute('data-section-title');
-            
             const isNMW = (sectionTitle === "New Music Wednesdays");
-            const shouldCenter = false; 
 
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
                 centeredSlides: false, 
-                centerInsufficientSlides: false, 
+                centerInsufficientSlides: false,
                 freeMode: true,
                 grabCursor: true,
-                autoplay: isNMW ? {
-                    delay: 0,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true
-                } : false,
+                autoplay: isNMW ? { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true } : false,
                 speed: isNMW ? 4000 : 600,
-                loop: isNMW, 
-                navigation: {
-                    nextEl: container.querySelector('.swiper-button-next'),
-                    prevEl: container.querySelector('.swiper-button-prev'),
-                },
+                loop: isNMW
             });
         });
 
         function activateSlide(slide) {
-            if (slide.classList.contains('expanded')) {
-                const video = slide.querySelector('video');
-                if (video.paused) {
-                    video.play();
-                    updateIcons(slide, true, !video.muted);
-                } else {
-                    video.pause();
-                    updateIcons(slide, false, !video.muted);
-                }
-                return;
-            }
+            if (slide.classList.contains('expanded')) return; // Already open
 
+            // Collapse others
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
+            // PAUSE SCROLLING (Autoplay)
+            const swiperInstance = slide.closest('.swiper').swiper;
+            if (swiperInstance && swiperInstance.autoplay && swiperInstance.autoplay.running) {
+                swiperInstance.autoplay.stop();
+            }
+
+            // Expand
             slide.classList.add('expanded');
             
             const img = slide.querySelector('.slide-thumb');
@@ -144,11 +131,11 @@
             video.load(); 
             video.currentTime = 0;
             video.muted = false;
-            video.volume = 0.5;
+            video.volume = 0.1; // 10% Volume
             
             var playPromise = video.play();
             if (playPromise !== undefined) {
-                playPromise.then(_ => {}).catch(error => { console.log("Autoplay prevented:", error); });
+                playPromise.then(_ => {}).catch(error => console.log("Autoplay prevented:", error));
             }
 
             updateIcons(slide, true, true);
@@ -158,6 +145,14 @@
         function collapseSlide(event, btn) {
             if (event) event.stopPropagation();
             const slide = btn.closest('.swiper-slide');
+            
+            // RESUME SCROLLING (Autoplay) if it's NMW
+            const swiperContainer = slide.closest('.swiper');
+            const isNMW = swiperContainer.getAttribute('data-section-title') === "New Music Wednesdays";
+            if (isNMW && swiperContainer.swiper) {
+                swiperContainer.swiper.autoplay.start();
+            }
+
             slide.classList.remove('expanded');
             slide.querySelectorAll('.volume-wrapper').forEach(vw => vw.classList.remove('active'));
             
@@ -169,6 +164,20 @@
                 video.pause();
                 video.style.display = 'none';
                 img.style.display = 'block';
+            }
+        }
+
+        // TOGGLE PLAY WHEN CLICKING VIDEO
+        function toggleVideoPlay(video) {
+            const slide = video.closest('.swiper-slide');
+            if (!slide.classList.contains('expanded')) return;
+
+            if (video.paused) {
+                video.play();
+                updateIcons(slide, true, !video.muted);
+            } else {
+                video.pause();
+                updateIcons(slide, false, !video.muted);
             }
         }
 
@@ -277,7 +286,7 @@
             let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     let video = entry.target;
-                    // Skip hidden or banner video
+                    // Skip if hidden or banner
                     if (video.style.display === 'none' || video.id === 'socialBannerVideo') return;
                     
                     if (entry.isIntersecting) {
@@ -295,18 +304,7 @@
                 observer.observe(video);
             });
             
-            // BANNER VIDEO 5-SECOND LOOP
-            const bannerVid = document.getElementById('socialBannerVideo');
-            if (bannerVid) {
-                bannerVid.addEventListener('timeupdate', function() {
-                    if (this.currentTime > 5) {
-                        this.currentTime = 0;
-                        this.play();
-                    }
-                });
-            }
-
-            // CAROUSEL 3-SECOND PREVIEW LOOP
+            // 3-SECOND PREVIEW LOOP
             setInterval(() => {
                 document.querySelectorAll('.swiper-slide video').forEach(vid => {
                     if (vid.style.display !== 'none' && !vid.paused && !vid.closest('.swiper-slide').classList.contains('expanded') && vid.currentTime > 3) {
