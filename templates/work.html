@@ -12,19 +12,6 @@
         body { padding-top: 140px; }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; transition: opacity 0.3s; }
         .swiper-slide video { cursor: pointer; }
-        
-        /* Subtitle Styling */
-        .nmw-subtitle { 
-            font-size: 1.1rem; 
-            color: #999; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            margin-bottom: 25px; 
-            margin-top: -15px; 
-            font-weight: 500; 
-            line-height: 1.4; 
-            padding-left: 4vw; 
-        }
         .inner-section-title { padding-left: 0; margin-left: 4vw; }
     </style>
 </head>
@@ -76,10 +63,14 @@
                     </h2>
 
                     {% if sub.title == "New Music Wednesdays" %}
-                    <div class="nmw-subtitle">
-                        Shot & Edited by Lunes Oña<br>
-                        Written by Dylan Hall
-                    </div>
+                        <div class="section-subtitle">
+                            Shot & Edited by Lunes Oña<br>
+                            Written by Dylan Hall
+                        </div>
+                    {% elif sub.title == "Beyond the Club" %}
+                        <div class="section-subtitle">
+                            In collaboration with Call to Action
+                        </div>
                     {% endif %}
 
                     <div class="reels-container">
@@ -98,6 +89,10 @@
                                     <img src="{{ item.thumbnail }}" class="slide-thumb" alt="Video Thumbnail">
                                     {% endif %}
                                     
+                                    {% if item.title %}
+                                    <div class="video-top-title">{{ item.title }}</div>
+                                    {% endif %}
+
                                     {% if item.shot_on %}
                                     <div class="shot-on-label">{{ item.shot_on }}</div>
                                     {% endif %}
@@ -178,7 +173,6 @@
         }
 
         document.querySelectorAll('.mySwiper').forEach(container => {
-            // ENABLE AUTOPLAY FOR EVERYONE
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
@@ -204,7 +198,6 @@
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
-            // STOP Autoplay on expansion
             const swiperContainer = slide.closest('.swiper');
             if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay && swiperContainer.swiper.autoplay.running) {
                 swiperContainer.swiper.autoplay.stop();
@@ -382,7 +375,7 @@
                 });
             }, { threshold: 0.25 });
 
-            document.querySelectorAll('video').forEach(video => {
+            document.querySelectorAll('.swiper-slide video').forEach(video => {
                 observer.observe(video);
             });
             

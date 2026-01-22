@@ -699,3 +699,57 @@ header::before {
 .section-content.active { display: block; opacity: 1; }
 
 .inner-section-title { font-size: 1.5rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin: 40px 0 20px 4vw; }
+
+/* --- THINNER SUBTITLES --- */
+.section-subtitle {
+    font-size: 0.95rem; /* Smaller */
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    margin-top: -15px;
+    font-weight: 300; /* Thinner */
+    line-height: 1.4;
+    padding-left: 4vw;
+}
+
+/* --- VIDEO TOP TITLE OVERLAY --- */
+.video-top-title {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    font-size: 1.1rem;
+    font-weight: 600; /* Bold/Semi-bold */
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 50; /* Above overlay */
+    pointer-events: none; /* Let clicks pass through */
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+
+/* Show title only when expanded */
+.swiper-slide.expanded .video-top-title {
+    opacity: 1;
+}
+
+/* --- SHOT ON LABEL (Ensure it stays bottom) --- */
+.shot-on-label {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    pointer-events: none;
+    z-index: 50;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.swiper-slide.expanded .shot-on-label {
+    opacity: 1;
+}
