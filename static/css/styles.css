@@ -1138,3 +1138,30 @@ header::before {
     opacity: 0.9; /* Keep the opacity boost on hover */
     transform: scale(1.15); /* Slight zoom on hover */
 }
+
+/* --- FIX VIDEO POSITION & BLUR --- */
+.header-bg-video {
+    /* Ensure absolute centering */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    /* COMBINED TRANSFORM: Center the video (-50%) AND Scale it slightly (1.05) to hide blurred edges */
+    transform: translate(-50%, -50%) scale(1.05) !important;
+    
+    /* Reduced Blur to ~7% (4px) */
+    filter: saturate(100%) blur(4px) !important;
+    
+    /* Ensure it stays behind text */
+    z-index: 0;
+}
+
+/* On hover, keep EXACTLY the same position/scale (remove the zoom movement) */
+.section-toggle:hover .header-bg-video {
+    transform: translate(-50%, -50%) scale(1.05) !important; /* Stays still */
+    filter: saturate(100%) blur(4px) !important;
+    opacity: 0.9; /* Only change opacity */
+}
