@@ -1122,3 +1122,19 @@ header::before {
     -webkit-mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
 }
+
+/* --- BACKGROUND VIDEO BLUR --- */
+.header-bg-video {
+    /* Maintain 100% Saturation, Add 10px Blur (~20%) */
+    filter: saturate(100%) blur(10px) !important;
+    
+    /* Scale up slightly to prevent blurred edges from pulling in the background color */
+    transform: scale(1.1);
+}
+
+/* Ensure blur persists on hover */
+.section-toggle:hover .header-bg-video {
+    filter: saturate(100%) blur(10px) !important;
+    opacity: 0.9; /* Keep the opacity boost on hover */
+    transform: scale(1.15); /* Slight zoom on hover */
+}
