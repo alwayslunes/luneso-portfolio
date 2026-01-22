@@ -1079,3 +1079,22 @@ header::before {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
+
+/* --- DIFFUSED BLUR & GRADIENT FADE --- */
+#mainHeader {
+    /* The black gradient fade */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0) 100%) !important;
+    
+    /* The blur effect */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* THE FIX: Masking the blur to fade out at the bottom */
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+}
+
+/* --- REDUCE HEADER HEIGHT --- */
+.section-toggle {
+    height: 450px !important; /* Reduced by 50px */
+}
