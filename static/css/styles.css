@@ -1098,3 +1098,15 @@ header::before {
 .section-toggle {
     height: 450px !important; /* Reduced by 50px */
 }
+
+/* --- ADJUST HEADER GRADIENT HEIGHT --- */
+#mainHeader {
+    /* Gradient fades to transparent by 50% (Half height), leaving the bottom half just blurred */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 25%, rgba(0,0,0,0) 50%) !important;
+    
+    /* Keep the existing blur settings untouched */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+}
