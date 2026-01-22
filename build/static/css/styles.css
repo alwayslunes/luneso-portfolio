@@ -822,3 +822,101 @@ header::before {
 .swiper-slide.expanded .shot-on-label {
     opacity: 1;
 }
+
+/* --- FIX PLAYER & LABEL POSITIONS --- */
+
+/* 1. The Gradient Background */
+/* We add this to the controls container to create a backdrop for both player and text */
+.slide-controls {
+    position: absolute;
+    bottom: 35px !important; /* Sit ABOVE the text */
+    left: 0;
+    width: 100%;
+    padding: 20px 20px 10px 20px; /* Add breathing room */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 60;
+    /* Remove default gradient here if we want a shared one, 
+       but keeping it ensures the player is readable. 
+       We will extend it downwards. */
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+}
+
+/* 2. The "Shot On" Label */
+.shot-on-label {
+    position: absolute;
+    bottom: 12px !important; /* Pinned to the orange border */
+    left: 20px !important;
+    font-size: 0.6rem !important;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 70; /* On top of gradient */
+    pointer-events: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,1);
+}
+
+/* 3. Ensure Title is readable at top */
+.video-top-title {
+    top: 20px !important;
+    left: 20px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+}
+
+/* 4. Fix Progress Bar Hover Area */
+.progress-wrapper {
+    height: 20px; /* Easier to grab */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* --- SMART PLAYER POSITIONING --- */
+
+/* 1. Base Player Controls (Gradient Container) */
+.slide-controls {
+    position: absolute;
+    bottom: 0 !important; /* Always flush to bottom */
+    left: 0;
+    width: 100%;
+    /* Default spacing (when no text exists) */
+    padding: 40px 20px 20px 20px; 
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 60;
+    /* Stronger gradient that starts from the very bottom */
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    transition: padding-bottom 0.3s ease;
+}
+
+/* 2. Conditional Lift: If "Shot On" text exists, push buttons up */
+.swiper-slide:has(.shot-on-label) .slide-controls {
+    padding-bottom: 45px; /* Adds room for the text below buttons */
+}
+
+/* 3. "Shot On" Label Position */
+.shot-on-label {
+    position: absolute;
+    bottom: 15px !important; /* Pinned to bottom inside the gradient */
+    left: 20px !important;
+    font-size: 0.6rem !important;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9); /* High contrast */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 70; /* Sits ON TOP of the player/gradient */
+    pointer-events: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,1);
+}
+
+/* --- CONTINUOUS SCROLL "MARQUEE" STYLE --- */
+.swiper-wrapper {
+    transition-timing-function: linear !important;
+}

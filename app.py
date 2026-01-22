@@ -19,52 +19,52 @@ nmw_data = [
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_1_Dizzy.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_1_Dizzy.jpg",
-        "title": "Dizzy"
+        "title": "Dizzy by MajorNine ft. Phoenix James"
     },
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_2_Blood.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_2_Blood.jpg",
-        "title": "Blood"
+        "title": "Blood by RealLiveAnimals"
     },
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_3_BadRomance.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_3_BadRomance.jpg",
-        "title": "Bad Romance"
+        "title": "Bad Romance by raygunscottie"
     },
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_4_TwelfthHour.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_4_TwelfthHour.jpg",
-        "title": "Twelfth Hour"
+        "title": "Twelfth Hour by Project Rukus."
     },
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_5_Viceversa.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_5_Viceversa.jpg",
-        "title": "Viceversa"
+        "title": "Viceversa by Chigusa"
     },
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_6_WannaGoOutside.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_6_WannaGoOutside.jpg",
-        "title": "Wanna Go Outside"
+        "title": "Wanna Go Outside by ilikebloo"
     },
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_7_Daydreams.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_7_Daydreams.jpg",
-        "title": "Daydreams"
+        "title": "Daydreams by MMW ft. ilikebloo"
     },
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_8_RealHigh.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_8_RealHigh.jpg",
-        "title": "Real High"
+        "title": "Real High by Rayan"
     },
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_9_5IVEQUID.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_9_5IVEQUID.jpg",
-        "title": "5IVEQUID"
+        "title": "5IVEQUID by nezerat"
     },
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_10_FLESH.mp4", 
         "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_10_FLESH.jpg",
-        "title": "FLESH"
+        "title": "FLESH by Hayelo & Ezra Made It"
     }
 ]
 
@@ -80,7 +80,7 @@ btc_data = [
     { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Ultrathem.mp4", "title": "ULTRATHEM" }
 ]
 
-# --- 3. SOCIAL CONTENT (Custom Titles) ---
+# --- 3. SOCIAL CONTENT ---
 social_mapping = [
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_Arlo_Masisi-CTA-Soiree.mp4", "Arlo Rooftop Pool"),
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4", "Call to Action"),
@@ -119,7 +119,8 @@ portfolio = [
     {
         "id": "content",
         "title": "CONTENT",
-        "banner_video": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_WillysClosingNight.mp4",
+        # Updated Banner: Cam_CTA_DearEleanor (Call to Action)
+        "banner_video": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4",
         "sub_sections": [
             { "title": "Social Content", "videos": social_videos },
             { "title": "Beyond the Club", "videos": btc_data },
@@ -149,8 +150,6 @@ def work():
     subs[0]['videos'] = shuffled_social
     subs[1]['videos'] = shuffled_btc
     subs[2]['videos'] = shuffled_nmw
-    
-    # Banner is fixed
     
     return render_template('work.html', sections=portfolio)
 

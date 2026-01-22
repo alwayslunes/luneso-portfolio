@@ -18,7 +18,8 @@
 <body>
     
     <header id="mainHeader">
-        <a href="{{ url_for('work') }}" class="header-left">LUNES OÑA</a>
+        <a href="https://luneso.work" class="header-left">LUNES OÑA</a>
+        
         <div class="header-center">MULTIMEDIA EDITOR</div>
         <div class="header-right">
             <a href="{{ url_for('about') }}" class="nav-text">ABOUT</a>
@@ -42,7 +43,7 @@
         
         <div class="section-toggle" onclick="toggleSection('{{ section.id }}')">
             {% if section.banner_video %}
-            <video autoplay muted loop playsinline class="header-bg-video">
+            <video autoplay muted loop playsinline class="header-bg-video" id="banner-{{ section.id }}">
                 <source src="{{ section.banner_video }}" type="video/mp4">
             </video>
             {% endif %}
@@ -145,6 +146,17 @@
             else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
 
+        // --- BANNER 5-SEC LOOP ---
+        const bannerVideo = document.getElementById('banner-content');
+        if (bannerVideo) {
+            bannerVideo.addEventListener('timeupdate', function() {
+                if (this.currentTime > 5.0) {
+                    this.currentTime = 0;
+                    this.play();
+                }
+            });
+        }
+
         function toggleSection(id) {
             const content = document.getElementById('content-' + id);
             const icon = document.getElementById('icon-' + id);
@@ -172,6 +184,7 @@
             }
         }
 
+        // --- CONTINUOUS SCROLL SETUP ---
         document.querySelectorAll('.mySwiper').forEach(container => {
             new Swiper(container, {
                 slidesPerView: "auto",
@@ -180,13 +193,13 @@
                 centerInsufficientSlides: false,
                 freeMode: true,
                 grabCursor: true,
+                loop: true,
+                speed: 6000, // Slow constant speed
                 autoplay: { 
                     delay: 0, 
                     disableOnInteraction: false, 
-                    pauseOnMouseEnter: true 
-                },
-                speed: 4000,
-                loop: true
+                    pauseOnMouseEnter: false 
+                }
             });
         });
 
@@ -194,12 +207,14 @@
             if (event) event.stopPropagation();
             if (slide.classList.contains('expanded')) return;
 
+            // Collapse others
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
+            // STOP AUTOPLAY
             const swiperContainer = slide.closest('.swiper');
-            if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay && swiperContainer.swiper.autoplay.running) {
+            if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay) {
                 swiperContainer.swiper.autoplay.stop();
             }
 
@@ -240,6 +255,12 @@
                 video.pause();
                 video.style.display = 'none';
                 img.style.display = 'block';
+            }
+
+            // RESTART AUTOPLAY
+            const swiperContainer = slide.closest('.swiper');
+            if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay) {
+                swiperContainer.swiper.autoplay.start();
             }
         }
 

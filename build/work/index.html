@@ -18,7 +18,8 @@
 <body>
     
     <header id="mainHeader">
-        <a href="/work/" class="header-left">LUNES OÑA</a>
+        <a href="https://luneso.work" class="header-left">LUNES OÑA</a>
+        
         <div class="header-center">MULTIMEDIA EDITOR</div>
         <div class="header-right">
             <a href="/about/" class="nav-text">ABOUT</a>
@@ -42,8 +43,8 @@
         
         <div class="section-toggle" onclick="toggleSection('content')">
             
-            <video autoplay muted loop playsinline class="header-bg-video">
-                <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_WillysClosingNight.mp4" type="video/mp4">
+            <video autoplay muted loop playsinline class="header-bg-video" id="banner-content">
+                <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4" type="video/mp4">
             </video>
             
             
@@ -65,190 +66,6 @@
                     <div class="reels-container">
                         <div class="swiper mySwiper" data-section-title="Social Content">
                             <div class="swiper-wrapper">
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_OtraNoche.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Miami Scene</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON IPHONE</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_WillysClosingNight.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Willy's Last Night</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON IPHONE</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_GrampsClosing.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Gramps Closing Night</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON IPHONE</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_MMW.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Miami Music Week</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON IPHONE</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
                                 
                                 <div class="swiper-slide">
                                     
@@ -301,13 +118,13 @@
                                     <video muted loop playsinline preload="metadata" 
                                            onclick="toggleVideoPlay(event, this)"
                                            style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Rumbass_TheCorner.mp4" type="video/mp4">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_OtraNoche.mp4" type="video/mp4">
                                     </video>
 
                                     
                                     
                                     
-                                    <div class="video-top-title">Rumbass<br>at The Corner</div>
+                                    <div class="video-top-title">Miami Scene</div>
                                     
 
                                     
@@ -393,247 +210,17 @@
                                     <video muted loop playsinline preload="metadata" 
                                            onclick="toggleVideoPlay(event, this)"
                                            style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_HowBazar.mp4" type="video/mp4">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_Arlo_Masisi-CTA-Soiree.mp4" type="video/mp4">
                                     </video>
 
                                     
                                     
                                     
-                                    <div class="video-top-title">How Bazar Market</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON IPHONE</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Venue_TerrestrialFunk.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Venue: Terrestrial Funk</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON IPHONE</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_MicDrop_AlwaysLunes.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">M!C DROP</div>
+                                    <div class="video-top-title">Arlo Rooftop Pool</div>
                                     
 
                                     
                                     <div class="shot-on-label">SHOT ON BLACKMAGIC 6K G2</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Call to Action</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON BLACKMAGIC 6K G2</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_CTA_DearEleanor.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Call to Action</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON IPHONE</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_MiamiZineFair.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Miami Zine Fair</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON IPHONE</div>
                                     
                                     
                                     <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
@@ -680,98 +267,6 @@
 
                                     
                                     <div class="shot-on-label">SHOT ON IPHONE</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Venue_DaleZine.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Venue: DaleZine</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON IPHONE</div>
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_Arlo_Masisi-CTA-Soiree.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Arlo Rooftop Pool</div>
-                                    
-
-                                    
-                                    <div class="shot-on-label">SHOT ON BLACKMAGIC 6K G2</div>
                                     
                                     
                                     <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
@@ -899,6 +394,328 @@
                                     <video muted loop playsinline preload="metadata" 
                                            onclick="toggleVideoPlay(event, this)"
                                            style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_CTA_DearEleanor.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Call to Action</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON IPHONE</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_HowBazar.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">How Bazar Market</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON IPHONE</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_GrampsClosing.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Gramps Closing Night</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON IPHONE</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_CaribbeanCunt_Willys.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Caribbean Cunt<br>at Willy's</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON IPHONE</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Call to Action</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON BLACKMAGIC 6K G2</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_MicDrop_AlwaysLunes.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">M!C DROP</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON BLACKMAGIC 6K G2</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_IIIPoints2025.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">III Points 2025</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON IPHONE</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
                                         <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Interview_TrustNobody.mp4" type="video/mp4">
                                     </video>
 
@@ -945,13 +762,151 @@
                                     <video muted loop playsinline preload="metadata" 
                                            onclick="toggleVideoPlay(event, this)"
                                            style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_IIIPoints2025.mp4" type="video/mp4">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_MMW.mp4" type="video/mp4">
                                     </video>
 
                                     
                                     
                                     
-                                    <div class="video-top-title">III Points 2025</div>
+                                    <div class="video-top-title">Miami Music Week</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON IPHONE</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_MiamiZineFair.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Miami Zine Fair</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON IPHONE</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Venue_DaleZine.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Venue: DaleZine</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON IPHONE</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Rumbass_TheCorner.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Rumbass<br>at The Corner</div>
                                     
 
                                     
@@ -1037,13 +992,59 @@
                                     <video muted loop playsinline preload="metadata" 
                                            onclick="toggleVideoPlay(event, this)"
                                            style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_CaribbeanCunt_Willys.mp4" type="video/mp4">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_WillysClosingNight.mp4" type="video/mp4">
                                     </video>
 
                                     
                                     
                                     
-                                    <div class="video-top-title">Caribbean Cunt<br>at Willy's</div>
+                                    <div class="video-top-title">Willy's Last Night</div>
+                                    
+
+                                    
+                                    <div class="shot-on-label">SHOT ON IPHONE</div>
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Venue_TerrestrialFunk.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Venue: Terrestrial Funk</div>
                                     
 
                                     
@@ -1103,145 +1104,13 @@
                                     <video muted loop playsinline preload="metadata" 
                                            onclick="toggleVideoPlay(event, this)"
                                            style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Brocklee.mp4" type="video/mp4">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Sayje.mp4" type="video/mp4">
                                     </video>
 
                                     
                                     
                                     
-                                    <div class="video-top-title">Brocklee</div>
-                                    
-
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Teaser.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Announcement</div>
-                                    
-
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_OpalAmRah.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Opal Am Rah</div>
-                                    
-
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_EliasRischmawi.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Elias Rischmawi</div>
+                                    <div class="video-top-title">Sayje</div>
                                     
 
                                     
@@ -1323,13 +1192,13 @@
                                     <video muted loop playsinline preload="metadata" 
                                            onclick="toggleVideoPlay(event, this)"
                                            style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Ultrathem.mp4" type="video/mp4">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_OpalAmRah.mp4" type="video/mp4">
                                     </video>
 
                                     
                                     
                                     
-                                    <div class="video-top-title">ULTRATHEM</div>
+                                    <div class="video-top-title">Opal Am Rah</div>
                                     
 
                                     
@@ -1367,13 +1236,13 @@
                                     <video muted loop playsinline preload="metadata" 
                                            onclick="toggleVideoPlay(event, this)"
                                            style="">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Sayje.mp4" type="video/mp4">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Brocklee.mp4" type="video/mp4">
                                     </video>
 
                                     
                                     
                                     
-                                    <div class="video-top-title">Sayje</div>
+                                    <div class="video-top-title">Brocklee</div>
                                     
 
                                     
@@ -1450,6 +1319,138 @@
                                     </div>
                                 </div>
                                 
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_EliasRischmawi.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Elias Rischmawi</div>
+                                    
+
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Teaser.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Announcement</div>
+                                    
+
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Ultrathem.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">ULTRATHEM</div>
+                                    
+
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -1478,144 +1479,6 @@
                                     <video muted loop playsinline preload="metadata" 
                                            onclick="toggleVideoPlay(event, this)"
                                            style="display:none;">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_4_TwelfthHour.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_4_TwelfthHour.jpg" class="slide-thumb" alt="Video Thumbnail">
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Twelfth Hour</div>
-                                    
-
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="display:none;">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_7_Daydreams.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_7_Daydreams.jpg" class="slide-thumb" alt="Video Thumbnail">
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Daydreams</div>
-                                    
-
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="display:none;">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_6_WannaGoOutside.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_6_WannaGoOutside.jpg" class="slide-thumb" alt="Video Thumbnail">
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Wanna Go Outside</div>
-                                    
-
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="display:none;">
                                         <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_8_RealHigh.mp4" type="video/mp4">
                                     </video>
 
@@ -1624,99 +1487,7 @@
                                     
                                     
                                     
-                                    <div class="video-top-title">Real High</div>
-                                    
-
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="display:none;">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_3_BadRomance.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_3_BadRomance.jpg" class="slide-thumb" alt="Video Thumbnail">
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Bad Romance</div>
-                                    
-
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="display:none;">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_2_Blood.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_2_Blood.jpg" class="slide-thumb" alt="Video Thumbnail">
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">Blood</div>
+                                    <div class="video-top-title">Real High by Rayan</div>
                                     
 
                                     
@@ -1762,7 +1533,53 @@
                                     
                                     
                                     
-                                    <div class="video-top-title">Viceversa</div>
+                                    <div class="video-top-title">Viceversa by Chigusa</div>
+                                    
+
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="display:none;">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_6_WannaGoOutside.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_6_WannaGoOutside.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Wanna Go Outside by ilikebloo</div>
                                     
 
                                     
@@ -1808,53 +1625,7 @@
                                     
                                     
                                     
-                                    <div class="video-top-title">FLESH</div>
-                                    
-
-                                    
-                                    
-                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
-
-                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
-                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                    </button>
-
-                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
-                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
-                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                        </button>
-
-                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
-                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
-                                        </div>
-
-                                        <div class="volume-wrapper">
-                                            <div class="volume-popup" onclick="event.stopPropagation()">
-                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
-                                            </div>
-                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
-                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-slide">
-                                    
-                                    <video muted loop playsinline preload="metadata" 
-                                           onclick="toggleVideoPlay(event, this)"
-                                           style="display:none;">
-                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_9_5IVEQUID.mp4" type="video/mp4">
-                                    </video>
-
-                                    
-                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_9_5IVEQUID.jpg" class="slide-thumb" alt="Video Thumbnail">
-                                    
-                                    
-                                    
-                                    <div class="video-top-title">5IVEQUID</div>
+                                    <div class="video-top-title">FLESH by Hayelo & Ezra Made It</div>
                                     
 
                                     
@@ -1900,7 +1671,237 @@
                                     
                                     
                                     
-                                    <div class="video-top-title">Dizzy</div>
+                                    <div class="video-top-title">Dizzy by MajorNine ft. Phoenix James</div>
+                                    
+
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="display:none;">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_9_5IVEQUID.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_9_5IVEQUID.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">5IVEQUID by nezerat</div>
+                                    
+
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="display:none;">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_7_Daydreams.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_7_Daydreams.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Daydreams by MMW ft. ilikebloo</div>
+                                    
+
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="display:none;">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_4_TwelfthHour.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_4_TwelfthHour.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Twelfth Hour by Project Rukus.</div>
+                                    
+
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="display:none;">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_2_Blood.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_2_Blood.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Blood by RealLiveAnimals</div>
+                                    
+
+                                    
+                                    
+                                    <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
+
+                                    <button class="slide-close swiper-no-swiping" onclick="collapseSlide(event, this)">
+                                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+
+                                    <div class="slide-controls swiper-no-swiping" onclick="event.stopPropagation()">
+                                        <button class="control-btn toggle-play" onclick="handlePlayClick(event, this)">
+                                            <svg class="icon-play" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+
+                                        <div class="progress-wrapper" onclick="seekVideo(event, this)" onmousedown="startDrag(event, this)">
+                                            <div class="progress-track"><div class="progress-filled"><div class="progress-thumb"></div></div></div>
+                                        </div>
+
+                                        <div class="volume-wrapper">
+                                            <div class="volume-popup" onclick="event.stopPropagation()">
+                                                <input type="range" min="0" max="0.7" step="0.05" value="0.05" class="volume-slider" oninput="adjustVolume(event, this)">
+                                            </div>
+                                            <button class="control-btn toggle-sound" onclick="toggleVolumePopup(event, this)">
+                                                <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                                <svg class="icon-vol-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="swiper-slide">
+                                    
+                                    <video muted loop playsinline preload="metadata" 
+                                           onclick="toggleVideoPlay(event, this)"
+                                           style="display:none;">
+                                        <source src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_3_BadRomance.mp4" type="video/mp4">
+                                    </video>
+
+                                    
+                                    <img src="https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_3_BadRomance.jpg" class="slide-thumb" alt="Video Thumbnail">
+                                    
+                                    
+                                    
+                                    <div class="video-top-title">Bad Romance by raygunscottie</div>
                                     
 
                                     
@@ -2001,6 +2002,17 @@
             else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
 
+        // --- BANNER 5-SEC LOOP ---
+        const bannerVideo = document.getElementById('banner-content');
+        if (bannerVideo) {
+            bannerVideo.addEventListener('timeupdate', function() {
+                if (this.currentTime > 5.0) {
+                    this.currentTime = 0;
+                    this.play();
+                }
+            });
+        }
+
         function toggleSection(id) {
             const content = document.getElementById('content-' + id);
             const icon = document.getElementById('icon-' + id);
@@ -2028,6 +2040,7 @@
             }
         }
 
+        // --- CONTINUOUS SCROLL SETUP ---
         document.querySelectorAll('.mySwiper').forEach(container => {
             new Swiper(container, {
                 slidesPerView: "auto",
@@ -2036,13 +2049,13 @@
                 centerInsufficientSlides: false,
                 freeMode: true,
                 grabCursor: true,
+                loop: true,
+                speed: 6000, // Slow constant speed
                 autoplay: { 
                     delay: 0, 
                     disableOnInteraction: false, 
-                    pauseOnMouseEnter: true 
-                },
-                speed: 4000,
-                loop: true
+                    pauseOnMouseEnter: false 
+                }
             });
         });
 
@@ -2050,12 +2063,14 @@
             if (event) event.stopPropagation();
             if (slide.classList.contains('expanded')) return;
 
+            // Collapse others
             document.querySelectorAll('.swiper-slide.expanded').forEach(s => {
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
+            // STOP AUTOPLAY
             const swiperContainer = slide.closest('.swiper');
-            if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay && swiperContainer.swiper.autoplay.running) {
+            if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay) {
                 swiperContainer.swiper.autoplay.stop();
             }
 
@@ -2096,6 +2111,12 @@
                 video.pause();
                 video.style.display = 'none';
                 img.style.display = 'block';
+            }
+
+            // RESTART AUTOPLAY
+            const swiperContainer = slide.closest('.swiper');
+            if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay) {
+                swiperContainer.swiper.autoplay.start();
             }
         }
 
