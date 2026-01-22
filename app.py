@@ -84,7 +84,7 @@ btc_data = [
 social_mapping = [
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_Arlo_Masisi-CTA-Soiree.mp4", "Arlo Rooftop Pool"),
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4", "Call to Action"),
-    ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_CTA_DearEleanor.mp4", "Call to Action"),
+    # REMOVED: Phone_CTA_DearEleanor.mp4
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_MicDrop_AlwaysLunes.mp4", "M!C DROP"),
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_CaribbeanCunt_Willys.mp4", "Caribbean Cunt<br>at Willy's"),
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_GrampsClosing.mp4", "Gramps Closing Night"),
@@ -95,7 +95,7 @@ social_mapping = [
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_MMW.mp4", "Miami Music Week"),
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_MiamiZineFair.mp4", "Miami Zine Fair"),
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_OtraNoche.mp4", "Miami Scene"),
-    ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_PAMM_THFF.mp4", "THFF Opening"),
+    # REMOVED: Phone_PAMM_THFF.mp4
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_PerreoDelPasado_THFF.mp4", "THFF x Perreo del Pasado<br>at The Corner"),
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Rumbass_TheCorner.mp4", "Rumbass<br>at The Corner"),
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_SonidoErotik_Willys.mp4", "Serpent's Ball<br>at Willy's"),
@@ -119,8 +119,8 @@ portfolio = [
     {
         "id": "content",
         "title": "CONTENT",
-        # Updated Banner: Cam_MicDrop_AlwaysLunes
-        "banner_video": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_MicDrop_AlwaysLunes.mp4",
+        # Updated Banner: Rumbass at The Corner
+        "banner_video": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Rumbass_TheCorner.mp4",
         "sub_sections": [
             { "title": "Social Content", "videos": social_videos },
             { "title": "Beyond the Club", "videos": btc_data },

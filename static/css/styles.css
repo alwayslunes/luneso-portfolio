@@ -1004,3 +1004,69 @@ header::before {
         height: 250px !important;
     }
 }
+
+/* --- HEADER & SPACING REFINEMENTS --- */
+
+/* 1. Header Blur & Gradient */
+#mainHeader {
+    /* Slightly stronger gradient to support the blur */
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%) !important;
+    /* The Blur Effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* Ensure padding from previous step remains */
+    padding-top: 25px;
+}
+
+/* 2. Push Text Down (maintain video at top) */
+.section-toggle {
+    /* Previous height was 400px. New height 500px to accommodate the push */
+    height: 500px !important;
+    
+    /* Push content down by 100px */
+    padding-top: 100px !important;
+    
+    /* Ensure padding is included in the height calculation */
+    box-sizing: border-box; 
+}
+
+/* Adjust mobile to not be too tall, but still have space */
+@media (max-width: 768px) {
+    .section-toggle {
+        height: 350px !important;
+        padding-top: 80px !important;
+    }
+}
+
+/* --- HEADER & SPACING REFINEMENTS --- */
+
+/* 1. Header Blur & Gradient */
+#mainHeader {
+    /* Slightly stronger gradient to support the blur */
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%) !important;
+    /* The Blur Effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* Ensure padding from previous step remains */
+    padding-top: 25px;
+}
+
+/* 2. Push Text Down (maintain video at top) */
+.section-toggle {
+    /* Previous height was 400px. New height 500px to accommodate the push */
+    height: 500px !important;
+    
+    /* Push content down by 100px */
+    padding-top: 100px !important;
+    
+    /* Ensure padding is included in the height calculation */
+    box-sizing: border-box; 
+}
+
+/* Adjust mobile to not be too tall, but still have space */
+@media (max-width: 768px) {
+    .section-toggle {
+        height: 350px !important;
+        padding-top: 80px !important;
+    }
+}
