@@ -119,7 +119,8 @@ portfolio = [
     {
         "id": "content",
         "title": "CONTENT",
-        "banner_video": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4",
+        # Updated Banner: Cam_MicDrop_AlwaysLunes
+        "banner_video": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_MicDrop_AlwaysLunes.mp4",
         "sub_sections": [
             { "title": "Social Content", "videos": social_videos },
             { "title": "Beyond the Club", "videos": btc_data },
@@ -129,7 +130,7 @@ portfolio = [
     { 
         "id": "short-films", 
         "title": "SHORT FILMS", 
-        "banner_video": "", # Add your Short Films banner URL here
+        "banner_video": "", 
         "sub_sections": [] 
     },
     { "id": "hijos", "title": "HIJOS DE LA DIÁSPORA", "banner_video": "", "sub_sections": [] },

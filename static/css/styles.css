@@ -969,3 +969,38 @@ header::before {
     transform: translate(-50%, -50%) scale(1.05);
     filter: saturate(30%) !important; /* Keep it desaturated even on hover? or restore color? User implied permanent style. Keeping 30%. */
 }
+
+/* --- UPDATED VISUALS --- */
+
+/* 1. Header Gradient & Position */
+#mainHeader {
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0) 100%) !important;
+    padding-top: 25px; /* Slight adjust for spacing */
+}
+
+/* 2. Bigger, Taller Sections */
+.section-toggle {
+    height: 400px !important; /* Taller */
+    font-size: 6rem !important; /* Bigger Text */
+    padding: 0 4vw !important; /* Keep horizontal alignment */
+}
+
+/* 3. Full Saturation */
+.header-bg-video {
+    filter: saturate(100%) !important; /* Full Color */
+    opacity: 0.6; /* Slightly more visible */
+}
+
+/* 4. Hover State for Video */
+.section-toggle:hover .header-bg-video {
+    opacity: 0.9;
+    filter: saturate(100%) !important;
+}
+
+/* 5. Mobile Adjustments for Giant Text */
+@media (max-width: 768px) {
+    .section-toggle {
+        font-size: 3rem !important; /* Prevent text breaking on phone */
+        height: 250px !important;
+    }
+}
