@@ -1070,3 +1070,12 @@ header::before {
         padding-top: 80px !important;
     }
 }
+
+/* --- HEADER BOTTOM FADE --- */
+#mainHeader {
+    /* Ensure the gradient fades to transparent at the bottom */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0) 100%) !important;
+    /* Maintain the blur effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
