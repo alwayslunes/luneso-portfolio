@@ -5,62 +5,33 @@ import random
 app = Flask(__name__)
 freezer = Freezer(app)
 
-# Define NMW videos with the NEW CORRECT LINKS
+# --- DATA: NMW VIDEOS (Shuffled) ---
 nmw_videos = [
-    { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_1_Dizzy.mp4", 
-        "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_1_Dizzy.jpg" 
-    },
-    { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_2_Blood.mp4", 
-        "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_2_Blood.jpg" 
-    },
-    { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_3_BadRomance.mp4", 
-        "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_3_BadRomance.jpg" 
-    },
-    { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_4_TwelfthHour.mp4", 
-        "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_4_TwelfthHour.jpg" 
-    },
-    { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_5_Viceversa.mp4", 
-        "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_5_Viceversa.jpg" 
-    },
-    { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_6_WannaGoOutside.mp4", 
-        "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_6_WannaGoOutside.jpg" 
-    },
-    { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_7_Daydreams.mp4", 
-        "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_7_Daydreams.jpg" 
-    },
-    { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_8_RealHigh.mp4", 
-        "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_8_RealHigh.jpg" 
-    },
-    { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_9_5IVEQUID.mp4", 
-        "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_9_5IVEQUID.jpg" 
-    },
-    { 
-        "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_10_FLESH.mp4",
-        "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_10_FLESH.jpg"
-    }
+    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_1_Dizzy.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_1_Dizzy.jpg" },
+    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_2_Blood.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_2_Blood.jpg" },
+    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_3_BadRomance.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_3_BadRomance.jpg" },
+    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_4_TwelfthHour.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_4_TwelfthHour.jpg" },
+    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_5_Viceversa.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_5_Viceversa.jpg" },
+    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_6_WannaGoOutside.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_6_WannaGoOutside.jpg" },
+    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_7_Daydreams.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_7_Daydreams.jpg" },
+    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_8_RealHigh.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_8_RealHigh.jpg" },
+    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_9_5IVEQUID.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_9_5IVEQUID.jpg" },
+    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_10_FLESH.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_10_FLESH.jpg" }
 ]
-
-# Randomize order on build
 random.shuffle(nmw_videos)
 
-projects = [
+# --- DATA: MAIN PORTFOLIO SECTIONS ---
+portfolio = [
     {
-        "id": 1,
-        "slug": "video",
-        "title": "Video",
-        "category": "Commercial, Narrative & Social",
-        "video_loop": "post_loop.mp4",
-        "image": "editing.jpg",
-        "reel_sections": [
+        "id": "content",
+        "title": "CONTENT",
+        # Uses the first Event Recap video as the banner background
+        "banner_video": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/PERREOTON%20V2.mp4",
+        "sub_sections": [
+            {
+                "title": "New Music Wednesdays",
+                "videos": nmw_videos
+            },
             {
                 "title": "Event Recaps",
                 "videos": [
@@ -76,48 +47,60 @@ projects = [
                     { "url": "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_2.mp4" },
                     { "url": "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_3.mp4" }
                 ]
-            },
-            {
-                "title": "New Music Wednesdays",
-                "videos": nmw_videos
             }
         ]
     },
-    { "id": 2, "slug": "design", "title": "Design", "category": "Print, Digital & Web", "video_loop": "design_loop.mp4", "image": "design.jpg" },
-    { "id": 3, "slug": "always-lunes", "title": "Always Lunes", "category": "Creative Direction", "video_loop": "lunes_loop.mp4", "image": "lunes.jpg" },
-    { "id": 4, "slug": "hijos-de-la-diaspora", "title": "Hijos de la Diáspora", "category": "Feature Documentary", "video_loop": "hijos_loop.mp4", "image": "hijos.jpg" }
+    {
+        "id": "narrative",
+        "title": "NARRATIVE",
+        "banner_video": "", # Add URL for Narrative Background Loop
+        "sub_sections": [] # Add videos here later
+    },
+    {
+        "id": "documentary",
+        "title": "DOCUMENTARY",
+        "banner_video": "", # Add URL for Doc Background Loop
+        "sub_sections": [] 
+    },
+    {
+        "id": "hijos",
+        "title": "HIJOS DE LA DIÁSPORA",
+        "banner_video": "", # Add URL for Hijos Background Loop
+        "sub_sections": [
+            {
+                "title": "Feature Documentary",
+                "videos": [
+                    # Add Hijos video/trailer link here
+                ]
+            }
+        ] 
+    },
+    {
+        "id": "always-lunes",
+        "title": "ALWAYS LUNES",
+        "banner_video": "", # Add URL for Always Lunes Background Loop
+        "sub_sections": [] 
+    }
 ]
-
-def get_project(slug):
-    # Re-shuffle if it's the video page so refreshes feel dynamic
-    if slug == "video":
-        random.shuffle(nmw_videos)
-        # Update the project object reference
-        projects[0]['reel_sections'][2]['videos'] = nmw_videos
-        
-    for project in projects:
-        if project['slug'] == slug:
-            return project
-    return None
 
 @app.route('/')
 def intro(): return render_template('intro.html')
 
+# This is the NEW main page
 @app.route('/work/')
-def work(): return render_template('work.html', projects=projects)
+def work(): 
+    # Reshuffle NMW on refresh
+    random.shuffle(nmw_videos)
+    # Update reference inside portfolio
+    portfolio[0]['sub_sections'][0]['videos'] = nmw_videos
+    return render_template('work.html', sections=portfolio)
 
 @app.route('/about/')
 def about(): return render_template('about.html')
 
-@app.route('/<slug>/')
-def project_detail(slug):
-    project = get_project(slug)
-    if project is None: abort(404)
-    return render_template('project.html', project=project)
-
-@freezer.register_generator
-def project_detail():
-    for project in projects: yield {'slug': project['slug']}
+# Deprecated but kept for safety/reference if needed
+@app.route('/archive/') 
+def archive(): return "Old Work Page Archive" 
 
 if __name__ == '__main__':
     freezer.freeze()

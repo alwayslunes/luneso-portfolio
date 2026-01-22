@@ -561,3 +561,93 @@ header::before {
 .slide-controls {
     cursor: default;
 }
+
+/* --- NEW MAIN PAGE ACCORDION STYLES --- */
+
+/* The Container for the whole stack */
+.accordion-stack {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+/* The Header/Toggle Bar */
+.section-toggle {
+    position: relative;
+    width: 100vw;
+    height: 300px; /* Fixed height for uniformity */
+    margin-bottom: 0; /* Stack them flush or with small gap */
+    border-bottom: 1px solid #111;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw; 
+    
+    font-size: 4rem;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden; /* Critical for zoom effect */
+    background: #000;
+    transition: color 0.3s;
+}
+
+.section-toggle:hover {
+    color: var(--accent);
+}
+
+/* Background Video with Zoom Effect */
+.section-toggle video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.0); /* Default scale */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.5; 
+    pointer-events: none;
+    filter: grayscale(100%);
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s;
+}
+
+/* THE HOVER ZOOM EFFECT */
+.section-toggle:hover video {
+    transform: translate(-50%, -50%) scale(1.1); /* Zoom in 10% */
+    opacity: 0.7;
+}
+
+/* Text on top */
+.section-toggle span {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 4px 30px rgba(0,0,0,1);
+    pointer-events: none;
+}
+
+/* The Hidden Content Area */
+.section-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: var(--bg-color);
+    padding-bottom: 40px;
+}
+
+.section-content.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Sub-headers inside the open section */
+.inner-section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin: 40px 0 20px 4vw; /* Align with slider padding */
+}
