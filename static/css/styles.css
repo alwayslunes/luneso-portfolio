@@ -796,3 +796,29 @@ header::before {
 .swiper-slide.expanded .shot-on-label {
     opacity: 1;
 }
+
+/* Move Player Controls UP slightly to make room for "Shot On" text */
+.slide-controls {
+    bottom: 35px; /* Bumped up */
+}
+
+/* Position "Shot On" text at the very bottom, below controls */
+.shot-on-label {
+    position: absolute;
+    bottom: 8px; /* Tucked at bottom */
+    left: 20px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    pointer-events: none;
+    z-index: 100; /* High z-index to sit above gradient */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.swiper-slide.expanded .shot-on-label {
+    opacity: 1;
+}
