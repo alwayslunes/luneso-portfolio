@@ -940,3 +940,32 @@ header::before {
     font-family: 'Trivane', sans-serif !important;
     letter-spacing: 0.5px;
 }
+
+/* --- DESIGN UPDATES --- */
+
+/* 1. Header Text: Orange Default, White Hover, No Shadow */
+.section-toggle {
+    color: #FF9900 !important; /* Default Orange */
+    transition: color 0.3s ease;
+}
+
+.section-toggle:hover {
+    color: #ffffff !important; /* Hover White */
+}
+
+.section-toggle span {
+    text-shadow: none !important; /* Remove Drop Shadow */
+}
+
+/* 2. Video Saturation: 30% Color */
+.header-bg-video {
+    filter: saturate(30%) !important; /* 30% Saturated */
+    opacity: 0.5;
+}
+
+/* Ensure hover state keeps the saturation but increases opacity/scale */
+.section-toggle:hover .header-bg-video {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.05);
+    filter: saturate(30%) !important; /* Keep it desaturated even on hover? or restore color? User implied permanent style. Keeping 30%. */
+}

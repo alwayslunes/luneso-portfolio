@@ -119,7 +119,6 @@ portfolio = [
     {
         "id": "content",
         "title": "CONTENT",
-        # Updated Banner: Cam_CTA_DearEleanor (Call to Action)
         "banner_video": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4",
         "sub_sections": [
             { "title": "Social Content", "videos": social_videos },
@@ -127,8 +126,12 @@ portfolio = [
             { "title": "New Music Wednesdays", "videos": nmw_data }
         ]
     },
-    { "id": "narrative", "title": "NARRATIVE", "banner_video": "", "sub_sections": [] },
-    { "id": "documentary", "title": "DOCUMENTARY", "banner_video": "", "sub_sections": [] },
+    { 
+        "id": "short-films", 
+        "title": "SHORT FILMS", 
+        "banner_video": "", # Add your Short Films banner URL here
+        "sub_sections": [] 
+    },
     { "id": "hijos", "title": "HIJOS DE LA DIÁSPORA", "banner_video": "", "sub_sections": [] },
     { "id": "always-lunes", "title": "ALWAYS LUNES", "banner_video": "", "sub_sections": [] }
 ]
