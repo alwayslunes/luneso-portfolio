@@ -5,7 +5,7 @@ import random
 app = Flask(__name__)
 freezer = Freezer(app)
 
-# --- 1. NEW MUSIC WEDNESDAYS (Shuffled) ---
+# --- 1. NEW MUSIC WEDNESDAYS ---
 nmw_videos = [
     { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_1_Dizzy.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_1_Dizzy.jpg" },
     { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_2_Blood.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_2_Blood.jpg" },
@@ -18,7 +18,6 @@ nmw_videos = [
     { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_9_5IVEQUID.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_9_5IVEQUID.jpg" },
     { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_10_FLESH.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_10_FLESH.jpg" }
 ]
-random.shuffle(nmw_videos)
 
 # --- 2. BEYOND THE CLUB ---
 btc_urls = [
@@ -32,7 +31,7 @@ btc_urls = [
 ]
 btc_videos = [{"url": url} for url in btc_urls]
 
-# --- 3. SOCIAL CONTENT ---
+# --- 3. SOCIAL CONTENT (Updated with New Venue Videos) ---
 raw_content_urls = [
     "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_Arlo_Masisi-CTA-Soiree.mp4",
     "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4",
@@ -50,60 +49,43 @@ raw_content_urls = [
     "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_PerreoDelPasado_THFF.mp4",
     "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Rumbass_TheCorner.mp4",
     "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_SonidoErotik_Willys.mp4",
-    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Underground.mp4"
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Underground.mp4",
+    # NEW VIDEOS ADDED BELOW
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Venue_DaleZine.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Venue_Gramps.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Venue_TerrestrialFunk.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_WillysClosingNight.mp4"
 ]
 
-cat_recaps = []
-cat_underground_interviews = []
-cat_venues = []
-
+social_videos = []
 for url in raw_content_urls:
     filename = url.split('/')[-1]
     
-    # "Shot On" Logic
     label = ""
     if filename.startswith("Cam_"):
         label = "Shot on Blackmagic PCC 6K G2"
     elif filename.startswith("Phone_"):
         label = "Shot on iPhone"
     
-    video_obj = { "url": url, "shot_on": label }
-
-    # Categorization Logic
-    if "Interview" in filename or "Underground" in filename:
-        cat_underground_interviews.append(video_obj)
-    elif "Venue" in filename:
-        cat_venues.append(video_obj)
-    else:
-        cat_recaps.append(video_obj)
-
-random.shuffle(cat_recaps)
-random.shuffle(cat_underground_interviews)
-random.shuffle(cat_venues)
+    social_videos.append({
+        "url": url,
+        "shot_on": label
+    })
 
 # --- PORTFOLIO STRUCTURE ---
 portfolio = [
     {
         "id": "content",
         "title": "CONTENT",
-        # Default banner: First video of "Social Content"
-        "banner_video": cat_recaps[0]['url'] if cat_recaps else "",
+        "banner_video": "", 
         "sub_sections": [
             {
                 "title": "Social Content",
-                "videos": cat_recaps
+                "videos": social_videos
             },
             {
                 "title": "Beyond the Club",
                 "videos": btc_videos
-            },
-            {
-                "title": "Underground & Interviews",
-                "videos": cat_underground_interviews
-            },
-            {
-                "title": "Venues",
-                "videos": cat_venues
             },
             {
                 "title": "New Music Wednesdays",
@@ -111,30 +93,10 @@ portfolio = [
             }
         ]
     },
-    {
-        "id": "narrative",
-        "title": "NARRATIVE",
-        "banner_video": "",
-        "sub_sections": [] 
-    },
-    {
-        "id": "documentary",
-        "title": "DOCUMENTARY",
-        "banner_video": "",
-        "sub_sections": [] 
-    },
-    {
-        "id": "hijos",
-        "title": "HIJOS DE LA DIÁSPORA",
-        "banner_video": "",
-        "sub_sections": [] 
-    },
-    {
-        "id": "always-lunes",
-        "title": "ALWAYS LUNES",
-        "banner_video": "",
-        "sub_sections": [] 
-    }
+    { "id": "narrative", "title": "NARRATIVE", "banner_video": "", "sub_sections": [] },
+    { "id": "documentary", "title": "DOCUMENTARY", "banner_video": "", "sub_sections": [] },
+    { "id": "hijos", "title": "HIJOS DE LA DIÁSPORA", "banner_video": "", "sub_sections": [] },
+    { "id": "always-lunes", "title": "ALWAYS LUNES", "banner_video": "", "sub_sections": [] }
 ]
 
 @app.route('/')
@@ -142,22 +104,17 @@ def intro(): return render_template('intro.html')
 
 @app.route('/work/')
 def work(): 
-    # Reshuffle on refresh
     random.shuffle(nmw_videos)
-    random.shuffle(cat_recaps)
-    random.shuffle(cat_underground_interviews)
-    random.shuffle(cat_venues)
+    random.shuffle(btc_videos)
+    random.shuffle(social_videos)
     
-    # Update portfolio references
-    content_subs = portfolio[0]['sub_sections']
-    content_subs[0]['videos'] = cat_recaps
-    content_subs[2]['videos'] = cat_underground_interviews
-    content_subs[3]['videos'] = cat_venues
-    content_subs[4]['videos'] = nmw_videos
+    subs = portfolio[0]['sub_sections']
+    subs[0]['videos'] = social_videos
+    subs[1]['videos'] = btc_videos
+    subs[2]['videos'] = nmw_videos
     
-    # Ensure banner is valid
-    if cat_recaps:
-        portfolio[0]['banner_video'] = cat_recaps[0]['url']
+    if social_videos:
+        portfolio[0]['banner_video'] = social_videos[0]['url']
     
     return render_template('work.html', sections=portfolio)
 

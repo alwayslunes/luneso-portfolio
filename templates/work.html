@@ -13,7 +13,7 @@
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; transition: opacity 0.3s; }
         .swiper-slide video { cursor: pointer; }
         
-        /* Subtitle Styling: Smaller, Gray, Non-Bold */
+        /* Subtitle Styling */
         .nmw-subtitle { 
             font-size: 1.1rem; 
             color: #999; 
@@ -25,7 +25,7 @@
             line-height: 1.4; 
             padding-left: 4vw; 
         }
-        .inner-section-title { padding-left: 0; margin-left: 4vw; } /* Alignment fix */
+        .inner-section-title { padding-left: 0; margin-left: 4vw; }
     </style>
 </head>
 <body>
@@ -65,7 +65,6 @@
         </div>
 
         <div id="content-{{ section.id }}" class="section-content">
-            
             {% if section.sub_sections %}
                 {% for sub in section.sub_sections %}
                     
@@ -88,7 +87,8 @@
                             <div class="swiper-wrapper">
                                 {% for item in sub.videos %}
                                 <div class="swiper-slide">
-                                    <video muted loop playsinline preload="none" 
+                                    
+                                    <video muted loop playsinline preload="metadata" 
                                            onclick="toggleVideoPlay(event, this)"
                                            style="{% if item.thumbnail %}display:none;{% endif %}">
                                         <source src="{{ item.url }}" type="video/mp4">
@@ -96,6 +96,10 @@
 
                                     {% if item.thumbnail %}
                                     <img src="{{ item.thumbnail }}" class="slide-thumb" alt="Video Thumbnail">
+                                    {% endif %}
+                                    
+                                    {% if item.shot_on %}
+                                    <div class="shot-on-label">{{ item.shot_on }}</div>
                                     {% endif %}
                                     
                                     <div class="reel-overlay swiper-no-swiping" onclick="activateSlide(event, this.closest('.swiper-slide'))">PLAY</div>
@@ -146,12 +150,10 @@
             else { btn.innerText = "MENU"; btn.style.color = "#FF9900"; body.classList.remove("menu-open"); }
         }
 
-        // --- ACCORDION LOGIC ---
         function toggleSection(id) {
             const content = document.getElementById('content-' + id);
             const icon = document.getElementById('icon-' + id);
             
-            // Close others
             document.querySelectorAll('.section-content').forEach(div => {
                 if (div.id !== 'content-' + id) div.classList.remove('active');
             });
@@ -175,11 +177,8 @@
             }
         }
 
-        // --- SWIPER INIT ---
         document.querySelectorAll('.mySwiper').forEach(container => {
-            const sectionTitle = container.getAttribute('data-section-title');
-            const isNMW = (sectionTitle === "New Music Wednesdays");
-
+            // ENABLE AUTOPLAY FOR EVERYONE
             new Swiper(container, {
                 slidesPerView: "auto",
                 spaceBetween: 15,
@@ -187,13 +186,16 @@
                 centerInsufficientSlides: false,
                 freeMode: true,
                 grabCursor: true,
-                autoplay: isNMW ? { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true } : false,
-                speed: isNMW ? 4000 : 600,
-                loop: isNMW
+                autoplay: { 
+                    delay: 0, 
+                    disableOnInteraction: false, 
+                    pauseOnMouseEnter: true 
+                },
+                speed: 4000,
+                loop: true
             });
         });
 
-        // --- VIDEO EXPANSION LOGIC ---
         function activateSlide(event, slide) {
             if (event) event.stopPropagation();
             if (slide.classList.contains('expanded')) return;
@@ -202,6 +204,7 @@
                 collapseSlide(null, s.querySelector('.slide-close'));
             });
 
+            // STOP Autoplay on expansion
             const swiperContainer = slide.closest('.swiper');
             if (swiperContainer && swiperContainer.swiper && swiperContainer.swiper.autoplay && swiperContainer.swiper.autoplay.running) {
                 swiperContainer.swiper.autoplay.stop();
@@ -379,7 +382,7 @@
                 });
             }, { threshold: 0.25 });
 
-            document.querySelectorAll('.swiper-slide video').forEach(video => {
+            document.querySelectorAll('video').forEach(video => {
                 observer.observe(video);
             });
             
