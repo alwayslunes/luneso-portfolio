@@ -920,3 +920,23 @@ header::before {
 .swiper-wrapper {
     transition-timing-function: linear !important;
 }
+
+/* --- CUSTOM FONT: TRIVANE --- */
+@font-face {
+    font-family: 'Trivane';
+    src: url('../fonts/Trivane.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Apply to Main Headers (CONTENT, NARRATIVE, etc.) */
+.section-toggle {
+    font-family: 'Trivane', sans-serif !important;
+    letter-spacing: 1px; /* Adjust spacing to match the blocky look */
+}
+
+/* Apply to Top Left Logo */
+.header-left {
+    font-family: 'Trivane', sans-serif !important;
+    letter-spacing: 0.5px;
+}
