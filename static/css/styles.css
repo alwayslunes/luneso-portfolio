@@ -1110,3 +1110,15 @@ header::before {
     -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
 }
+
+/* --- SOFTEN HEADER GRADIENT --- */
+#mainHeader {
+    /* Start at 80% opacity (0.8), fade seamlessly to transparent */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0) 60%) !important;
+    
+    /* Keep the blur effect and the mask that fades the blur out at the bottom */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
+}
