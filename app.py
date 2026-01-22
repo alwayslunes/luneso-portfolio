@@ -9,12 +9,12 @@ freezer = Freezer(app)
 def get_shot_on_label(url):
     filename = url.split('/')[-1]
     if filename.startswith("Cam_"):
-        return "Shot on Blackmagic PCC 6K G2"
+        return "SHOT ON BLACKMAGIC 6K G2"
     elif filename.startswith("Phone_"):
-        return "Shot on iPhone"
+        return "SHOT ON IPHONE"
     return ""
 
-# --- 1. NEW MUSIC WEDNESDAYS (Specific Titles) ---
+# --- 1. NEW MUSIC WEDNESDAYS ---
 nmw_data = [
     { 
         "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_1_Dizzy.mp4", 
@@ -68,7 +68,7 @@ nmw_data = [
     }
 ]
 
-# --- 2. BEYOND THE CLUB (Specific Titles) ---
+# --- 2. BEYOND THE CLUB ---
 btc_data = [
     { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Teaser.mp4", "title": "Announcement" },
     { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Brocklee.mp4", "title": "Brocklee" },
@@ -80,8 +80,7 @@ btc_data = [
     { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Ultrathem.mp4", "title": "ULTRATHEM" }
 ]
 
-# --- 3. SOCIAL CONTENT (Specific Titles + Auto Shot-On Label) ---
-# Format: (URL, Custom Title)
+# --- 3. SOCIAL CONTENT ---
 social_mapping = [
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_Arlo_Masisi-CTA-Soiree.mp4", "Arlo Masisi-CTA-Soiree"),
     ("https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4", "CTA DearEleanor"),
@@ -115,13 +114,13 @@ for url, title in social_mapping:
         "shot_on": get_shot_on_label(url)
     })
 
-
 # --- PORTFOLIO STRUCTURE ---
 portfolio = [
     {
         "id": "content",
         "title": "CONTENT",
-        "banner_video": "", 
+        # HARDCODED BANNER VIDEO: Closing Night at Willys
+        "banner_video": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_WillysClosingNight.mp4",
         "sub_sections": [
             { "title": "Social Content", "videos": social_videos },
             { "title": "Beyond the Club", "videos": btc_data },
@@ -139,7 +138,7 @@ def intro(): return render_template('intro.html')
 
 @app.route('/work/')
 def work(): 
-    # Clone lists to shuffle without modifying the original order permanently
+    # Clone and shuffle lists
     shuffled_nmw = nmw_data.copy()
     shuffled_btc = btc_data.copy()
     shuffled_social = social_videos.copy()
@@ -153,8 +152,7 @@ def work():
     subs[1]['videos'] = shuffled_btc
     subs[2]['videos'] = shuffled_nmw
     
-    if shuffled_social:
-        portfolio[0]['banner_video'] = shuffled_social[0]['url']
+    # Banner is now fixed in the portfolio structure, so we don't overwrite it here
     
     return render_template('work.html', sections=portfolio)
 
