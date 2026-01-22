@@ -1,11 +1,11 @@
-from flask import Flask, render_template, abort
+from flask import Flask, render_template
 from flask_frozen import Freezer
 import random
 
 app = Flask(__name__)
 freezer = Freezer(app)
 
-# --- DATA: NMW VIDEOS (Shuffled) ---
+# --- 1. NEW MUSIC WEDNESDAYS (Shuffled) ---
 nmw_videos = [
     { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_1_Dizzy.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_1_Dizzy.jpg" },
     { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/NMW_2_Blood.mp4", "thumbnail": "https://lunes.nyc3.cdn.digitaloceanspaces.com/NMW/Thumbnails/NMW_2_Blood.jpg" },
@@ -20,65 +20,119 @@ nmw_videos = [
 ]
 random.shuffle(nmw_videos)
 
-# --- DATA: MAIN PORTFOLIO SECTIONS ---
+# --- 2. BEYOND THE CLUB ---
+btc_urls = [
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Brocklee.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_EliasRischmawi.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_JupiterVelvet.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_MikahAmani.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_OpalAmRah.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Sayje.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Beyond%20the%20Club/BTC_Ultrathem.mp4"
+]
+btc_videos = [{"url": url} for url in btc_urls]
+
+# --- 3. SOCIAL CONTENT ---
+raw_content_urls = [
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_Arlo_Masisi-CTA-Soiree.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_CTA_DearEleanor.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Cam_MicDrop_AlwaysLunes.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_CaribbeanCunt_Willys.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_GrampsClosing.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_HobNobHomies_Unseen.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_HowBazar.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_IIIPoints2025.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Interview_TrustNobody.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_MMW.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_MiamiZineFair.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_OtraNoche.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_PAMM_THFF.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_PerreoDelPasado_THFF.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Rumbass_TheCorner.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_SonidoErotik_Willys.mp4",
+    "https://lunes.nyc3.cdn.digitaloceanspaces.com/Content/Phone_Underground.mp4"
+]
+
+cat_recaps = []
+cat_underground_interviews = []
+cat_venues = []
+
+for url in raw_content_urls:
+    filename = url.split('/')[-1]
+    
+    # "Shot On" Logic
+    label = ""
+    if filename.startswith("Cam_"):
+        label = "Shot on Blackmagic PCC 6K G2"
+    elif filename.startswith("Phone_"):
+        label = "Shot on iPhone"
+    
+    video_obj = { "url": url, "shot_on": label }
+
+    # Categorization Logic
+    if "Interview" in filename or "Underground" in filename:
+        cat_underground_interviews.append(video_obj)
+    elif "Venue" in filename:
+        cat_venues.append(video_obj)
+    else:
+        cat_recaps.append(video_obj)
+
+random.shuffle(cat_recaps)
+random.shuffle(cat_underground_interviews)
+random.shuffle(cat_venues)
+
+# --- PORTFOLIO STRUCTURE ---
 portfolio = [
     {
         "id": "content",
         "title": "CONTENT",
-        # Uses the first Event Recap video as the banner background
-        "banner_video": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/PERREOTON%20V2.mp4",
+        # Default banner: First video of "Social Content"
+        "banner_video": cat_recaps[0]['url'] if cat_recaps else "",
         "sub_sections": [
             {
-                "title": "New Music Wednesdays",
-                "videos": nmw_videos
-            },
-            {
-                "title": "Event Recaps",
-                "videos": [
-                    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/PERREOTON%20V2.mp4" },
-                    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/CTA%20v7.mp4" },
-                    { "url": "https://lunes.nyc3.cdn.digitaloceanspaces.com/Event%20Recaps/CTA%20DEC%20RECAP_6.mp4" }
-                ]
+                "title": "Social Content",
+                "videos": cat_recaps
             },
             {
                 "title": "Beyond the Club",
-                "videos": [
-                    { "url": "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_1.mp4" },
-                    { "url": "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_2.mp4" },
-                    { "url": "https://lunes-bucket.nyc3.cdn.digitaloceanspaces.com/btc_3.mp4" }
-                ]
+                "videos": btc_videos
+            },
+            {
+                "title": "Underground & Interviews",
+                "videos": cat_underground_interviews
+            },
+            {
+                "title": "Venues",
+                "videos": cat_venues
+            },
+            {
+                "title": "New Music Wednesdays",
+                "videos": nmw_videos
             }
         ]
     },
     {
         "id": "narrative",
         "title": "NARRATIVE",
-        "banner_video": "", # Add URL for Narrative Background Loop
-        "sub_sections": [] # Add videos here later
+        "banner_video": "",
+        "sub_sections": [] 
     },
     {
         "id": "documentary",
         "title": "DOCUMENTARY",
-        "banner_video": "", # Add URL for Doc Background Loop
+        "banner_video": "",
         "sub_sections": [] 
     },
     {
         "id": "hijos",
         "title": "HIJOS DE LA DIÁSPORA",
-        "banner_video": "", # Add URL for Hijos Background Loop
-        "sub_sections": [
-            {
-                "title": "Feature Documentary",
-                "videos": [
-                    # Add Hijos video/trailer link here
-                ]
-            }
-        ] 
+        "banner_video": "",
+        "sub_sections": [] 
     },
     {
         "id": "always-lunes",
         "title": "ALWAYS LUNES",
-        "banner_video": "", # Add URL for Always Lunes Background Loop
+        "banner_video": "",
         "sub_sections": [] 
     }
 ]
@@ -86,21 +140,29 @@ portfolio = [
 @app.route('/')
 def intro(): return render_template('intro.html')
 
-# This is the NEW main page
 @app.route('/work/')
 def work(): 
-    # Reshuffle NMW on refresh
+    # Reshuffle on refresh
     random.shuffle(nmw_videos)
-    # Update reference inside portfolio
-    portfolio[0]['sub_sections'][0]['videos'] = nmw_videos
+    random.shuffle(cat_recaps)
+    random.shuffle(cat_underground_interviews)
+    random.shuffle(cat_venues)
+    
+    # Update portfolio references
+    content_subs = portfolio[0]['sub_sections']
+    content_subs[0]['videos'] = cat_recaps
+    content_subs[2]['videos'] = cat_underground_interviews
+    content_subs[3]['videos'] = cat_venues
+    content_subs[4]['videos'] = nmw_videos
+    
+    # Ensure banner is valid
+    if cat_recaps:
+        portfolio[0]['banner_video'] = cat_recaps[0]['url']
+    
     return render_template('work.html', sections=portfolio)
 
 @app.route('/about/')
 def about(): return render_template('about.html')
-
-# Deprecated but kept for safety/reference if needed
-@app.route('/archive/') 
-def archive(): return "Old Work Page Archive" 
 
 if __name__ == '__main__':
     freezer.freeze()
